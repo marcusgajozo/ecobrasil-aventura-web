@@ -1,0 +1,11 @@
+services:
+  game:
+    container_name: game-container
+    image: game-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - 4173:80
+    tty: true

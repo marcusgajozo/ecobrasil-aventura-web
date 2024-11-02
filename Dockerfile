@@ -8,15 +8,14 @@ FROM base AS development
 CMD ["npm", "run", "dev"]
 
 # build stage
-FROM base AS build
+FROM base AS builder
 COPY . /game
-RUN npm ci
-RUN npm run build
+RUN npm install yarn
+RUN yarn install
+RUN yarn build
 
 # production stage
-FROM base AS production
-COPY --from=build /next/.next ./.next
-COPY --from=build /next/node_modules ./node_modules
-COPY --from=build /next/package.json ./package.json
-COPY --from=build /next/public ./public
-CMD ["npm", "run", "start"]
+FROM nginx:alpine as production
+COPY --from=builder /game/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+CMD ["nginx", "-g", "daemon off;"]
