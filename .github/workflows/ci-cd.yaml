@@ -16,4 +16,4 @@ jobs:
           ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
           ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
         run: |
-          ssh -i $ORACLE_SSH_KEY $ORACLE_USER@$ORACLE_HOST 'bash -s' < deploy.sh
+          ssh -i $ORACLE_SSH_KEY $ORACLE_USER@$ORACLE_HOST 'bash -s' < ./deploy.sh
