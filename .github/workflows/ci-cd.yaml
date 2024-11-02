@@ -19,7 +19,7 @@ jobs:
         env:
           ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
         run: |
-          cat $ORACLE_SSH_KEY
+          echo $ORACLE_SSH_KEY
           echo "$ORACLE_SSH_KEY" > /tmp/oracle_key
           chmod 600 /tmp/oracle_key
 
