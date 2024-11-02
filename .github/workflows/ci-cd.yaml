@@ -19,7 +19,7 @@ jobs:
         env:
           ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
         run: |
-          echo $ORACLE_SSH_KEY > /tmp/oracle_key
+          echo "$ORACLE_SSH_KEY" | tr -d '\r' > /tmp/oracle_key
           chmod 600 /tmp/oracle_key
 
       - name: Test SSH connection
