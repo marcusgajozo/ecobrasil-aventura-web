@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Deploy
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,10 +15,13 @@ jobs:
       - name: Verificar arquivos no diretório atual
         run: ls -la
 
+      - name: Save SSH key
+        run: |
+          echo "$ORACLE_SSH_KEY" > /tmp/oracle_key
+          chmod 600 /tmp/oracle_key
+
       - name: Deploy to Oracle server
         env:
           ORACLE_USER: ${{ secrets.ORACLE_USER }}
           ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
-        run: |
-          ssh -i $ORACLE_SSH_KEY $ORACLE_USER@$ORACLE_HOST 'bash -s' < ./deploy.sh
+        run: ssh -i /tmp/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'bash -s' < ./deploy.sh
