@@ -22,6 +22,13 @@ jobs:
           echo $ORACLE_SSH_KEY > /tmp/oracle_key
           chmod 600 /tmp/oracle_key
 
+      - name: Test SSH connection
+        env:
+          ORACLE_USER: ${{ secrets.ORACLE_USER }}
+          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
+        run: |
+          ssh -i /tmp/oracle_key -o StrictHostKeyChecking=no $ORACLE_USER@$ORACLE_HOST echo "Conexão SSH bem-sucedida"
+
       - name: Deploy to Oracle server
         env:
           ORACLE_USER: ${{ secrets.ORACLE_USER }}
