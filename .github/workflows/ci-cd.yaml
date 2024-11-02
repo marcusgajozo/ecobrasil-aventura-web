@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Verificar arquivos no diretório atual
+        run: ls -la
+
       - name: Deploy to Oracle server
         env:
           ORACLE_USER: ${{ secrets.ORACLE_USER }}
