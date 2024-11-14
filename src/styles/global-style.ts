@@ -1,4 +1,7 @@
-* {
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+  * {
     box-sizing: border-box;
   }
   
@@ -16,5 +19,6 @@ body {
     position: fixed;
     overflow: hidden;
   }
-  
-  
+`;
+
+export default GlobalStyle;
