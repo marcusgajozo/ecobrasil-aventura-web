@@ -25,7 +25,11 @@ const App = () => {
 
   return (
     <KeyboardControls map={KeyboardMap}>
-      <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
+      <Canvas
+        shadows
+        camera={{ position: [10, 10, -10], fov: 30 }}
+        style={{ height: "100%", width: "100%" }}
+      >
         <Suspense>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
