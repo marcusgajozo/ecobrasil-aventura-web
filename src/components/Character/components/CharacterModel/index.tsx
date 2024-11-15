@@ -1,6 +1,6 @@
 import { Sphere } from "@react-three/drei";
 
-const Character = () => {
+const CharacterModel = () => {
   return (
     <Sphere position={[0, 5, 0]} args={[0.5, 16, 12]}>
       <meshStandardMaterial color="blue" />
@@ -8,4 +8,4 @@ const Character = () => {
   );
 };
 
-export default Character;
+export default CharacterModel;

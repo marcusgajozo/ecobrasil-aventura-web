@@ -6,7 +6,7 @@ import { useRef } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import Character from "./character";
+import CharacterModel from "../CharacterModel";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -143,7 +143,7 @@ export const ControllerCharacter = () => {
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />
         <group ref={character}>
-          <Character />
+          <CharacterModel />
         </group>
       </group>
     </RigidBody>
