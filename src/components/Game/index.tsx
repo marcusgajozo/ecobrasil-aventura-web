@@ -3,11 +3,15 @@ import { Physics, RigidBody } from "@react-three/rapier";
 import Character from "../Character";
 import Maps from "../Maps";
 import WindowWelcome from "../WindowWelcome";
+import ImageControllers from "./components/ImageControllers";
+import AccountPlayer from "./components/AccountPlayer";
 
 const Game = () => {
   return (
     <>
       <WindowWelcome />
+      <ImageControllers />
+      <AccountPlayer />
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
