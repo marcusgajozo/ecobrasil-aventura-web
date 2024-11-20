@@ -2,7 +2,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
@@ -47,7 +47,7 @@ export const ControllerCharacter = () => {
   const container = useRef<THREE.Group>(null);
   const character = useRef<THREE.Group>(null);
 
-  // const [animation, setAnimation] = useState("idle");
+  const [animation, setAnimation] = useState("RobotArmature|Robot_Idle");
 
   const characterRotationTarget = useRef(0);
   const rotationTarget = useRef(0);
@@ -60,6 +60,8 @@ export const ControllerCharacter = () => {
 
   useFrame(({ camera }) => {
     if (rb.current) {
+      const state = get();
+
       const vel = rb.current.linvel();
 
       const movement = {
@@ -67,19 +69,20 @@ export const ControllerCharacter = () => {
         z: 0,
       };
 
-      if (get().forward) {
+      if (state.forward) {
+        console.log("forward");
         movement.z = 1;
       }
-      if (get().backward) {
+      if (state.backward) {
         movement.z = -1;
       }
 
-      const speed = get().run ? RUN_SPEED : WALK_SPEED;
+      const speed = state.run ? RUN_SPEED : WALK_SPEED;
 
-      if (get().left) {
+      if (state.left) {
         movement.x = 1;
       }
-      if (get().right) {
+      if (state.right) {
         movement.x = -1;
       }
 
@@ -96,12 +99,12 @@ export const ControllerCharacter = () => {
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
           speed;
         if (speed === RUN_SPEED) {
-          // setAnimation("run");
+          setAnimation("RobotArmature|Robot_Running");
         } else {
-          // setAnimation("walk");
+          setAnimation("RobotArmature|Robot_Walking");
         }
       } else {
-        // setAnimation("idle");
+        setAnimation("RobotArmature|Robot_Idle");
       }
 
       if (character.current) {
@@ -138,12 +141,12 @@ export const ControllerCharacter = () => {
   });
 
   return (
-    <RigidBody colliders="ball" lockRotations ref={rb}>
+    <RigidBody colliders="ball" lockRotations ref={rb} position={[2, 2, 2]}>
       <group ref={container}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />
         <group ref={character}>
-          <CharacterModel />
+          <CharacterModel animation={animation} />
         </group>
       </group>
     </RigidBody>

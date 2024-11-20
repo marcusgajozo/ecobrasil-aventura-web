@@ -3,8 +3,8 @@ import { Physics, RigidBody } from "@react-three/rapier";
 import Character from "../Character";
 import Maps from "../Maps";
 import WindowWelcome from "../WindowWelcome";
-import ImageControllers from "./components/ImageControllers";
 import AccountPlayer from "./components/AccountPlayer";
+import ImageControllers from "./components/ImageControllers";
 
 const Game = () => {
   return (
@@ -16,7 +16,7 @@ const Game = () => {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
         <pointLight position={[0, 10, 0]} intensity={3} distance={10} />
-        <Physics debug>
+        <Physics>
           <Maps />
           <Character />
           <RigidBody>
