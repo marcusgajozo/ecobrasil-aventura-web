@@ -29,7 +29,6 @@ const CharacterModel = ({
     };
   }, [actions, animation]);
 
-  console.log(actions);
   return (
     <group ref={group} {...props} dispose={null} scale={0.5}>
       <group name="Root_Scene">
