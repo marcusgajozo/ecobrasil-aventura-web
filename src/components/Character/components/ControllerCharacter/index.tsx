@@ -2,11 +2,13 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import CharacterModel from "../CharacterModel";
+import { useControllerMap } from "@/hooks/useControllerMap";
+import { Controls } from "../../constants/keyboardMap";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -56,12 +58,27 @@ export const ControllerCharacter = () => {
   const cameraWorldPosition = useRef(new Vector3());
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
-  const [, get] = useKeyboardControls();
+  const [sub] = useKeyboardControls<Controls>();
+
+  const forward = useKeyboardControls<Controls>((state) => state.forward);
+  const backward = useKeyboardControls<Controls>((state) => state.backward);
+  const left = useKeyboardControls<Controls>((state) => state.left);
+  const right = useKeyboardControls<Controls>((state) => state.right);
+  const run = useKeyboardControls<Controls>((state) => state.run);
+
+  const { setOpenMap } = useControllerMap();
+
+  useEffect(() => {
+    return sub(
+      (state) => state.map,
+      (press) => {
+        if (press) setOpenMap((openMap) => !openMap);
+      }
+    );
+  }, [setOpenMap, sub]);
 
   useFrame(({ camera }) => {
     if (rb.current) {
-      const state = get();
-
       const vel = rb.current.linvel();
 
       const movement = {
@@ -69,26 +86,25 @@ export const ControllerCharacter = () => {
         z: 0,
       };
 
-      if (state.forward) {
+      if (forward) {
         console.log("forward");
         movement.z = 1;
-      }
-      if (state.backward) {
+      } else if (backward) {
         movement.z = -1;
-      }
-
-      const speed = state.run ? RUN_SPEED : WALK_SPEED;
-
-      if (state.left) {
+      } else if (left) {
         movement.x = 1;
-      }
-      if (state.right) {
+      } else if (right) {
         movement.x = -1;
+      } else {
+        movement.x = 0;
+        movement.z = 0;
       }
 
       if (movement.x !== 0) {
         rotationTarget.current += ROTATION_SPEED * movement.x;
       }
+
+      const speed = run ? RUN_SPEED : WALK_SPEED;
 
       if (movement.x !== 0 || movement.z !== 0) {
         characterRotationTarget.current = Math.atan2(movement.x, movement.z);
