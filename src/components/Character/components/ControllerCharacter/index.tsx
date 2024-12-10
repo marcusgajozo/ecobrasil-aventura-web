@@ -1,14 +1,15 @@
+import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
+import { useControllerMap } from "@/hooks/useControllerMap";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { RapierRigidBody, RigidBody } from "@react-three/rapier";
+import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import CharacterModel from "../CharacterModel";
-import { useControllerMap } from "@/hooks/useControllerMap";
 import { Controls } from "../../constants/keyboardMap";
+import CharacterModel from "../CharacterModel";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -45,7 +46,7 @@ export const ControllerCharacter = () => {
       },
     }
   );
-  const rb = useRef<RapierRigidBody>(null);
+
   const container = useRef<THREE.Group>(null);
   const character = useRef<THREE.Group>(null);
 
@@ -59,6 +60,7 @@ export const ControllerCharacter = () => {
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
   const [sub] = useKeyboardControls<Controls>();
+  const { character: rb } = useCharacterTeleport();
 
   const forward = useKeyboardControls<Controls>((state) => state.forward);
   const backward = useKeyboardControls<Controls>((state) => state.backward);
@@ -87,7 +89,6 @@ export const ControllerCharacter = () => {
       };
 
       if (forward) {
-        console.log("forward");
         movement.z = 1;
       } else if (backward) {
         movement.z = -1;
@@ -157,7 +158,7 @@ export const ControllerCharacter = () => {
   });
 
   return (
-    <RigidBody colliders="ball" lockRotations ref={rb} position={[2, 2, 2]}>
+    <RigidBody colliders="ball" lockRotations ref={rb} position={[2, 4, 2]}>
       <group ref={container}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />
