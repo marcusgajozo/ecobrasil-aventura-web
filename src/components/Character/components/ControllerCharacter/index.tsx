@@ -2,7 +2,7 @@ import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { useControllerMap } from "@/hooks/useControllerMap";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { RigidBody } from "@react-three/rapier";
+import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -158,14 +158,15 @@ export const ControllerCharacter = () => {
   });
 
   return (
-    <RigidBody colliders="ball" lockRotations ref={rb} position={[2, 4, 2]}>
-      <group ref={container}>
+    <RigidBody colliders={false} lockRotations ref={rb} position={[2, 15, 2]}>
+      <group ref={container} position={[0, -1.2, 0]}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />
         <group ref={character}>
           <CharacterModel animation={animation} />
         </group>
       </group>
+      <CapsuleCollider args={[0.7, 0.6]} />
     </RigidBody>
   );
 };
