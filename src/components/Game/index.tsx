@@ -7,6 +7,7 @@ import AccountPlayer from "./components/AccountPlayer";
 import ImageControllers from "./components/ImageControllers";
 import { GameProviders } from "./providers";
 import { Map } from "../Map";
+import { OrbitControls } from "@react-three/drei";
 
 const Game = () => {
   return (
@@ -16,10 +17,11 @@ const Game = () => {
       <AccountPlayer />
       <Map />
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
+        <OrbitControls />
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
         <pointLight position={[0, 10, 0]} intensity={3} distance={10} />
-        <Physics>
+        <Physics debug>
           <Maps />
           <Character />
           <RigidBody>

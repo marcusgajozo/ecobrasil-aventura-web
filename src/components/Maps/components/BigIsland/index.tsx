@@ -4,6 +4,7 @@ Command: npx gltfjsx@6.5.3 public/models/island-1.glb -o teste.tsx -r public
 */
 
 import { useGLTF } from "@react-three/drei";
+import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
@@ -18,21 +19,25 @@ type GLTFResult = GLTF & {
   };
 };
 
-export const BigIsland = (props: JSX.IntrinsicElements["group"]) => {
+export const BigIsland = (
+  props: JSX.IntrinsicElements["group"] & { positionMap: THREE.Vector3 }
+) => {
   const { nodes, materials } = useGLTF("/models/island-1.glb") as GLTFResult;
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={800}>
-        <mesh
-          geometry={nodes.IslandLarge_1.geometry}
-          material={materials.dirt}
-        />
-        <mesh
-          geometry={nodes.IslandLarge_2.geometry}
-          material={materials.grass}
-        />
+    <RigidBody type="fixed" position={props.positionMap} colliders="hull">
+      <group {...props} dispose={null}>
+        <group rotation={[-Math.PI / 2, 0, 0]} scale={800}>
+          <mesh
+            geometry={nodes.IslandLarge_1.geometry}
+            material={materials.dirt}
+          />
+          <mesh
+            geometry={nodes.IslandLarge_2.geometry}
+            material={materials.grass}
+          />
+        </group>
       </group>
-    </group>
+    </RigidBody>
   );
 };
 

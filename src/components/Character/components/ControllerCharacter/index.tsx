@@ -6,7 +6,7 @@ import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { MathUtils, Vector3 } from "three";
+// import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { Controls } from "../../constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
@@ -56,9 +56,9 @@ export const ControllerCharacter = () => {
   const rotationTarget = useRef(0);
   const cameraTarget = useRef<THREE.Group>(null);
   const cameraPosition = useRef<THREE.Group>(null);
-  const cameraWorldPosition = useRef(new Vector3());
-  const cameraLookAtWorldPosition = useRef(new Vector3());
-  const cameraLookAt = useRef(new Vector3());
+  // const cameraWorldPosition = useRef(new Vector3());
+  // const cameraLookAtWorldPosition = useRef(new Vector3());
+  // const cameraLookAt = useRef(new Vector3());
   const [sub] = useKeyboardControls<Controls>();
   const { character: rb } = useCharacterTeleport();
 
@@ -135,26 +135,26 @@ export const ControllerCharacter = () => {
       rb.current.setLinvel(vel, true);
     }
 
-    // CAMERA
-    if (container.current) {
-      container.current.rotation.y = MathUtils.lerp(
-        container.current.rotation.y,
-        rotationTarget.current,
-        0.1
-      );
-    }
+    // // CAMERA
+    // if (container.current) {
+    //   container.current.rotation.y = MathUtils.lerp(
+    //     container.current.rotation.y,
+    //     rotationTarget.current,
+    //     0.1
+    //   );
+    // }
 
-    if (cameraPosition.current) {
-      cameraPosition.current.getWorldPosition(cameraWorldPosition.current);
-      camera.position.lerp(cameraWorldPosition.current, 0.1);
-    }
+    // if (cameraPosition.current) {
+    //   cameraPosition.current.getWorldPosition(cameraWorldPosition.current);
+    //   camera.position.lerp(cameraWorldPosition.current, 0.1);
+    // }
 
-    if (cameraTarget.current) {
-      cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current);
-      cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1);
+    // if (cameraTarget.current) {
+    //   cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current);
+    //   cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1);
 
-      camera.lookAt(cameraLookAt.current);
-    }
+    //   camera.lookAt(cameraLookAt.current);
+    // }
   });
 
   return (

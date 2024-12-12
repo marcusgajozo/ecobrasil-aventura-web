@@ -4,6 +4,7 @@ Command: npx gltfjsx@6.5.3 public/models/tree-2.glb -o teste.tsx -r public
 */
 
 import { useGLTF } from "@react-three/drei";
+import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
@@ -21,13 +22,18 @@ type GLTFResult = GLTF & {
 export const Tree2 = (props: JSX.IntrinsicElements["group"]) => {
   const { nodes, materials } = useGLTF("/models/tree-2.glb") as GLTFResult;
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes["Node-Mesh"].geometry} material={materials.mat20} />
-      <mesh
-        geometry={nodes["Node-Mesh_1"].geometry}
-        material={materials.mat9}
-      />
-    </group>
+    <RigidBody type="fixed" colliders="trimesh">
+      <group {...props} dispose={null}>
+        <mesh
+          geometry={nodes["Node-Mesh"].geometry}
+          material={materials.mat20}
+        />
+        <mesh
+          geometry={nodes["Node-Mesh_1"].geometry}
+          material={materials.mat9}
+        />
+      </group>
+    </RigidBody>
   );
 };
 
