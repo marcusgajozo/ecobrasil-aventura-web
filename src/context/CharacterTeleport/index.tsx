@@ -48,7 +48,7 @@ export const CharacterTeleportProvider = ({
     // TODO: teleportar o personagem se o mapa atual estiver salvo
     if (character.current) {
       const positionMap = POSITIONS_MAPS[nameMap];
-      positionMap.y = 5;
+      positionMap.y = 15;
       character.current.setTranslation(positionMap, true);
       setCurrentMap(nameMap);
     }
