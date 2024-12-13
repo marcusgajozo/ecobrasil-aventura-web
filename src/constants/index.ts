@@ -11,9 +11,9 @@ export const NAME_MAPS = [
 
 export const POSITIONS_MAPS: Record<(typeof NAME_MAPS)[number], Vector3> = {
   amazonia: new Vector3(0, 0, 0),
-  pantanal: new Vector3(18, 0, -4),
-  caatinga: new Vector3(3, 0, 15),
-  cerrado: new Vector3(3, 0, -17),
-  "mata-atlantica": new Vector3(3, 0, -17),
-  pampa: new Vector3(3, 0, -17),
+  pantanal: new Vector3(80, 0, -30),
+  caatinga: new Vector3(50, 0, 80),
+  cerrado: new Vector3(60, 0, 30),
+  "mata-atlantica": new Vector3(100, 0, 25),
+  pampa: new Vector3(-23, 0, -70),
 };
