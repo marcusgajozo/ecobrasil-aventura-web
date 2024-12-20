@@ -1,31 +1,57 @@
+import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { useControllerMap } from "@/hooks/useControllerMap";
 import * as S from "./styles";
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
-import { positionsColorsMaps } from "@/constants";
+import { generateRandomMapsPaths } from "./functions";
+import { useMemo } from "react";
+import { NAME_MAPS } from "@/constants";
 
 export const Map = () => {
-  const { openMap } = useControllerMap();
-  const { character } = useCharacterTeleport();
+  const { openMap, setOpenMap } = useControllerMap();
+  const { teleportCharacter, currrentMap, savedMap } = useCharacterTeleport();
 
-  const handleTeleport = (nameMap: string) => {
-    if (character.current) {
-      const positionMap = positionsColorsMaps.find(
-        (map) => map.name === nameMap
-      );
-      if (positionMap?.position) {
-        positionMap.position.y = 5;
-        character.current.setTranslation(positionMap.position, true);
-      }
-    }
+  const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
+
+  const handleTeleport = (map: (typeof NAME_MAPS)[number]) => {
+    teleportCharacter(map);
+    setOpenMap(false);
   };
+
+  const showSavedMap = (map: (typeof NAME_MAPS)[number]) => {
+    const saved = savedMap[map].saved;
+    return saved ? "Salvo" : "Não Salvo";
+  };
+
+  // const showButtonSave = (map: (typeof NAME_MAPS)[number]) => {
+
+  // TODO: Somente mostrar no mapa ilhas salvas
 
   return (
     <S.Container openMap={openMap}>
-      <button onClick={() => handleTeleport("map1")}>Map 1</button>
-      <button onClick={() => handleTeleport("map2")}>Map 2</button>
-      <button onClick={() => handleTeleport("map3")}>Map 3</button>
-      <button onClick={() => handleTeleport("map4")}>Map 4</button>
-      <button onClick={() => handleTeleport("map5")}>Map 5</button>
+      <h1>{currrentMap}</h1>
+      <S.ContentMap>
+        {mapsPaths.map((map, index) => (
+          <S.Map key={`${map.name}-${index}`}>
+            <S.MapSaved>{showSavedMap(map.name)}</S.MapSaved>
+            <S.MapName>{map.name}</S.MapName>
+
+            <S.MapPath>
+              <S.MapPathButton
+                disabled={map.name !== currrentMap}
+                onClick={() => handleTeleport(map.path.A)}
+              >
+                Caminho A
+              </S.MapPathButton>
+              <S.MapPathButton
+                disabled={map.name !== currrentMap}
+                onClick={() => handleTeleport(map.path.B)}
+              >
+                Caminho B
+              </S.MapPathButton>
+            </S.MapPath>
+          </S.Map>
+        ))}
+      </S.ContentMap>
+      {!savedMap[currrentMap].saved && <button>Salvar ilha</button>}
     </S.Container>
   );
 };
