@@ -8,6 +8,7 @@ import ImageControllers from "./components/ImageControllers";
 import { GameProviders } from "./providers";
 import { Map } from "../Map";
 import { OrbitControls } from "@react-three/drei";
+import { Quiz } from "../Quiz";
 
 const Game = () => {
   return (
@@ -16,6 +17,7 @@ const Game = () => {
       <ImageControllers />
       <AccountPlayer />
       <Map />
+      <Quiz />
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <OrbitControls />
         <ambientLight intensity={0.5} />

@@ -4,9 +4,11 @@ import * as S from "./styles";
 import { generateRandomMapsPaths } from "./functions";
 import { useMemo } from "react";
 import { NAME_MAPS } from "@/constants";
+import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 
 export const Map = () => {
   const { openMap, setOpenMap } = useControllerMap();
+  const { setOpenQuiz } = useControllerQuiz();
   const { teleportCharacter, currrentMap, savedMap } = useCharacterTeleport();
 
   const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
@@ -19,6 +21,11 @@ export const Map = () => {
   const showSavedMap = (map: (typeof NAME_MAPS)[number]) => {
     const saved = savedMap[map].saved;
     return saved ? "Salvo" : "Não Salvo";
+  };
+
+  const handleOpenQuiz = () => {
+    setOpenMap(false);
+    setOpenQuiz(true);
   };
 
   // const showButtonSave = (map: (typeof NAME_MAPS)[number]) => {
@@ -51,7 +58,9 @@ export const Map = () => {
           </S.Map>
         ))}
       </S.ContentMap>
-      {!savedMap[currrentMap].saved && <button>Salvar ilha</button>}
+      {!savedMap[currrentMap].saved && (
+        <button onClick={handleOpenQuiz}>Salvar ilha</button>
+      )}
     </S.Container>
   );
 };

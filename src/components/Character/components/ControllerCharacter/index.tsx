@@ -10,6 +10,7 @@ import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { Controls } from "../../constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
+import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -69,15 +70,19 @@ export const ControllerCharacter = () => {
   const run = useKeyboardControls<Controls>((state) => state.run);
 
   const { setOpenMap } = useControllerMap();
+  const { setOpenQuiz } = useControllerQuiz();
 
   useEffect(() => {
     return sub(
       (state) => state.map,
       (press) => {
-        if (press) setOpenMap((openMap) => !openMap);
+        if (press) {
+          setOpenMap((openMap) => !openMap);
+          setOpenQuiz(false);
+        }
       }
     );
-  }, [setOpenMap, sub]);
+  }, [setOpenMap, setOpenQuiz, sub]);
 
   useFrame(({ camera }) => {
     if (rb.current) {
