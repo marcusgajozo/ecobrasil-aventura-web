@@ -17,3 +17,21 @@ export const POSITIONS_MAPS: Record<(typeof NAME_MAPS)[number], Vector3> = {
   "mata-atlantica": new Vector3(100, 0, 25),
   pampa: new Vector3(-23, 0, -70),
 };
+
+export const NAME_MAPS_FORMATED: Record<(typeof NAME_MAPS)[number], string> = {
+  "mata-atlantica": "Mata Atlântica",
+  pantanal: "Pantanal",
+  caatinga: "Caatinga",
+  cerrado: "Cerrado",
+  amazonia: "Amazônia",
+  pampa: "Pampa",
+};
+
+export const IMG_MAPS: Record<(typeof NAME_MAPS)[number], string> = {
+  "mata-atlantica": "/ilha.svg",
+  pantanal: "/ilha.svg",
+  caatinga: "/ilha.svg",
+  cerrado: "/ilha.svg",
+  amazonia: "/ilha.svg",
+  pampa: "/ilha.svg",
+};

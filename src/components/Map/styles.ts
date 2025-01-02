@@ -11,23 +11,29 @@ export const Container = styled.div<{ openMap: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   left: 50%;
   top: 50%;
+  gap: 2.5rem;
+  padding: 5rem;
   transform: translate(-50%, -50%);
   z-index: 9999;
 `;
 
-export const ContentMap = styled.div`
+export const ListMap = styled.div`
   display: flex;
+  justify-content: center;
   gap: 50px;
+  width: 100%;
 `;
 
-export const Map = styled.div`
+export const CurrentMap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  background-color: ${({ theme }) => theme.colors.black};
-  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const MapContent = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
 `;
 
@@ -36,14 +42,24 @@ export const MapSaved = styled.div`
   font-size: 16px;
 `;
 
+export const Image = styled.img``;
+
 export const MapName = styled.div`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 16px;
+  color: ${({ theme }) => theme.colors.black};
+  font-size: 12px;
 `;
 
 export const MapPath = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 2rem;
 `;
 
-export const MapPathButton = styled.button``;
+export const MapPathButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: ${({ theme }) => theme.colors.black};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+`;

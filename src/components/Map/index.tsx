@@ -3,7 +3,7 @@ import { useControllerMap } from "@/hooks/useControllerMap";
 import * as S from "./styles";
 import { generateRandomMapsPaths } from "./functions";
 import { useMemo } from "react";
-import { NAME_MAPS } from "@/constants";
+import { IMG_MAPS, NAME_MAPS, NAME_MAPS_FORMATED } from "@/constants";
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 
 export const Map = () => {
@@ -13,51 +13,64 @@ export const Map = () => {
 
   const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
 
-  const handleTeleport = (map: (typeof NAME_MAPS)[number]) => {
+  const handleTeleport = (map: (typeof NAME_MAPS)[number] | undefined) => {
+    if (!map) return;
     teleportCharacter(map);
     setOpenMap(false);
   };
 
-  const showSavedMap = (map: (typeof NAME_MAPS)[number]) => {
-    const saved = savedMap[map].saved;
-    return saved ? "Salvo" : "Não Salvo";
-  };
+  // const showSavedMap = (map: (typeof NAME_MAPS)[number]) => {
+  //   const saved = savedMap[map].saved;
+  //   return saved ? "Salvo" : "Não Salvo";
+  // };
 
   const handleOpenQuiz = () => {
     setOpenMap(false);
     setOpenQuiz(true);
   };
 
-  // const showButtonSave = (map: (typeof NAME_MAPS)[number]) => {
-
-  // TODO: Somente mostrar no mapa ilhas salvas
+  // TODO: mostrar imagens dos mapas
 
   return (
     <S.Container openMap={openMap}>
-      <h1>{currrentMap}</h1>
-      <S.ContentMap>
-        {mapsPaths.map((map, index) => (
-          <S.Map key={`${map.name}-${index}`}>
-            <S.MapSaved>{showSavedMap(map.name)}</S.MapSaved>
-            <S.MapName>{map.name}</S.MapName>
-
-            <S.MapPath>
-              <S.MapPathButton
-                disabled={map.name !== currrentMap}
-                onClick={() => handleTeleport(map.path.A)}
-              >
-                Caminho A
-              </S.MapPathButton>
-              <S.MapPathButton
-                disabled={map.name !== currrentMap}
-                onClick={() => handleTeleport(map.path.B)}
-              >
-                Caminho B
-              </S.MapPathButton>
-            </S.MapPath>
-          </S.Map>
-        ))}
-      </S.ContentMap>
+      <S.ListMap>
+        {mapsPaths
+          .filter((map) => savedMap[map.name].saved && map.name !== currrentMap)
+          .map((map, index) => (
+            <S.MapContent key={`${map.name}-${index}`}>
+              <S.MapName>{NAME_MAPS_FORMATED[map.name]}</S.MapName>
+              <S.Image src={IMG_MAPS[map.name]} width={50} height={50} />
+            </S.MapContent>
+          ))}
+      </S.ListMap>
+      <S.CurrentMap>
+        <h1>{NAME_MAPS_FORMATED[currrentMap]}</h1>
+        <S.Image src={IMG_MAPS[currrentMap]} width={200} height={200} />
+        <S.MapPath>
+          <S.MapPathButton
+            disabled={!savedMap[currrentMap].saved}
+            onClick={() =>
+              handleTeleport(
+                mapsPaths.find((map) => map.name === currrentMap)?.path.A
+              )
+            }
+          >
+            <S.Image src="/plate.svg" width={70} />
+            Caminho B
+          </S.MapPathButton>
+          <S.MapPathButton
+            disabled={!savedMap[currrentMap].saved}
+            onClick={() =>
+              handleTeleport(
+                mapsPaths.find((map) => map.name === currrentMap)?.path.B
+              )
+            }
+          >
+            <S.Image src="/plate.svg" width={70} />
+            Caminho B
+          </S.MapPathButton>
+        </S.MapPath>
+      </S.CurrentMap>
       {!savedMap[currrentMap].saved && (
         <button onClick={handleOpenQuiz}>Salvar ilha</button>
       )}
