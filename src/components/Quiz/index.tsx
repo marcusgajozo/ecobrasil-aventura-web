@@ -84,30 +84,45 @@ export const Quiz = () => {
 
   return (
     <S.Container openQuiz={openQuiz}>
-      <h1>Quiz</h1>
-      <p>Acerte 3 perguntas para liberar outros mapas</p>
-      <h3>Você acertou: {questionsAnsweredCorrectly}</h3>
-      <form onSubmit={(event) => onSubmit(event)}>
-        <h4>{currentQuestion?.pergunta}</h4>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          {currentQuestion?.opcoes.map((opcao, index) => (
-            <div key={`option-${index}`} style={{ display: "flex", gap: 10 }}>
-              <input type="radio" name="question" value={index} />
-              <label htmlFor="question">{opcao}</label>
+      {questionsAnsweredCorrectly < 3 ? (
+        <>
+          <h1>Quiz</h1>
+          <p>Acerte 3 perguntas para liberar outros mapas</p>
+          <h3>Você acertou: {questionsAnsweredCorrectly}</h3>
+          <form onSubmit={(event) => onSubmit(event)}>
+            <h4>{currentQuestion?.pergunta}</h4>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {currentQuestion?.opcoes.map((opcao, index) => (
+                <div
+                  key={`option-${index}`}
+                  style={{ display: "flex", gap: 10 }}
+                >
+                  <input type="radio" name="question" value={index} />
+                  <label htmlFor="question">{opcao}</label>
+                </div>
+              ))}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: 10,
+                }}
+              >
+                <button type="submit">Enviar</button>
+              </div>
             </div>
-          ))}
-          <div
-            style={{ display: "flex", justifyContent: "center", marginTop: 10 }}
-          >
-            <button type="submit">Enviar</button>
-          </div>
-        </div>
-      </form>
+          </form>
+        </>
+      ) : (
+        <h2>
+          Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
+        </h2>
+      )}
       <button onClick={handleCloseQuiz}>fechar</button>
     </S.Container>
   );
