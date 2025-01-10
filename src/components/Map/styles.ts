@@ -51,11 +51,10 @@ export const MapName = styled.div`
 
 export const MapPath = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 10rem;
 `;
 
 export const MapPathButton = styled.button`
-  background-color: transparent;
   border: none;
   color: ${({ theme }) => theme.colors.black};
   display: flex;

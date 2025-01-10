@@ -84,7 +84,11 @@ export const Quiz = () => {
 
   return (
     <S.Container openQuiz={openQuiz}>
-      {questionsAnsweredCorrectly < 3 ? (
+      {questionsAnsweredCorrectly === 3 ? (
+        <h2>
+          Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
+        </h2>
+      ) : (
         <>
           <h1>Quiz</h1>
           <p>Acerte 3 perguntas para liberar outros mapas</p>
@@ -118,10 +122,6 @@ export const Quiz = () => {
             </div>
           </form>
         </>
-      ) : (
-        <h2>
-          Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
-        </h2>
       )}
       <button onClick={handleCloseQuiz}>fechar</button>
     </S.Container>

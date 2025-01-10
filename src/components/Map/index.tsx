@@ -1,20 +1,23 @@
+import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/constants";
 import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { useControllerMap } from "@/hooks/useControllerMap";
-import * as S from "./styles";
-import { generateRandomMapsPaths } from "./functions";
-import { useMemo } from "react";
-import { IMG_MAPS, NAME_MAPS, NAME_MAPS_FORMATED } from "@/constants";
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
+import { useMemo } from "react";
+import { generateRandomMapsPaths } from "./functions";
+import * as S from "./styles";
 
 export const Map = () => {
   const { openMap, setOpenMap } = useControllerMap();
   const { setOpenQuiz } = useControllerQuiz();
-  const { teleportCharacter, currrentMap, savedMap } = useCharacterTeleport();
+  const { teleportCharacter, currrentMap, savedMap, savePathName } =
+    useCharacterTeleport();
 
   const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
 
-  const handleTeleport = (map: (typeof NAME_MAPS)[number] | undefined) => {
+  const handleTeleport = (path: "A" | "B") => {
+    const map = mapsPaths.find((map) => map.name === currrentMap)?.path.A;
     if (!map) return;
+    savePathName(map, path);
     teleportCharacter(map);
     setOpenMap(false);
   };
@@ -35,7 +38,10 @@ export const Map = () => {
     <S.Container openMap={openMap}>
       <S.ListMap>
         {mapsPaths
-          .filter((map) => savedMap[map.name].saved && map.name !== currrentMap)
+          .filter((map) => {
+            console.log(map.name, savedMap[map.name].saved);
+            return savedMap[map.name].saved && map.name !== currrentMap;
+          })
           .map((map, index) => (
             <S.MapContent key={`${map.name}-${index}`}>
               <S.MapName>{NAME_MAPS_FORMATED[map.name]}</S.MapName>
@@ -49,25 +55,21 @@ export const Map = () => {
         <S.MapPath>
           <S.MapPathButton
             disabled={!savedMap[currrentMap].saved}
-            onClick={() =>
-              handleTeleport(
-                mapsPaths.find((map) => map.name === currrentMap)?.path.A
-              )
-            }
+            onClick={() => handleTeleport("A")}
           >
             <S.Image src="/plate.svg" width={70} />
-            Caminho B
+            {savedMap[currrentMap].pathA
+              ? NAME_MAPS_FORMATED[savedMap[currrentMap].pathA]
+              : "Caminho A"}
           </S.MapPathButton>
           <S.MapPathButton
             disabled={!savedMap[currrentMap].saved}
-            onClick={() =>
-              handleTeleport(
-                mapsPaths.find((map) => map.name === currrentMap)?.path.B
-              )
-            }
+            onClick={() => handleTeleport("B")}
           >
             <S.Image src="/plate.svg" width={70} />
-            Caminho B
+            {savedMap[currrentMap].pathB
+              ? NAME_MAPS_FORMATED[savedMap[currrentMap].pathB]
+              : "Caminho B"}
           </S.MapPathButton>
         </S.MapPath>
       </S.CurrentMap>

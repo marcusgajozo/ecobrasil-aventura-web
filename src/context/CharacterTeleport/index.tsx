@@ -2,15 +2,20 @@ import { NAME_MAPS, POSITIONS_MAPS } from "@/constants";
 import { RapierRigidBody } from "@react-three/rapier";
 import { createContext, ReactNode, useRef, useState } from "react";
 
+type NameMapsType = (typeof NAME_MAPS)[number];
+
 type CharacterTeleportContextType = {
   character: React.RefObject<RapierRigidBody>;
-  teleportCharacter: (nameMap: (typeof NAME_MAPS)[number]) => void;
-  currrentMap: (typeof NAME_MAPS)[number];
-  saveMap: (nameMap: (typeof NAME_MAPS)[number]) => void;
+  teleportCharacter: (nameMap: NameMapsType) => void;
+  currrentMap: NameMapsType;
+  saveMap: (nameMap: NameMapsType) => void;
+  savePathName: (nameMap: NameMapsType, path: "A" | "B") => void;
   savedMap: Record<
-    (typeof NAME_MAPS)[number],
+    NameMapsType,
     {
       saved: boolean;
+      pathA: NameMapsType | undefined;
+      pathB: NameMapsType | undefined;
     }
   >;
 };
@@ -22,29 +27,60 @@ export const CharacterTeleportContext = createContext(
 export const CharacterTeleportProvider = ({
   children,
 }: Readonly<{ children: ReactNode }>) => {
-  const [currrentMap, setCurrentMap] =
-    useState<(typeof NAME_MAPS)[number]>("amazonia");
+  const [currrentMap, setCurrentMap] = useState<NameMapsType>("amazonia");
   const character = useRef<RapierRigidBody>(null);
   const [savedMap, setSavedMap] = useState<
-    Record<(typeof NAME_MAPS)[number], { saved: boolean }>
+    Record<
+      NameMapsType,
+      {
+        saved: boolean;
+        pathA: NameMapsType | undefined;
+        pathB: NameMapsType | undefined;
+      }
+    >
   >(() =>
     NAME_MAPS.reduce(
       (acc, nameMap) => ({
         ...acc,
-        [nameMap]: { saved: false },
+        [nameMap]: { saved: false, pathA: undefined, pathB: undefined },
       }),
-      {} as Record<(typeof NAME_MAPS)[number], { saved: boolean }>
+      {} as Record<
+        NameMapsType,
+        {
+          saved: boolean;
+          pathA: NameMapsType | undefined;
+          pathB: NameMapsType | undefined;
+        }
+      >
     )
   );
 
-  const saveMap = (nameMap: (typeof NAME_MAPS)[number]) => {
+  const saveMap = (nameMap: NameMapsType) => {
+    const attributes = savedMap[nameMap];
     setSavedMap((prev) => ({
       ...prev,
-      [nameMap]: { saved: true },
+      [nameMap]: { ...attributes, saved: true },
     }));
   };
 
-  const teleportCharacter = (nameMap: (typeof NAME_MAPS)[number]) => {
+  const savePathName = (nameMap: NameMapsType, path: "A" | "B") => {
+    const attributes = savedMap[currrentMap];
+    setSavedMap((prev) => {
+      if (path === "A") {
+        return {
+          ...prev,
+          [currrentMap]: { ...attributes, pathA: nameMap },
+        };
+      } else {
+        return {
+          ...prev,
+          [currrentMap]: { ...attributes, pathB: nameMap },
+        };
+      }
+    });
+  };
+
+  const teleportCharacter = (nameMap: NameMapsType) => {
     // TODO: teleportar o personagem se o mapa atual estiver salvo
     if (character.current) {
       const positionMap = POSITIONS_MAPS[nameMap];
@@ -56,7 +92,14 @@ export const CharacterTeleportProvider = ({
 
   return (
     <CharacterTeleportContext.Provider
-      value={{ character, teleportCharacter, currrentMap, saveMap, savedMap }}
+      value={{
+        character,
+        teleportCharacter,
+        currrentMap,
+        saveMap,
+        savedMap,
+        savePathName,
+      }}
     >
       {children}
     </CharacterTeleportContext.Provider>
