@@ -12,6 +12,7 @@ import { Controls } from "@/components/Game/constants/keyboardMap";
 // TODO: adiciona plataforma de teleporte
 // TODO: Cuidar de F será apertado para teletransportar user
 // TODO: colocar uma transição de teletransporte bonitinha
+// TODO: criar um componente para teletransporte(para add nos outros mapas)
 
 export const Amazonia = () => {
   const [isCloseA, setIsCloseA] = useState(false);
