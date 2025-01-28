@@ -6,6 +6,9 @@ export enum Controls {
   jump = "jump",
   run = "run",
   map = "map",
+  rotateRight = "rotateRight",
+  rotateLeft = "rotateLeft",
+  action = "action",
 }
 
 export const keyboardMap = [
@@ -16,4 +19,7 @@ export const keyboardMap = [
   { name: "jump", keys: ["Space"] },
   { name: "run", keys: ["Shift"] },
   { name: "map", keys: ["m"] },
+  { name: "rotateRight", keys: ["e"] },
+  { name: "rotateLeft", keys: ["q"] },
+  { name: "action", keys: ["f"] },
 ];
