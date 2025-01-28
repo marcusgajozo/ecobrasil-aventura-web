@@ -12,6 +12,7 @@ export const Map = () => {
   const { teleportCharacter, currrentMap, savedMap, savePathName } =
     useCharacterTeleport();
 
+  // TODO: criar um context para gerar ligações entre os mapas
   const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
 
   const handleTeleport = (path: "A" | "B") => {
