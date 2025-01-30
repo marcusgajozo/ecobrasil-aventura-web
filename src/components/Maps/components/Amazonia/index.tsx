@@ -8,15 +8,20 @@ import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useEffect, useState } from "react";
 import { Controls } from "@/components/Game/constants/keyboardMap";
+import { useMapsManager } from "@/hooks/useMapsManager";
+import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 
 // TODO: adiciona plataforma de teleporte
-// TODO: Cuidar de F será apertado para teletransportar user
 // TODO: colocar uma transição de teletransporte bonitinha
 // TODO: criar um componente para teletransporte(para add nos outros mapas)
+// TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
 
 export const Amazonia = () => {
   const [isCloseA, setIsCloseA] = useState(false);
   const [isCloseB, setIsCloseB] = useState(false);
+
+  const { mapsPaths, currrentMap } = useMapsManager();
+  const { teleportCharacter } = useCharacterTeleport();
 
   const [sub] = useKeyboardControls<Controls>();
 
@@ -26,15 +31,19 @@ export const Amazonia = () => {
       (press) => {
         if (press) {
           if (isCloseA) {
-            console.log("Caminho A");
+            const map = mapsPaths.find((map) => map.name === currrentMap);
+            if (!map) return;
+            teleportCharacter(map.path.A);
           }
           if (isCloseB) {
-            console.log("Caminho B");
+            const map = mapsPaths.find((map) => map.name === currrentMap);
+            if (!map) return;
+            teleportCharacter(map.path.B);
           }
         }
       }
     );
-  }, [isCloseA, isCloseB, sub]);
+  }, [currrentMap, isCloseA, isCloseB, mapsPaths, sub, teleportCharacter]);
 
   return (
     <>

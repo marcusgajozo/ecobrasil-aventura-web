@@ -78,6 +78,7 @@ export const ControllerCharacter = () => {
     (state) => state.rotateRight
   );
   const rotateLeft = useKeyboardControls<Controls>((state) => state.rotateLeft);
+  const action = useKeyboardControls<Controls>((state) => state.action);
 
   const { setOpenMap } = useControllerMap();
   const { setOpenQuiz } = useControllerQuiz();
@@ -141,6 +142,10 @@ export const ControllerCharacter = () => {
         }
       } else {
         setAnimation("RobotArmature|Robot_Idle");
+      }
+
+      if (action) {
+        setAnimation("RobotArmature|Robot_Punch");
       }
 
       if (character.current) {
