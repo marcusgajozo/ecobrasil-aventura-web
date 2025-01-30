@@ -15,6 +15,7 @@ import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 // TODO: colocar uma transição de teletransporte bonitinha
 // TODO: criar um componente para teletransporte(para add nos outros mapas)
 // TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
+// TODO: colocar um tempinho extra para o teletransporte mostrando a animação
 
 export const Amazonia = () => {
   const [isCloseA, setIsCloseA] = useState(false);
