@@ -2,18 +2,17 @@ import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/constants";
 import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { useControllerMap } from "@/hooks/useControllerMap";
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
-import { useMemo } from "react";
-import { generateRandomMapsPaths } from "./functions";
+import { useMapsManager } from "@/hooks/useMapsManager";
 import * as S from "./styles";
 
 export const Map = () => {
   const { openMap, setOpenMap } = useControllerMap();
   const { setOpenQuiz } = useControllerQuiz();
-  const { teleportCharacter, currrentMap, savedMap, savePathName } =
-    useCharacterTeleport();
+  const { teleportCharacter } = useCharacterTeleport();
+
+  const { currrentMap, savedMap, savePathName, mapsPaths } = useMapsManager();
 
   // TODO: criar um context para gerar ligações entre os mapas
-  const mapsPaths = useMemo(() => generateRandomMapsPaths(), []);
 
   const handleTeleport = (path: "A" | "B") => {
     const map = mapsPaths.find((map) => map.name === currrentMap)?.path.A;
