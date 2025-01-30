@@ -1,9 +1,9 @@
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 import { useEffect, useState } from "react";
 
-import * as S from "./styles";
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
+import { useMapsManager } from "@/hooks/useMapsManager";
 import questionsJson from "./questions.json";
+import * as S from "./styles";
 
 type Question = {
   pergunta: string;
@@ -46,7 +46,7 @@ const generateQuestion = () => {
 
 export const Quiz = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
-  const { currrentMap, saveMap } = useCharacterTeleport();
+  const { currrentMap, saveMap } = useMapsManager();
   const [questionsAnsweredCorrectly, setQuestionsAnsweredCorrectly] =
     useState(0);
 
