@@ -16,6 +16,7 @@ import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 // TODO: melhorar a movimentação do personagem w,s,a,d
 // TODO: ler doc do useKeyboardControls
 // TODO: adicionar a animação de ação do personagem (pegar/pertar o item)
+// TODO: corrigir w,s,a,d não funcionam quando o capslock está ativado
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
