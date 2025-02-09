@@ -1,12 +1,16 @@
 import { POSITIONS_MAPS } from "@/constants";
 import { useMapsManager } from "@/hooks/useMapsManager";
 import { NameMapsType } from "@/types/types";
+import { SpringValue, useSpring } from "@react-spring/three";
 import { RapierRigidBody } from "@react-three/rapier";
-import { createContext, ReactNode, useRef } from "react";
+import { createContext, ReactNode, useRef, useState } from "react";
 
 type CharacterTeleportContextType = {
   character: React.RefObject<RapierRigidBody>;
   teleportCharacter: (nameMap: NameMapsType) => void;
+  animationTeleport: {
+    scale: SpringValue<number>;
+  };
 };
 
 export const CharacterTeleportContext = createContext(
@@ -22,13 +26,23 @@ export const CharacterTeleportProvider = ({
   const character = useRef<RapierRigidBody>(null);
   const { setCurrentMap } = useMapsManager();
 
+  const [isTeleporting, setIsTeleporting] = useState(false);
+
+  const animationTeleport = useSpring({
+    scale: isTeleporting ? 0 : 1,
+    config: { duration: 300 },
+  });
+
   const teleportCharacter = (nameMap: NameMapsType) => {
-    if (character.current) {
-      const positionMap = POSITIONS_MAPS[nameMap];
-      positionMap.y = 15;
-      character.current.setTranslation(positionMap, true);
-      setCurrentMap(nameMap);
-    }
+    const positionMap = POSITIONS_MAPS[nameMap];
+    positionMap.y = 15;
+    setIsTeleporting(true);
+    setTimeout(() => {
+      if (character.current)
+        character.current.setTranslation(positionMap, true);
+      setIsTeleporting(false);
+    }, 300);
+    setCurrentMap(nameMap);
   };
 
   return (
@@ -36,6 +50,7 @@ export const CharacterTeleportProvider = ({
       value={{
         character,
         teleportCharacter,
+        animationTeleport,
       }}
     >
       {children}
