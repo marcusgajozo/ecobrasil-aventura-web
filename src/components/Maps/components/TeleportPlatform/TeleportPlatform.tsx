@@ -56,12 +56,17 @@ export const TeleportPlatform = ({
       <RigidBody
         type="fixed"
         colliders="ball"
-        position={positionPlatformA}
+        position={[
+          positionPlatformA.x,
+          positionPlatformA.y + 2,
+          positionPlatformA.z,
+        ]}
         onIntersectionEnter={() => setIsCloseA((prev) => !prev)}
         onIntersectionExit={() => setIsCloseA((prev) => !prev)}
         sensor
       >
         <Box>
+          <meshStandardMaterial transparent opacity={0} />
           <Billboard>
             <Text
               position={[0, 1.2, 0]}
@@ -81,12 +86,17 @@ export const TeleportPlatform = ({
       <RigidBody
         type="fixed"
         colliders="ball"
-        position={positionPlatformB}
+        position={[
+          positionPlatformB.x,
+          positionPlatformB.y + 2,
+          positionPlatformB.z,
+        ]}
         onIntersectionEnter={() => setIsCloseB((prev) => !prev)}
         onIntersectionExit={() => setIsCloseB((prev) => !prev)}
         sensor
       >
         <Box>
+          <meshStandardMaterial transparent opacity={0} />
           <Billboard>
             <Text
               position={[0, 1.2, 0]}
