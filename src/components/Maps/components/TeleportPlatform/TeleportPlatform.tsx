@@ -7,6 +7,10 @@ import { useMapsManager } from "@/hooks/useMapsManager";
 import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { Vector3 } from "three";
 
+// TODO: colocar uma transição de teletransporte bonitinha
+// TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
+// TODO: colocar um tempinho extra para o teletransporte mostrando a animação
+
 type TeleportPlatformProps = {
   positionPlatformA: Vector3;
   positionPlatformB: Vector3;
