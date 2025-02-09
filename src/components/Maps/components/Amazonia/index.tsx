@@ -7,12 +7,6 @@ import { Tree1 } from "../Tree1";
 import { Tree2 } from "../Tree2";
 import { Vector3 } from "three";
 
-// TODO: adiciona plataforma de teleporte
-// TODO: colocar uma transição de teletransporte bonitinha
-// TODO: criar um componente para teletransporte(para add nos outros mapas)
-// TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
-// TODO: colocar um tempinho extra para o teletransporte mostrando a animação
-
 export const Amazonia = () => {
   return (
     <>
