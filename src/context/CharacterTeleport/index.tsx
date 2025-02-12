@@ -19,6 +19,7 @@ export const CharacterTeleportContext = createContext(
 
 // TODO: teleportar o personagem se o mapa atual estiver salvo
 // TODO: chamar uma transição para trocar o mapa
+// TODO: verificar porque a animação do teleport não está funcionando
 
 export const CharacterTeleportProvider = ({
   children,
