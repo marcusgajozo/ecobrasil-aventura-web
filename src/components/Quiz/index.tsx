@@ -43,6 +43,7 @@ const generateQuestion = () => {
 
 // TODO: não repetir perguntas repondidas corretamente
 // TODO: mostrar mensagem de salvar a ilha depois de acetar 3 perguntas
+// TODO: melhorar visualmente o quiz
 
 export const Quiz = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();

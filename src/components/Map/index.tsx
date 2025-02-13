@@ -5,6 +5,8 @@ import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 import { useMapsManager } from "@/hooks/useMapsManager";
 import * as S from "./styles";
 
+// TODO: melhorar visualmente o mapa
+
 export const Map = () => {
   const { openMap, setOpenMap } = useControllerMap();
   const { setOpenQuiz } = useControllerQuiz();
