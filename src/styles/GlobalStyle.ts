@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #333;
   background-color: #fff;
   position: fixed;
