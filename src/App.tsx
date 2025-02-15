@@ -4,7 +4,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 
 import "@fontsource/poppins";
-import "@fontsource/grandstander";
+import "@fontsource-variable/grandstander";
 
 const App = () => {
   return (

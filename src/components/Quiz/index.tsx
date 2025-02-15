@@ -51,7 +51,7 @@ export const Quiz = () => {
   const [questionsAnsweredCorrectly, setQuestionsAnsweredCorrectly] =
     useState(0);
 
-  const [currentQuestion, setQuestion] = useState<Question>();
+  const [, setQuestion] = useState<Question>();
 
   useEffect(() => {
     setQuestionsAnsweredCorrectly(0);
@@ -69,19 +69,19 @@ export const Quiz = () => {
     setOpenQuiz(false);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget.closest("form");
-    if (form) {
-      const formData = new FormData(form);
-      const selectedOption = formData.get("question");
-      if (selectedOption === currentQuestion?.respostaCorreta.toString()) {
-        setQuestionsAnsweredCorrectly((prev) => prev + 1);
-      }
-      const question = generateQuestion();
-      setQuestion(question);
-    }
-  };
+  // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const form = event.currentTarget.closest("form");
+  //   if (form) {
+  //     const formData = new FormData(form);
+  //     const selectedOption = formData.get("question");
+  //     if (selectedOption === currentQuestion?.respostaCorreta.toString()) {
+  //       setQuestionsAnsweredCorrectly((prev) => prev + 1);
+  //     }
+  //     const question = generateQuestion();
+  //     setQuestion(question);
+  //   }
+  // };
 
   return (
     <S.Container openQuiz={openQuiz}>
@@ -90,41 +90,29 @@ export const Quiz = () => {
           Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
         </h2>
       ) : (
-        <>
-          <h1>Quiz</h1>
-          <p>Acerte 3 perguntas para liberar outros mapas</p>
-          <h3>Você acertou: {questionsAnsweredCorrectly}</h3>
-          <form onSubmit={(event) => onSubmit(event)}>
-            <h4>{currentQuestion?.pergunta}</h4>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {currentQuestion?.opcoes.map((opcao, index) => (
-                <div
-                  key={`option-${index}`}
-                  style={{ display: "flex", gap: 10 }}
-                >
-                  <input type="radio" name="question" value={index} />
-                  <label htmlFor="question">{opcao}</label>
-                </div>
-              ))}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: 10,
-                }}
-              >
-                <button type="submit">Enviar</button>
-              </div>
-            </div>
-          </form>
-        </>
+        <S.ContainerQuiz>
+          <img
+            className="close-svg"
+            src="/close.svg"
+            alt="circulo com x dentro"
+            onClick={handleCloseQuiz}
+          />
+          <img className="quiz-svg" src="/quiz.svg" alt="palavra quiz" />
+          <h2>EcoBrasil Aventura</h2>
+          <div className="question-content">
+            <span className="question-text">
+              Qual desses materiais pode ser reciclado?
+            </span>
+            <div className="question-timer">10</div>
+          </div>
+          <div className="options">
+            <div className="option">A) </div>
+            <div className="option">B) </div>
+            <div className="option">D) </div>
+          </div>
+          <div className="button">Enviar</div>
+        </S.ContainerQuiz>
       )}
-      <button onClick={handleCloseQuiz}>fechar</button>
     </S.Container>
   );
 };
