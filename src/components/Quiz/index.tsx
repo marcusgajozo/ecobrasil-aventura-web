@@ -1,118 +1,106 @@
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useMapsManager } from "@/hooks/useMapsManager";
-import questionsJson from "./questions.json";
+import { quiz } from "./questions.json";
 import * as S from "./styles";
 
-type Question = {
-  pergunta: string;
-  opcoes: string[];
-  respostaCorreta: number;
-};
+// TODO: (feat) mostrar perguntas referente ao mapa atual
+// TODO: (feat) colocar as perguntas em um context
 
-const generateRandomNumber = (max: number) => {
-  return Math.floor(Math.random() * (max - 0)) + 0;
-};
-
-const numberQuestionCategory = questionsJson.quiz.length;
-
-const numberQuestionForCategory = questionsJson.quiz.map((item, index) => ({
-  id: index,
-  name: item.categoria,
-  numberQuestion: item.perguntas.length,
-}));
-
-const generateQuestion = () => {
-  const numberGeneratedQuestionCategory = generateRandomNumber(
-    numberQuestionCategory
-  );
-  const numberTotalQuestionCategory =
-    numberQuestionForCategory.find(
-      (item) => item.id === numberGeneratedQuestionCategory
-    )?.numberQuestion || 1;
-
-  const numberGeneratedQuestion = generateRandomNumber(
-    numberTotalQuestionCategory
-  );
-
-  return questionsJson.quiz[numberGeneratedQuestionCategory].perguntas[
-    numberGeneratedQuestion
-  ];
-};
-
-// TODO: não repetir perguntas repondidas corretamente
-// TODO: mostrar mensagem de salvar a ilha depois de acetar 3 perguntas
-// TODO: melhorar visualmente o quiz
+// TODO: (fix) não está trocando a pergunta
 
 export const Quiz = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
   const { currrentMap, saveMap } = useMapsManager();
   const [questionsAnsweredCorrectly, setQuestionsAnsweredCorrectly] =
     useState(0);
+  const [optionSelected, setOptionSelected] = useState<number>();
 
-  const [, setQuestion] = useState<Question>();
+  const questions = quiz;
+
+  const randomNumberQuestion = useCallback((quantQuestion: number) => {
+    return Math.floor(Math.random() * quantQuestion);
+  }, []);
+
+  const [nextQuestion, setNextQuestion] = useState<number>(() =>
+    randomNumberQuestion(questions.length)
+  );
+
+  const currentQuestion = questions[nextQuestion];
 
   useEffect(() => {
     setQuestionsAnsweredCorrectly(0);
-    const question = generateQuestion();
-    setQuestion(question);
+    setOptionSelected(undefined);
   }, [openQuiz]);
-
-  useEffect(() => {
-    if (questionsAnsweredCorrectly === 3) {
-      saveMap(currrentMap);
-    }
-  }, [currrentMap, questionsAnsweredCorrectly, saveMap]);
 
   const handleCloseQuiz = () => {
     setOpenQuiz(false);
   };
 
-  // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const form = event.currentTarget.closest("form");
-  //   if (form) {
-  //     const formData = new FormData(form);
-  //     const selectedOption = formData.get("question");
-  //     if (selectedOption === currentQuestion?.respostaCorreta.toString()) {
-  //       setQuestionsAnsweredCorrectly((prev) => prev + 1);
-  //     }
-  //     const question = generateQuestion();
-  //     setQuestion(question);
-  //   }
-  // };
+  const handleOptionSelected = (num: number) => {
+    setOptionSelected(num);
+  };
+
+  const handleVerifyResponse = () => {
+    if (optionSelected !== undefined) {
+      if (optionSelected === currentQuestion?.respostaCorreta) {
+        questions.splice(optionSelected, 1);
+        setQuestionsAnsweredCorrectly((prev) => prev + 1);
+        if (questions.length === 0) {
+          console.log("entrei");
+          questions.push(...quiz);
+        }
+      } else {
+        // dar algum feedback ao usuário que ele errou
+      }
+      setNextQuestion(randomNumberQuestion(questions.length));
+      setOptionSelected(undefined);
+    } else {
+      // dar algum feedback ao usuário de selecionar opção
+    }
+  };
 
   return (
     <S.Container openQuiz={openQuiz}>
-      {questionsAnsweredCorrectly === 3 ? (
-        <h2>
-          Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
-        </h2>
-      ) : (
-        <S.ContainerQuiz>
-          <img
-            className="close-svg"
-            src="/close.svg"
-            alt="circulo com x dentro"
-            onClick={handleCloseQuiz}
-          />
-          <img className="quiz-svg" src="/quiz.svg" alt="palavra quiz" />
-          <h2>EcoBrasil Aventura</h2>
-          <div className="question-content">
-            <span className="question-text">
-              Qual desses materiais pode ser reciclado?
-            </span>
-            <div className="question-timer">10</div>
-          </div>
-          <div className="options">
-            <div className="option">A) </div>
-            <div className="option">B) </div>
-            <div className="option">D) </div>
-          </div>
-          <div className="button">Enviar</div>
-        </S.ContainerQuiz>
-      )}
+      <S.ContainerQuiz>
+        <img
+          className="close-svg"
+          src="/close.svg"
+          alt="circulo com x dentro"
+          onClick={handleCloseQuiz}
+        />
+        <img className="quiz-svg" src="/quiz.svg" alt="palavra quiz" />
+        <h2>EcoBrasil Aventura</h2>
+        {questionsAnsweredCorrectly === 3 && (
+          <h2>
+            Parabéns! Você salvou a ilha repondendo 3 perguntas corretamente!
+          </h2>
+        )}
+        {questionsAnsweredCorrectly < 3 && (
+          <>
+            <div className="question-content">
+              <div className="question-text">{currentQuestion?.pergunta}</div>
+              <div className="question-timer">10</div>
+            </div>
+            <div className="options">
+              {currentQuestion?.opcoes.map((item, index) => (
+                <S.Option
+                  key={`${index}-option-question`}
+                  onClick={() => handleOptionSelected(index)}
+                  selected={optionSelected === index}
+                >
+                  <div className="num">{`${index + 1})`}</div>
+                  <div className="text">{item}</div>
+                </S.Option>
+              ))}
+            </div>
+            <div className="button" onClick={handleVerifyResponse}>
+              Enviar
+            </div>
+          </>
+        )}
+      </S.ContainerQuiz>
     </S.Container>
   );
 };

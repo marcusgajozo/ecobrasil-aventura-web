@@ -17,7 +17,7 @@ export const Container = styled.div<{ openQuiz: boolean }>`
 export const ContainerQuiz = styled.div`
   position: relative;
   width: 400px;
-  height: 500px;
+  height: max-content;
   background: url("bg-quiz.svg");
   background-size: cover;
   border-radius: 45px;
@@ -64,9 +64,10 @@ export const ContainerQuiz = styled.div`
 
   .question-content {
     background: ${({ theme }) => theme.colors.white};
-    padding: 16px;
+    padding: 16px 40px;
     border-radius: 18px;
     position: relative;
+    margin-bottom: 3.5rem;
   }
 
   .question-text {
@@ -100,22 +101,6 @@ export const ContainerQuiz = styled.div`
     width: 100%;
   }
 
-  .option {
-    font-family: "Grandstander Variable", "Poppins", sans-serif;
-    font-size: 3rem;
-    color: #1d502c;
-    background: ${({ theme }) => theme.colors.white};
-    padding: 10px 20px;
-    border-radius: 18px;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(1.05);
-      transition: transform 0.2s ease-in-out;
-    }
-  }
-
   .button {
     font-family: "Grandstander Variable", "Poppins", sans-serif;
     font-size: 3rem;
@@ -127,10 +112,39 @@ export const ContainerQuiz = styled.div`
     letter-spacing: -0.2rem;
     cursor: pointer;
     text-align: center;
+    margin-top: 3rem;
 
     &:hover {
       transform: scale(1.2);
       transition: transform 0.2s ease-in-out;
     }
+  }
+`;
+
+export const Option = styled.div<{ selected: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  color: #1d502c;
+  background: ${({ theme, selected }) =>
+    selected ? "#6EE03D" : theme.colors.white};
+  padding: 10px 20px;
+  border-radius: 18px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .num {
+    font-family: "Grandstander Variable", "Poppins", sans-serif;
+    font-size: 3rem;
+  }
+
+  .text {
+    font-family: "Poppins", sans-serif;
   }
 `;

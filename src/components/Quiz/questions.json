@@ -1,8 +1,5 @@
 {
     "quiz": [
-      {
-        "categoria": "Educação Ambiental",
-        "perguntas": [
           {
             "pergunta": "Por que é importante reciclar?",
             "opcoes": [
@@ -11,7 +8,7 @@
               "Para gastar mais energia",
               "Para aumentar a poluição"
             ],
-            "respostaCorreta": 1
+            "respostaCorreta": 0
           },
           {
             "pergunta": "Qual desses materiais pode ser reciclado?",
@@ -21,7 +18,7 @@
               "Areia",
               "Óleo usado"
             ],
-            "respostaCorreta": 1
+            "respostaCorreta": 0
           },
           {
             "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
@@ -31,7 +28,7 @@
               "Ignorar porque não é problema meu",
               "Abrir mais para parar o pingamento"
             ],
-            "respostaCorreta": 2
+            "respostaCorreta": 1
           },
           {
             "pergunta": "Qual é o melhor destino para restos de alimentos?",
@@ -41,55 +38,8 @@
               "Deixar na rua",
               "Guardar no armário"
             ],
-            "respostaCorreta": 2
-          }
-        ]
-      },
-      {
-        "categoria": "Autômatos de Estados Finitos",
-        "perguntas": [
-          {
-            "pergunta": "O que é um autômato de estados finitos?",
-            "opcoes": [
-              "Uma máquina que funciona com água",
-              "Um modelo matemático para representar sistemas",
-              "Um robô com inteligência artificial",
-              "Uma ferramenta para desenhar mapas"
-            ],
-            "respostaCorreta": 2
-          },
-          {
-            "pergunta": "O que representa um estado em um autômato?",
-            "opcoes": [
-              "Uma ação que o sistema realiza",
-              "Uma condição ou situação do sistema",
-              "Um comando para desligar o sistema",
-              "Um local geográfico"
-            ],
-            "respostaCorreta": 2
-          },
-          {
-            "pergunta": "Como um autômato muda de estado?",
-            "opcoes": [
-              "Por meio de transições baseadas em entradas",
-              "Quando é desligado",
-              "Quando perde energia",
-              "Automaticamente, sem motivos"
-            ],
             "respostaCorreta": 1
-          },
-          {
-            "pergunta": "Qual é a principal utilidade dos autômatos?",
-            "opcoes": [
-              "Controlar máquinas industriais",
-              "Resolver problemas complexos de matemática",
-              "Modelar e resolver problemas de lógica",
-              "Desenhar formas geométricas"
-            ],
-            "respostaCorreta": 3
           }
-        ]
-      }
     ]
   }
   
