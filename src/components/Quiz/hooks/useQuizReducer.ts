@@ -4,7 +4,7 @@ import { QuizAction, QuizState } from "../types";
 
 const initialState: QuizState = {
   questions: [...quizData],
-  currentQuestionIndex: 0,
+  currentQuestionIndex: Math.floor(Math.random() * quizData.length),
   questionsAnsweredCorrectly: 0,
   selectedOption: undefined,
 };
