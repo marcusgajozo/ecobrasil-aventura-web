@@ -6,6 +6,10 @@ export const Question = () => {
   const { questions, currentQuestionIndex, selectedOption } = state;
   const currentQuestion = questions[currentQuestionIndex];
 
+  const handleClick = () => {
+    if (selectedOption !== undefined) dispatch({ type: "NEXT_QUESTION" });
+  };
+
   return (
     <>
       <div className="question-content">
@@ -24,10 +28,7 @@ export const Question = () => {
           </S.Option>
         ))}
       </div>
-      <div
-        className="button"
-        onClick={() => dispatch({ type: "NEXT_QUESTION" })}
-      >
+      <div className="button" onClick={handleClick}>
         Enviar
       </div>
     </>
