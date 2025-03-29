@@ -14,8 +14,6 @@ export const Map = () => {
 
   const { currrentMap, savedMap, savePathName, mapsPaths } = useMapsManager();
 
-  // TODO: criar um context para gerar ligações entre os mapas
-
   const handleTeleport = (path: "A" | "B") => {
     const map = mapsPaths.find((map) => map.name === currrentMap)?.path.A;
     if (!map) return;
