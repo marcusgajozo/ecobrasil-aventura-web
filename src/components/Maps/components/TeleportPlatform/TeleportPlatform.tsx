@@ -1,7 +1,7 @@
 import { RigidBody } from "@react-three/rapier";
 import { TeleportPlatformModel } from "./TeleportPlatformModel";
 import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Controls } from "@/components/Game/constants/keyboardMap";
 import { useMapsManager } from "@/hooks/useMapsManager";
 import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
@@ -23,10 +23,21 @@ export const TeleportPlatform = ({
   const [isCloseA, setIsCloseA] = useState(false);
   const [isCloseB, setIsCloseB] = useState(false);
 
-  const { mapsPaths, currrentMap } = useMapsManager();
+  const { mapsPaths, currrentMap, savePathName, savedMap } = useMapsManager();
   const { teleportCharacter } = useCharacterTeleport();
 
   const [sub] = useKeyboardControls<Controls>();
+
+  const handleTeleport = useCallback(
+    (mapPath: "A" | "B") => {
+      if (savedMap[currrentMap].saved === false) return;
+      const map = mapsPaths.find((map) => map.name === currrentMap);
+      if (!map) return;
+      savePathName(map.path[mapPath], mapPath);
+      teleportCharacter(map.path[mapPath]);
+    },
+    [currrentMap, mapsPaths, savePathName, savedMap, teleportCharacter]
+  );
 
   useEffect(() => {
     return sub(
@@ -34,19 +45,15 @@ export const TeleportPlatform = ({
       (press) => {
         if (press) {
           if (isCloseA) {
-            const map = mapsPaths.find((map) => map.name === currrentMap);
-            if (!map) return;
-            teleportCharacter(map.path.A);
+            handleTeleport("A");
           }
           if (isCloseB) {
-            const map = mapsPaths.find((map) => map.name === currrentMap);
-            if (!map) return;
-            teleportCharacter(map.path.B);
+            handleTeleport("B");
           }
         }
       }
     );
-  }, [currrentMap, isCloseA, isCloseB, mapsPaths, sub, teleportCharacter]);
+  }, [handleTeleport, isCloseA, isCloseB, sub]);
 
   return (
     <>
