@@ -1,36 +1,38 @@
-name: Deploy
+name: Deploy Pipeline
 
 on:
   push:
     branches:
-      - main
+      - prd
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout do código
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Verificar arquivos no diretório atual
-        run: ls -la
+      # Login seguro no GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Save SSH key
-        env:
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
+      - name: Setup QEMU para suporte multi-arquitetura
+        uses: docker/setup-qemu-action@v3
+
+      - name: Setup Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image and Push Docker image
         run: |
-          echo "$ORACLE_SSH_KEY" | tr -d '\r' > /tmp/oracle_key
-          chmod 600 /tmp/oracle_key
-
-      - name: Test SSH connection
-        env:
-          ORACLE_USER: ${{ secrets.ORACLE_USER }}
-          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
-        run: |
-          ssh -i /tmp/oracle_key -o StrictHostKeyChecking=no $ORACLE_USER@$ORACLE_HOST echo "Conexão SSH bem-sucedida"
-
-      - name: Deploy to Oracle server
-        env:
-          ORACLE_USER: ${{ secrets.ORACLE_USER }}
-          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
-        run: ssh -i /tmp/oracle_key $ORACLE_USER@$ORACLE_HOST 'bash -s' < ./deploy.sh
+          docker buildx build \
+            --platform linux/arm64 \
+            --cache-from=type=registry,ref=ghcr.io/${{ github.repository }}:cache \
+            --cache-to=type=inline \
+            -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} \
+            --push .
