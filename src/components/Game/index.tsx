@@ -23,8 +23,7 @@ const Game = () => {
         <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
-          <pointLight position={[0, 10, 0]} intensity={3} distance={10} />
-          <Physics>
+          <Physics debug>
             <Maps />
             <Character />
           </Physics>
