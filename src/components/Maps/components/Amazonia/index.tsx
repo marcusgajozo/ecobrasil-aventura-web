@@ -6,6 +6,7 @@ import { TeleportPlatform } from "../TeleportPlatform";
 import { Tree1 } from "../Tree1";
 import { Tree2 } from "../Tree2";
 import { Vector3 } from "three";
+import { QuestionBox } from "../QuestionBox";
 
 export const Amazonia = () => {
   return (
@@ -14,6 +15,7 @@ export const Amazonia = () => {
         positionPlatformA={new Vector3(-12, 6, 1)}
         positionPlatformB={new Vector3(-12, 6, -8)}
       />
+      <QuestionBox position={new Vector3(-8, 8, 7)} />
       <BushStone scale={1} position={[10, 6, 0]} />
       <BushStone scale={1} position={[0, 6, 0]} />
       <DryTree scale={1} position={[3, 8, 0]} />
