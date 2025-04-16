@@ -19,12 +19,22 @@ type GLTFResult = GLTF & {
   };
 };
 
-export const BigIsland = (
-  props: JSX.IntrinsicElements["group"] & { positionMap: THREE.Vector3 }
-) => {
+export const BigIsland = ({
+  positionMap,
+  color = "#589559",
+  ...props
+}: JSX.IntrinsicElements["group"] & {
+  positionMap: THREE.Vector3;
+  color?: string;
+}) => {
   const { nodes, materials } = useGLTF("/models/island-1.glb") as GLTFResult;
+
+  materials.grass.color.set(color);
+  materials.grass.roughness = 0.9;
+  materials.grass.metalness = 0;
+
   return (
-    <RigidBody type="fixed" position={props.positionMap} colliders="hull">
+    <RigidBody type="fixed" position={positionMap} colliders="hull">
       <group {...props} dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]} scale={800}>
           <mesh
