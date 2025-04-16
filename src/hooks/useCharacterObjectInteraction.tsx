@@ -27,6 +27,7 @@ export const useCharacterObjectInteraction = ({
   }, [sub, control, isClose, action]);
 
   return {
+    isClose,
     setIsClose,
   };
 };
