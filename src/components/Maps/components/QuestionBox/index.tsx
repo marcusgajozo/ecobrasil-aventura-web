@@ -1,40 +1,30 @@
-import { Controls } from "@/components/Game/constants/keyboardMap";
-import { Billboard, Text, useKeyboardControls } from "@react-three/drei";
+import { useCharacterObjectInteraction } from "@/hooks/useCharacterObjectInteraction";
+import { useControllerQuiz } from "@/hooks/useControllerQuiz";
+import { Billboard, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
   CuboidCollider,
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Quaternion, Vector3 } from "three";
 import { Model } from "./model";
-import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 
 type QuestionBoxProps = {
   position: Vector3;
 };
 
 export const QuestionBox = ({ position }: QuestionBoxProps) => {
-  const [isCloseA, setIsCloseA] = useState(false);
-  const [sub] = useKeyboardControls<Controls>();
   const { setOpenQuiz } = useControllerQuiz();
+
+  const { isClose, setIsClose } = useCharacterObjectInteraction({
+    control: "action",
+    action: () => setOpenQuiz(true),
+  });
 
   const modelRef = useRef<RapierRigidBody>(null);
   const rotationSpeed = 0.8;
-
-  useEffect(() => {
-    return sub(
-      (state) => state.action,
-      (press) => {
-        if (press) {
-          if (isCloseA) {
-            setOpenQuiz(true);
-          }
-        }
-      }
-    );
-  }, [isCloseA, setOpenQuiz, sub]);
 
   useFrame((_, delta) => {
     if (modelRef.current) {
@@ -52,7 +42,7 @@ export const QuestionBox = ({ position }: QuestionBoxProps) => {
         currentRotation.w
       );
 
-      if (!isCloseA) {
+      if (!isClose) {
         quat.multiply(quatIncrement);
       }
 
@@ -65,9 +55,9 @@ export const QuestionBox = ({ position }: QuestionBoxProps) => {
       <RigidBody
         type="fixed"
         onIntersectionEnter={() => {
-          setIsCloseA(true);
+          setIsClose(true);
         }}
-        onIntersectionExit={() => setIsCloseA(false)}
+        onIntersectionExit={() => setIsClose(false)}
         sensor
         position={position}
       >
@@ -86,7 +76,7 @@ export const QuestionBox = ({ position }: QuestionBoxProps) => {
             outlineColor="black"
             outlineWidth={0.05}
           >
-            {isCloseA ? "[F] Abrir Quiz" : ""}
+            {isClose ? "[F] Abrir Quiz" : ""}
           </Text>
         </Billboard>
       </RigidBody>
