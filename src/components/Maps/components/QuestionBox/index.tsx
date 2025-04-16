@@ -1,24 +1,27 @@
 import { Controls } from "@/components/Game/constants/keyboardMap";
-import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
-import { useEffect, useState } from "react";
-import { Vector3 } from "three";
+import { Billboard, Text, useKeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import {
+  CuboidCollider,
+  RapierRigidBody,
+  RigidBody,
+} from "@react-three/rapier";
+import { useEffect, useRef, useState } from "react";
+import { Quaternion, Vector3 } from "three";
 import { Model } from "./model";
+import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 
 type QuestionBoxProps = {
   position: Vector3;
 };
 
-// TODO: adicionar interação com a caixa de pergunta para abrir o quiz
-// TODO: adicionar inimação na caixa de pergunta(girar)
-
 export const QuestionBox = ({ position }: QuestionBoxProps) => {
   const [isCloseA, setIsCloseA] = useState(false);
-
-  //   const { mapsPaths, currrentMap, savePathName, savedMap } = useMapsManager();
-  //   const { teleportCharacter } = useCharacterTeleport();
-
   const [sub] = useKeyboardControls<Controls>();
+  const { setOpenQuiz } = useControllerQuiz();
+
+  const modelRef = useRef<RapierRigidBody>(null);
+  const rotationSpeed = 0.8;
 
   useEffect(() => {
     return sub(
@@ -26,44 +29,66 @@ export const QuestionBox = ({ position }: QuestionBoxProps) => {
       (press) => {
         if (press) {
           if (isCloseA) {
-            console.log("Apertou o botão");
+            setOpenQuiz(true);
           }
         }
       }
     );
-  }, [isCloseA, sub]);
+  }, [isCloseA, setOpenQuiz, sub]);
+
+  useFrame((_, delta) => {
+    if (modelRef.current) {
+      const angle = rotationSpeed * delta;
+      const quatIncrement = new Quaternion().setFromAxisAngle(
+        new Vector3(0, 1, 0),
+        angle
+      );
+
+      const currentRotation = modelRef.current.rotation();
+      const quat = new Quaternion(
+        currentRotation.x,
+        currentRotation.y,
+        currentRotation.z,
+        currentRotation.w
+      );
+
+      if (!isCloseA) {
+        quat.multiply(quatIncrement);
+      }
+
+      modelRef.current.setNextKinematicRotation(quat);
+    }
+  });
 
   return (
     <>
       <RigidBody
         type="fixed"
-        colliders="trimesh"
         onIntersectionEnter={() => {
-          setIsCloseA((prev) => !prev);
-          console.log("entrou");
+          setIsCloseA(true);
         }}
-        onIntersectionExit={() => setIsCloseA((prev) => !prev)}
+        onIntersectionExit={() => setIsCloseA(false)}
         sensor
         position={position}
       >
-        <RigidBody type="fixed" colliders="trimesh">
+        <CuboidCollider args={[2, 2, 2]} />
+        <RigidBody type="kinematicPosition" colliders="cuboid" ref={modelRef}>
           <Model scale={6} />
         </RigidBody>
-        {isCloseA && (
-          <Box>
-            <Billboard>
-              <Text
-                position={[0, 1.2, 0]}
-                fontSize={0.5}
-                color="black"
-                anchorX="center"
-                anchorY="bottom"
-              >
-                {"Caminho A"}
-              </Text>
-            </Billboard>
-          </Box>
-        )}
+
+        <Billboard>
+          <Text
+            position={[0, 1.5, 0]}
+            fontSize={0.4}
+            color="white"
+            anchorX="center"
+            anchorY="middle"
+            outlineColor="black"
+            outlineWidth={0.05}
+          >
+            {isCloseA ? "[F] Abrir Quiz" : ""}
+          </Text>
+        </Billboard>
       </RigidBody>
     </>
   );
