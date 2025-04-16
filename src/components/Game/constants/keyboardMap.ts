@@ -1,17 +1,6 @@
-export enum Controls {
-  forward = "forward",
-  backward = "backward",
-  left = "left",
-  right = "right",
-  jump = "jump",
-  run = "run",
-  map = "map",
-  rotateRight = "rotateRight",
-  rotateLeft = "rotateLeft",
-  action = "action",
-}
+import { KeyboardControlsEntry } from "@react-three/drei";
 
-export const keyboardMap = [
+export const keyboardMap: KeyboardControlsEntry[] = [
   { name: "forward", keys: ["ArrowUp", "w"] },
   { name: "backward", keys: ["ArrowDown", "s"] },
   { name: "left", keys: ["ArrowLeft", "a"] },
@@ -22,4 +11,6 @@ export const keyboardMap = [
   { name: "rotateRight", keys: ["e"] },
   { name: "rotateLeft", keys: ["q"] },
   { name: "action", keys: ["f"] },
-];
+] as const;
+
+export type Controls = (typeof keyboardMap)[number]["name"];
