@@ -18,15 +18,19 @@ type GLTFResult = GLTF & {
 };
 
 export function GroundSloth(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(
-    "/models/ground-sloth.glb"
-  ) as GLTFResult;
+  const { nodes } = useGLTF("/models/ground-sloth.glb") as GLTFResult;
+
+  const brightMaterial = new THREE.MeshStandardMaterial({
+    color: "#B0A7A6",
+    roughness: 0.3,
+    metalness: 0,
+  });
   return (
     <RigidBody type="fixed" colliders="trimesh">
       <group {...props} dispose={null}>
         <mesh
           geometry={nodes.GroundSloth_mesh.geometry}
-          material={materials.GroundSloth_mat}
+          material={brightMaterial}
         />
       </group>
     </RigidBody>
