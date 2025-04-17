@@ -8,6 +8,10 @@ import { Tree2 } from "../Tree2";
 import { Vector3 } from "three";
 import { QuestionBox } from "../QuestionBox";
 import { useMapsManager } from "@/hooks/useMapsManager";
+import { GroundSloth } from "../GroundSloth";
+import { BlackCaiman } from "../BlackCaiman";
+import { Parrot } from "../Parrot/Parrot";
+import { ParrotBranch } from "../ParrotBranch";
 
 export const Amazonia = () => {
   const { currrentMap, savedMap } = useMapsManager();
@@ -19,6 +23,10 @@ export const Amazonia = () => {
         positionPlatformB={new Vector3(-12, 6, -8)}
       />
       {!saved && <QuestionBox position={new Vector3(-8, 8, 7)} />}
+      <ParrotBranch scale={0.2} position={[-7, 5.9, -10]} />
+      <Parrot scale={0.2} position={[-5, 5.9, -10]} />
+      <BlackCaiman scale={0.6} position={[3, 6, -10]} />
+      <GroundSloth scale={0.3} position={[1, 6, -10]} />
       <BushStone scale={1} position={[10, 6, 0]} />
       <BushStone scale={1} position={[0, 6, 0]} />
       <DryTree scale={1} position={[3, 8, 0]} />
@@ -26,7 +34,7 @@ export const Amazonia = () => {
       <Tree2 scale={4} position={[10, 11, 13]} />
       <Tree1 scale={4} position={[0, 11, 10]} />
       <Tree1 scale={4} position={[5, 11, 10]} />
-      <BigIsland positionMap={POSITIONS_MAPS["amazonia"]} />
+      <BigIsland color="#819a4a" positionMap={POSITIONS_MAPS["amazonia"]} />
     </>
   );
 };
