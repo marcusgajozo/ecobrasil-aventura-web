@@ -21,9 +21,9 @@ const Game = () => {
         <Map />
         <Quiz />
         <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.8} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
-          <Physics debug>
+          <Physics>
             <Maps />
             <Character />
           </Physics>
