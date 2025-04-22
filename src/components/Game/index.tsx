@@ -10,6 +10,7 @@ import ImageControllers from "./components/ImageControllers";
 import { GameProviders } from "./providers";
 import { KeyboardControls } from "@react-three/drei";
 import { keyboardMap } from "./constants/keyboardMap";
+import { HelpUs } from "./components/HelpUs";
 
 const Game = () => {
   return (
@@ -20,6 +21,7 @@ const Game = () => {
         <AccountPlayer />
         <Map />
         <Quiz />
+        <HelpUs />
         <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
           <ambientLight intensity={0.8} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
