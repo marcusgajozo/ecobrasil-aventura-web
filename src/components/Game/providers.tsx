@@ -1,6 +1,7 @@
 import { CharacterTeleportProvider } from "@/context/CharacterTeleport";
 import { ControllerMapProvider } from "@/context/ControllerMap";
 import { ControllerQuizProvider } from "@/context/ControllerQuiz";
+import { FirstTimePlayingProvider } from "@/context/FirstTimePlaying";
 import { MapsManagerProvider } from "@/context/MapsManager";
 import { ReactNode } from "react";
 
@@ -11,7 +12,9 @@ export const GameProviders = ({
     <MapsManagerProvider>
       <ControllerMapProvider>
         <CharacterTeleportProvider>
-          <ControllerQuizProvider>{children}</ControllerQuizProvider>
+          <ControllerQuizProvider>
+            <FirstTimePlayingProvider>{children}</FirstTimePlayingProvider>
+          </ControllerQuizProvider>
         </CharacterTeleportProvider>
       </ControllerMapProvider>
     </MapsManagerProvider>
