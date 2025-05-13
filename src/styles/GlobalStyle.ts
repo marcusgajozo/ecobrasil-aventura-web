@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Configurações globais */
@@ -18,7 +19,6 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
   color: #333;
   background-color: #fff;
   position: fixed;

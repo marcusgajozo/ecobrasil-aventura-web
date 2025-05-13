@@ -8,9 +8,14 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { Controls } from "../../constants/keyboardMap";
+import { Controls } from "../../../Game/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
+
+// TODO: corrigir o correr do personagem
+// TODO: melhorar a movimentação do personagem w,s,a,d
+// TODO: ler doc do useKeyboardControls
+// TODO: corrigir w,s,a,d não funcionam quando o capslock está ativado
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -37,7 +42,7 @@ export const ControllerCharacter = () => {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls(
     "Character Control",
     {
-      WALK_SPEED: { value: 0.8, min: 0.1, max: 4, step: 0.1 },
+      WALK_SPEED: { value: 3.5, min: 0.1, max: 4, step: 0.1 },
       RUN_SPEED: { value: 1.6, min: 0.2, max: 12, step: 0.1 },
       ROTATION_SPEED: {
         value: degToRad(0.5),
@@ -68,6 +73,11 @@ export const ControllerCharacter = () => {
   const left = useKeyboardControls<Controls>((state) => state.left);
   const right = useKeyboardControls<Controls>((state) => state.right);
   const run = useKeyboardControls<Controls>((state) => state.run);
+  const rotateRight = useKeyboardControls<Controls>(
+    (state) => state.rotateRight
+  );
+  const rotateLeft = useKeyboardControls<Controls>((state) => state.rotateLeft);
+  const action = useKeyboardControls<Controls>((state) => state.action);
 
   const { setOpenMap } = useControllerMap();
   const { setOpenQuiz } = useControllerQuiz();
@@ -101,6 +111,10 @@ export const ControllerCharacter = () => {
         movement.x = 1;
       } else if (right) {
         movement.x = -1;
+      } else if (rotateRight) {
+        rotationTarget.current -= ROTATION_SPEED;
+      } else if (rotateLeft) {
+        rotationTarget.current += ROTATION_SPEED;
       } else {
         movement.x = 0;
         movement.z = 0;
@@ -127,6 +141,10 @@ export const ControllerCharacter = () => {
         }
       } else {
         setAnimation("RobotArmature|Robot_Idle");
+      }
+
+      if (action) {
+        setAnimation("RobotArmature|Robot_Punch");
       }
 
       if (character.current) {

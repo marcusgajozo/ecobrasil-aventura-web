@@ -15,7 +15,7 @@ RUN yarn install
 RUN yarn build
 
 # production stage
-FROM nginx:alpine as production
+FROM nginx:alpine AS production
 COPY --from=builder /game/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 CMD ["nginx", "-g", "daemon off;"]

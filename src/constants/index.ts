@@ -28,10 +28,10 @@ export const NAME_MAPS_FORMATED: Record<(typeof NAME_MAPS)[number], string> = {
 };
 
 export const IMG_MAPS: Record<(typeof NAME_MAPS)[number], string> = {
-  "mata-atlantica": "/ilha.svg",
-  pantanal: "/ilha.svg",
-  caatinga: "/ilha.svg",
-  cerrado: "/ilha.svg",
-  amazonia: "/ilha.svg",
-  pampa: "/ilha.svg",
+  "mata-atlantica": "/mata-atlantica.png",
+  pantanal: "/pantanal.png",
+  caatinga: "/caatinga.png",
+  cerrado: "/cerrado.png",
+  amazonia: "/amazonia.png",
+  pampa: "/pampa.png",
 };
