@@ -1,10 +1,26 @@
 import arrowWood from "@images/arrow-wood.png";
+import React from "react";
+import * as S from "./styles";
 
-// TODO: add props left, right, up, down
-export const ButtonArrow = () => {
+export type Direction = "up" | "down" | "left" | "right";
+
+type ButtonArrowProps = {
+  direction?: Direction;
+  size?: string; // Ex: '40px', '2rem', '100%'
+} & React.HTMLAttributes<HTMLDivElement>;
+
+export const ButtonArrow = ({
+  direction = "left",
+  size = "100px",
+  ...divProps
+}: ButtonArrowProps) => {
   return (
-    <div>
-      <img src={arrowWood} alt="Imagem de flecha em desenho" />
-    </div>
+    <S.ArrowWrapper $direction={direction} {...divProps}>
+      <S.ArrowImage
+        src={arrowWood}
+        alt={`Flecha apontando para ${direction}`}
+        $size={size}
+      />
+    </S.ArrowWrapper>
   );
 };
