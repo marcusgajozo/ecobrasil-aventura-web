@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
 /* Configurações globais */
 html {
-  font-size: 8px;
+  font-size: 16px;
   line-height: 1.5;
   scroll-behavior: smooth;
 }
@@ -34,6 +34,11 @@ img, video {
 html, body, #root {
   width: 100%;
   height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Grandstander Variable", sans-serif;
+  
 }
 
 `;
