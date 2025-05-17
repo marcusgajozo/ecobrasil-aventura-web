@@ -10,8 +10,7 @@ export const Intro = () => {
       <div className="card">
         <h1>Bem vindo!</h1>
         <p>Esse é um game legal</p>
-        <button onClick={() => setFirstTime(false)}>Próximo</button>
-        <ButtonArrow />
+        <ButtonArrow onClick={() => setFirstTime(false)} />
       </div>
     </S.Container>
   );

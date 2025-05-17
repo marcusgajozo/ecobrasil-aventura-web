@@ -1,5 +1,5 @@
 import Character from "@/components/Character";
-import { Intro } from "@/components/Intro";
+import { Intro } from "@/components/Intro/Intro";
 import { Map } from "@/components/Map";
 import Maps from "@/components/Maps";
 import { Quiz } from "@/components/Quiz";
