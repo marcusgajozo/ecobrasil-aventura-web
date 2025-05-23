@@ -12,7 +12,7 @@ import { ButtonText } from "../../components/atoms/ButtonText/ButtonText";
 
 const cards = [FirstCard, SecondCard, ThirdCard, FourthCard];
 
-export const Intro = () => {
+export const Introduction = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const { setFirstTime } = useFirstTimePlaying();
 

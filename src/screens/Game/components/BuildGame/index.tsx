@@ -1,5 +1,5 @@
 import Character from "@/components/Character";
-import { Intro } from "@/screens/Intro/Intro";
+import { Introduction } from "@/screens/Introduction/Introduction";
 import { Map } from "@/components/Map";
 import Maps from "@/components/Maps";
 import { Quiz } from "@/components/Quiz";
@@ -17,7 +17,7 @@ export const BuildGame = () => {
   const { firstTime } = useFirstTimePlaying();
   return (
     <>
-      {firstTime && <Intro />}
+      {firstTime && <Introduction />}
       {!firstTime && (
         <KeyboardControls map={keyboardMap}>
           <WindowWelcome />
