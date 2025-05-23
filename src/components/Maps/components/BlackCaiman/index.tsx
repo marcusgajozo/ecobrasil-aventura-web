@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { RigidBody } from "@react-three/rapier";
+import blackCaiman from "@models/black-caiman.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,7 +19,7 @@ type GLTFResult = GLTF & {
 };
 
 export function BlackCaiman(props: JSX.IntrinsicElements["group"]) {
-  const { nodes } = useGLTF("/models/black-caiman.glb") as GLTFResult;
+  const { nodes } = useGLTF(blackCaiman) as GLTFResult;
 
   const brightMaterial = new THREE.MeshStandardMaterial({
     color: "#868779",
@@ -38,4 +39,4 @@ export function BlackCaiman(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/black-caiman.glb");
+useGLTF.preload(blackCaiman);

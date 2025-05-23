@@ -9,6 +9,8 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@images": path.resolve(__dirname, "./src/assets/images"),
+      "@models": path.resolve(__dirname, "./src/assets/models"),
     },
   },
+  assetsInclude: ["**/*.glb"],
 });

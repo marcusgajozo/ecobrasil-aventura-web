@@ -7,6 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import island from "@models/island-1.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,7 +28,7 @@ export const BigIsland = ({
   positionMap: THREE.Vector3;
   color?: string;
 }) => {
-  const { nodes, materials } = useGLTF("/models/island-1.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(island) as GLTFResult;
 
   materials.grass.color.set(color);
   materials.grass.roughness = 0.9;
@@ -51,4 +52,4 @@ export const BigIsland = ({
   );
 };
 
-useGLTF.preload("/models/island-1.glb");
+useGLTF.preload(island);

@@ -8,6 +8,8 @@ import { GroupProps, useGraph } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import { SkeletonUtils } from "three-stdlib";
 
+import robot from "@models/robot.glb";
+
 type CharacterModelProps = {
   animation?: string;
   color?: string;
@@ -18,7 +20,7 @@ const CharacterModel = ({
   ...props
 }: CharacterModelProps) => {
   const group = useRef(null);
-  const { scene, animations } = useGLTF("/models/robot.glb");
+  const { scene, animations } = useGLTF(robot);
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
@@ -90,6 +92,6 @@ const CharacterModel = ({
   );
 };
 
-useGLTF.preload("/models/robot.glb");
+useGLTF.preload(robot);
 
 export default CharacterModel;

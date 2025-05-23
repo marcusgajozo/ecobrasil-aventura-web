@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { RigidBody } from "@react-three/rapier";
+import groundSloth from "@models/ground-sloth.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,7 +19,7 @@ type GLTFResult = GLTF & {
 };
 
 export function GroundSloth(props: JSX.IntrinsicElements["group"]) {
-  const { nodes } = useGLTF("/models/ground-sloth.glb") as GLTFResult;
+  const { nodes } = useGLTF(groundSloth) as GLTFResult;
 
   const brightMaterial = new THREE.MeshStandardMaterial({
     color: "#B0A7A6",
@@ -37,4 +38,4 @@ export function GroundSloth(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/ground-sloth.glb");
+useGLTF.preload(groundSloth);

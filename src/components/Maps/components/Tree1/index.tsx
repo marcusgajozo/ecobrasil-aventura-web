@@ -8,6 +8,8 @@ import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
+import tree1 from "@models/tree-1.glb";
+
 type GLTFResult = GLTF & {
   nodes: {
     ["Node-Mesh"]: THREE.Mesh;
@@ -20,7 +22,7 @@ type GLTFResult = GLTF & {
 };
 
 export const Tree1 = (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF("/models/tree-1.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(tree1) as GLTFResult;
   return (
     <RigidBody type="fixed" colliders="trimesh">
       <group {...props} dispose={null}>
@@ -37,4 +39,4 @@ export const Tree1 = (props: JSX.IntrinsicElements["group"]) => {
   );
 };
 
-useGLTF.preload("/models/tree-1.glb");
+useGLTF.preload(tree1);

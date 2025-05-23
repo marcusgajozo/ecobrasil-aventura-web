@@ -7,6 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import ocean from "@models/ocean.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,7 +19,7 @@ type GLTFResult = GLTF & {
 };
 
 export function Ocean(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/models/ocean.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(ocean) as GLTFResult;
   return (
     <RigidBody type="fixed" colliders="trimesh">
       <group {...props} dispose={null}>
@@ -28,4 +29,4 @@ export function Ocean(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/ocean.glb");
+useGLTF.preload(ocean);

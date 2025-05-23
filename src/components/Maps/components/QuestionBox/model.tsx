@@ -7,6 +7,8 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
+import questionBox from "@models/question-box.glb";
+
 type GLTFResult = GLTF & {
   nodes: {
     mesh1747336890: THREE.Mesh;
@@ -31,9 +33,7 @@ type GLTFResult = GLTF & {
 };
 
 export function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(
-    "/models/question-box.glb"
-  ) as GLTFResult;
+  const { nodes, materials } = useGLTF(questionBox) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -84,4 +84,4 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/question-box.glb");
+useGLTF.preload(questionBox);

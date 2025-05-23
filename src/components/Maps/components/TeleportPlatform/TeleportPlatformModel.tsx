@@ -7,6 +7,8 @@ import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
+import teleporterBase from "@models/teleporter-base.glb";
+
 type GLTFResult = GLTF & {
   nodes: {
     Props_Base_1: THREE.Mesh;
@@ -21,9 +23,7 @@ type GLTFResult = GLTF & {
 };
 
 export function TeleportPlatformModel(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(
-    "/models/teleporter-base.glb"
-  ) as GLTFResult;
+  const { nodes, materials } = useGLTF(teleporterBase) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={170}>
@@ -44,4 +44,4 @@ export function TeleportPlatformModel(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/teleporter-base.glb");
+useGLTF.preload(teleporterBase);

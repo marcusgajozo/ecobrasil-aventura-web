@@ -8,6 +8,8 @@ import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
+import parrotBranch from "@models/animals/parrot-branch.glb";
+
 type GLTFResult = GLTF & {
   nodes: {
     ScarletMacaw_mesh: THREE.Mesh;
@@ -18,9 +20,7 @@ type GLTFResult = GLTF & {
 };
 
 export function ParrotBranch(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(
-    "/models/animals/parrot-branch.glb"
-  ) as GLTFResult;
+  const { nodes, materials } = useGLTF(parrotBranch) as GLTFResult;
   return (
     <RigidBody type="fixed" colliders="trimesh">
       <group {...props} dispose={null}>
@@ -33,4 +33,4 @@ export function ParrotBranch(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/animals/parrot-branch.glb");
+useGLTF.preload(parrotBranch);

@@ -6,6 +6,7 @@ Command: npx gltfjsx@6.5.3 public/models/dry-tree.glb -o teste.tsx -r public
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import dryTree from "@models/dry-tree.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,7 +18,7 @@ type GLTFResult = GLTF & {
 };
 
 export const DryTree = (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF("/models/dry-tree.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(dryTree) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Tree_branch.geometry} material={materials.None} />
@@ -25,4 +26,4 @@ export const DryTree = (props: JSX.IntrinsicElements["group"]) => {
   );
 };
 
-useGLTF.preload("/models/dry-tree.glb");
+useGLTF.preload(dryTree);
