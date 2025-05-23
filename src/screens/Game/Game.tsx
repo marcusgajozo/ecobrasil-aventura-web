@@ -1,6 +1,6 @@
 import Character from "@/components/Character";
 import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
-import Maps from "@/screens/Game/@components/Maps";
+import { Islands } from "@/screens/Game/@components/Islands/Islands";
 import { Quiz } from "@/components/Quiz";
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -22,7 +22,7 @@ export const Game = () => {
           <ambientLight intensity={0.8} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
           <Physics>
-            <Maps />
+            <Islands />
             <Character />
           </Physics>
         </Canvas>

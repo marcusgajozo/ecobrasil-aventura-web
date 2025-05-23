@@ -15,7 +15,7 @@ const maps: Record<(typeof NAME_MAPS)[number], () => JSX.Element> = {
   pampa: Pampa,
 };
 
-const Maps = () => {
+export const Islands = () => {
   return (
     <>
       {Object.keys(maps).map((key) => {
@@ -25,5 +25,3 @@ const Maps = () => {
     </>
   );
 };
-
-export default Maps;
