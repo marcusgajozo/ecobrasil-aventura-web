@@ -8,8 +8,8 @@ export type ButtonTextProps = {
 
 export const ButtonText = ({
   title,
-  colorText = theme.colors.green[300],
-  colorBorder = theme.colors.green[500],
+  colorText = theme.colors.green[500],
+  colorBorder = theme.colors.green[100],
   textSizeRem = 2,
   ...props
 }: ButtonTextProps) => {
