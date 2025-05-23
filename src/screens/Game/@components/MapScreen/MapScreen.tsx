@@ -3,7 +3,7 @@ import { CurrentMap } from "./CurrentMap";
 import { MapsVisited } from "./MapsVisited";
 import * as S from "./styles";
 
-export const Map = () => {
+export const MapScreen = () => {
   const { openMap, setOpenMap } = useControllerMap();
 
   const handleCloseQuiz = () => {

@@ -1,5 +1,5 @@
 import Character from "@/components/Character";
-import { Map } from "@/screens/Game/@components/Map";
+import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
 import Maps from "@/components/Maps";
 import { Quiz } from "@/components/Quiz";
 import { KeyboardControls } from "@react-three/drei";
@@ -15,7 +15,7 @@ export const Game = () => {
     <GameProviders>
       <KeyboardControls map={keyboardMap}>
         <AccountPlayer />
-        <Map />
+        <MapScreen />
         <Quiz />
         <HelpUs />
         <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
