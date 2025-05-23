@@ -18,4 +18,25 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+
+    button {
+      background-color: ${({ theme }) => theme.colors.green[800]};
+      color: ${({ theme }) => theme.colors.white};
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.green[600]};
+      }
+    }
+  }
 `;
