@@ -1,4 +1,4 @@
-import Character from "@/components/Character";
+import Character from "@/screens/Game/@components/Character";
 import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
 import { Islands } from "@/screens/Game/@components/Islands/Islands";
 import { Quiz } from "@/components/Quiz";
