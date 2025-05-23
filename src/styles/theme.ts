@@ -1,5 +1,5 @@
 const theme = {
-  font: {
+  fonts: {
     primary: "Poppins",
     secondary: "Grandstander Variable",
   },

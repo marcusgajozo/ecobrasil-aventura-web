@@ -10,7 +10,7 @@ export const Container = styled.div`
   background-color: #12502c;
   color: white;
   font-size: 2.5rem;
-  font-family: ${({ theme }) => theme.font.secondary};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   font-weight: 700;
   display: flex;
   justify-content: center;
