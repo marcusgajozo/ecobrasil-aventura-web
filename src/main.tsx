@@ -1,9 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import { GameApp } from "./GameApp.tsx";
+import { Providers } from "./Providers.tsx";
+import GlobalStyle from "./styles/GlobalStyle.ts";
+
+import "@fontsource-variable/grandstander";
+import "@fontsource/poppins";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <Providers>
+      <GlobalStyle />
+      <GameApp />
+    </Providers>
   </StrictMode>
 );

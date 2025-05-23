@@ -1,0 +1,34 @@
+import Character from "@/components/Character";
+import { Map } from "@/components/Map";
+import Maps from "@/components/Maps";
+import { Quiz } from "@/components/Quiz";
+import { KeyboardControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/rapier";
+import AccountPlayer from "./components/AccountPlayer";
+import { HelpUs } from "./components/HelpUs";
+import ImageControllers from "./components/ImageControllers";
+import { GameProviders } from "./providers";
+import { keyboardMap } from "./constants/keyboardMap";
+
+export const Game = () => {
+  return (
+    <GameProviders>
+      <KeyboardControls map={keyboardMap}>
+        <ImageControllers />
+        <AccountPlayer />
+        <Map />
+        <Quiz />
+        <HelpUs />
+        <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
+          <Physics>
+            <Maps />
+            <Character />
+          </Physics>
+        </Canvas>
+      </KeyboardControls>
+    </GameProviders>
+  );
+};
