@@ -8,7 +8,7 @@ import { Physics } from "@react-three/rapier";
 import AccountPlayer from "./components/AccountPlayer";
 import { HelpUs } from "./components/HelpUs";
 import ImageControllers from "./components/ImageControllers";
-import { GameProviders } from "./providers";
+import { GameProviders } from "./GameProviders";
 import { keyboardMap } from "./constants/keyboardMap";
 
 export const Game = () => {
