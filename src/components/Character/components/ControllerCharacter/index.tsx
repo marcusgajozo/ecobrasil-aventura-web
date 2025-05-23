@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { Controls } from "../../../Game/constants/keyboardMap";
+import { Controls } from "../../../../screens/Game/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
 import { useControllerQuiz } from "@/hooks/useControllerQuiz";
 

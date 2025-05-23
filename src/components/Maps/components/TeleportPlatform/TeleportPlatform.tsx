@@ -2,7 +2,7 @@ import { RigidBody } from "@react-three/rapier";
 import { TeleportPlatformModel } from "./TeleportPlatformModel";
 import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
 import { useCallback, useEffect, useState } from "react";
-import { Controls } from "@/components/Game/constants/keyboardMap";
+import { Controls } from "@/screens/Game/constants/keyboardMap";
 import { useMapsManager } from "@/hooks/useMapsManager";
 import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
 import { Vector3 } from "three";

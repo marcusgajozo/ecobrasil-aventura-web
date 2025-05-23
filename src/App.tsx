@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import Game from "./components/Game";
+import Game from "./screens/Game";
 import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 

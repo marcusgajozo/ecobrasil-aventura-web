@@ -1,14 +1,14 @@
 import { useFirstTimePlaying } from "@/hooks/useFirstTimePlaying";
 import * as S from "./styles";
-import { TitleEcoBrasilAventura } from "../atoms/TitleEcoBrasilAventura/TitleEcoBrasilAventura";
-import { ButtonArrow } from "../atoms/ButtonArrow/ButtonArrow";
+import { TitleEcoBrasilAventura } from "../../components/atoms/TitleEcoBrasilAventura/TitleEcoBrasilAventura";
+import { ButtonArrow } from "../../components/atoms/ButtonArrow/ButtonArrow";
 import { FirstCard } from "./@components/FirstCard";
 import { SecondCard } from "./@components/SecondCard";
 import { ThirdCard } from "./@components/ThirdCard";
 import { FourthCard } from "./@components/FourthCard";
 import { useState } from "react";
 import { CurrentCard } from "./@components/CurrentCard";
-import { ButtonText } from "../atoms/ButtonText/ButtonText";
+import { ButtonText } from "../../components/atoms/ButtonText/ButtonText";
 
 const cards = [FirstCard, SecondCard, ThirdCard, FourthCard];
 

@@ -1,4 +1,4 @@
-import { Controls } from "@/components/Game/constants/keyboardMap";
+import { Controls } from "@/screens/Game/constants/keyboardMap";
 import { useKeyboardControls } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
