@@ -1,5 +1,5 @@
 import Character from "@/components/Character";
-import { Map } from "@/components/Map";
+import { Map } from "@/screens/Game/@components/Map";
 import Maps from "@/components/Maps";
 import { Quiz } from "@/components/Quiz";
 import { KeyboardControls } from "@react-three/drei";
