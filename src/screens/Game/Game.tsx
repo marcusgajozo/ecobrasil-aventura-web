@@ -1,6 +1,6 @@
 import Character from "@/components/Character";
 import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
-import Maps from "@/components/Maps";
+import Maps from "@/screens/Game/@components/Maps";
 import { Quiz } from "@/components/Quiz";
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
