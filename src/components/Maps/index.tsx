@@ -1,4 +1,4 @@
-import { NAME_MAPS } from "@/constants";
+import { NAME_MAPS } from "@/lib/constants";
 import { Pantanal } from "./components/Pantanal";
 import { MataAtlantica } from "./components/MataAtlantica";
 import { Amazonia } from "./components/Amazonia";

@@ -1,5 +1,5 @@
-import { NAME_MAPS } from "@/constants";
-import { NameMapsType } from "@/types/types";
+import { NAME_MAPS } from "@/lib/constants";
+import { NameMapsType } from "@/lib/types/types";
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { generateRandomMapsPaths } from "./functions";
 

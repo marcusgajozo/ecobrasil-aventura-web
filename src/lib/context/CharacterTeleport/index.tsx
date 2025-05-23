@@ -1,6 +1,6 @@
-import { POSITIONS_MAPS } from "@/constants";
-import { useMapsManager } from "@/hooks/useMapsManager";
-import { NameMapsType } from "@/types/types";
+import { POSITIONS_MAPS } from "@/lib/constants";
+import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { NameMapsType } from "@/lib/types/types";
 import { SpringValue, useSpring } from "@react-spring/three";
 import { RapierRigidBody } from "@react-three/rapier";
 import { createContext, ReactNode, useRef, useState } from "react";

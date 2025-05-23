@@ -1,4 +1,4 @@
-import { useFirstTimePlaying } from "./hooks/useFirstTimePlaying";
+import { useFirstTimePlaying } from "./lib/hooks/useFirstTimePlaying";
 import { Game } from "./screens/Game/Game";
 import { Introduction } from "./screens/Introduction/Introduction";
 

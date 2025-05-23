@@ -3,8 +3,8 @@ import { TeleportPlatformModel } from "./TeleportPlatformModel";
 import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
 import { useCallback, useEffect, useState } from "react";
 import { Controls } from "@/screens/Game/constants/keyboardMap";
-import { useMapsManager } from "@/hooks/useMapsManager";
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
+import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { Vector3 } from "three";
 
 // TODO: colocar uma transição de teletransporte bonitinha

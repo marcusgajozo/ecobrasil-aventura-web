@@ -1,4 +1,4 @@
-import { useControllerMap } from "@/hooks/useControllerMap";
+import { useControllerMap } from "@/lib/hooks/useControllerMap";
 import { CurrentMap } from "./CurrentMap";
 import { MapsVisited } from "./MapsVisited";
 import * as S from "./styles";

@@ -1,4 +1,4 @@
-import { POSITIONS_MAPS } from "@/constants";
+import { POSITIONS_MAPS } from "@/lib/constants";
 import { BigIsland } from "../BigIsland";
 import { BushStone } from "../BushStone";
 import { DryTree } from "../DryTree";
@@ -7,7 +7,7 @@ import { Tree1 } from "../Tree1";
 import { Tree2 } from "../Tree2";
 import { Vector3 } from "three";
 import { QuestionBox } from "../QuestionBox";
-import { useMapsManager } from "@/hooks/useMapsManager";
+import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { GroundSloth } from "../GroundSloth";
 import { BlackCaiman } from "../BlackCaiman";
 import { Parrot } from "../Parrot/Parrot";

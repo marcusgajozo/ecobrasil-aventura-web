@@ -1,4 +1,4 @@
-import { useFirstTimePlaying } from "@/hooks/useFirstTimePlaying";
+import { useFirstTimePlaying } from "@/lib/hooks/useFirstTimePlaying";
 import * as S from "./styles";
 import { TitleEcoBrasilAventura } from "../../components/atoms/TitleEcoBrasilAventura/TitleEcoBrasilAventura";
 import { ButtonArrow } from "../../components/atoms/ButtonArrow/ButtonArrow";

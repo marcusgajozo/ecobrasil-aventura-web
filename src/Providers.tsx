@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
-import { FirstTimePlayingProvider } from "./context/FirstTimePlaying";
+import { FirstTimePlayingProvider } from "./lib/context/FirstTimePlaying";
 
 export const Providers = ({
   children,

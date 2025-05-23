@@ -1,5 +1,5 @@
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
-import { useControllerMap } from "@/hooks/useControllerMap";
+import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
+import { useControllerMap } from "@/lib/hooks/useControllerMap";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
@@ -10,7 +10,7 @@ import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { Controls } from "../../../../screens/Game/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
-import { useControllerQuiz } from "@/hooks/useControllerQuiz";
+import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
 
 // TODO: corrigir o correr do personagem
 // TODO: melhorar a movimentação do personagem w,s,a,d

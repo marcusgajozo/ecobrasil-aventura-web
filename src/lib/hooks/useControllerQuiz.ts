@@ -1,8 +1,8 @@
-import { MapsManagerContext } from "@/context/MapsManager";
+import { ControllerQuizContext } from "@/lib/context/ControllerQuiz";
 import { useContext } from "react";
 
-export const useMapsManager = () => {
-  const context = useContext(MapsManagerContext);
+export const useControllerQuiz = () => {
+  const context = useContext(ControllerQuizContext);
 
   if (!context) {
     throw new Error(

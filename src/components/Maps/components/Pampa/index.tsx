@@ -1,4 +1,4 @@
-import { POSITIONS_MAPS } from "@/constants";
+import { POSITIONS_MAPS } from "@/lib/constants";
 import { BigIsland } from "../BigIsland";
 import { BushStone } from "../BushStone";
 import { DryTree } from "../DryTree";

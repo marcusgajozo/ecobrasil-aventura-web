@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
+import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { animated } from "@react-spring/three";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { GroupProps, useGraph } from "@react-three/fiber";

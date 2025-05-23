@@ -1,4 +1,4 @@
-import { ControllerMapContext } from "@/context/ControllerMap";
+import { ControllerMapContext } from "@/lib/context/ControllerMap";
 import { useContext } from "react";
 
 export const useControllerMap = () => {

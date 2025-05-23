@@ -1,5 +1,5 @@
-import { useCharacterObjectInteraction } from "@/hooks/useCharacterObjectInteraction";
-import { useControllerQuiz } from "@/hooks/useControllerQuiz";
+import { useCharacterObjectInteraction } from "@/lib/hooks/useCharacterObjectInteraction";
+import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
 import { Billboard, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {

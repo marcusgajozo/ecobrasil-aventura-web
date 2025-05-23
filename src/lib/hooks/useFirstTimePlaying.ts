@@ -1,4 +1,4 @@
-import { FirstTimePlayingContext } from "@/context/FirstTimePlaying";
+import { FirstTimePlayingContext } from "@/lib/context/FirstTimePlaying";
 import { useContext } from "react";
 
 export const useFirstTimePlaying = () => {

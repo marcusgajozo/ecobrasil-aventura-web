@@ -1,7 +1,7 @@
-import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/constants";
-import { useControllerMap } from "@/hooks/useControllerMap";
-import { useControllerQuiz } from "@/hooks/useControllerQuiz";
-import { useMapsManager } from "@/hooks/useMapsManager";
+import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/lib/constants";
+import { useControllerMap } from "@/lib/hooks/useControllerMap";
+import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
+import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import * as S from "./styles";
 
 export const CurrentMap = () => {

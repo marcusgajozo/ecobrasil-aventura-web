@@ -1,4 +1,4 @@
-import { CharacterTeleportContext } from "@/context/CharacterTeleport";
+import { CharacterTeleportContext } from "@/lib/context/CharacterTeleport";
 import { useContext } from "react";
 
 export const useCharacterTeleport = () => {

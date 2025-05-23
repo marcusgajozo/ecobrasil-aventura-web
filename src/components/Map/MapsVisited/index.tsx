@@ -1,6 +1,6 @@
-import { IMG_MAPS } from "@/constants";
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
-import { useMapsManager } from "@/hooks/useMapsManager";
+import { IMG_MAPS } from "@/lib/constants";
+import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
+import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useMemo } from "react";
 import * as S from "./styles";
 
