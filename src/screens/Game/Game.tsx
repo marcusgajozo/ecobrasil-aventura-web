@@ -5,9 +5,9 @@ import { Quiz } from "@/components/Quiz";
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import AccountPlayer from "./components/AccountPlayer";
-import { HelpUs } from "./components/HelpUs";
-import ImageControllers from "./components/ImageControllers";
+import AccountPlayer from "./@components/AccountPlayer";
+import { HelpUs } from "./@components/HelpUs";
+import ImageControllers from "./@components/ImageControllers";
 import { GameProviders } from "./GameProviders";
 import { keyboardMap } from "./constants/keyboardMap";
 
