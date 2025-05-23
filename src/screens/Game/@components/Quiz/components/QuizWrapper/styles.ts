@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import bgQuiz from "@images/bg-quiz.svg";
+
 export const Container = styled.div<{ openQuiz: boolean }>`
   display: ${({ openQuiz }) => (openQuiz ? "flex" : "none")};
   flex-direction: column;
@@ -18,7 +20,7 @@ export const ContainerQuiz = styled.div`
   position: relative;
   width: 400px;
   height: max-content;
-  background: url("bg-quiz.svg");
+  background: url(${bgQuiz});
   background-size: cover;
   border-radius: 45px;
   padding: 26px 35px;
@@ -31,7 +33,7 @@ export const ContainerQuiz = styled.div`
   .quiz-svg {
     position: absolute;
     top: -40px;
-    width: 20rem;
+    width: 10rem;
     height: auto;
     image-rendering: crisp-edges; /* Para Chrome e Edge */
     image-rendering: pixelated; /* Para Firefox */
@@ -42,7 +44,7 @@ export const ContainerQuiz = styled.div`
     position: absolute;
     top: -18px;
     right: -18px;
-    width: 7rem;
+    width: 2rem;
     height: auto;
     image-rendering: crisp-edges; /* Para Chrome e Edge */
     image-rendering: pixelated; /* Para Firefox */
@@ -57,21 +59,21 @@ export const ContainerQuiz = styled.div`
 
   h2 {
     font-family: "Grandstander Variable", "Poppins", sans-serif;
-    font-size: 3.5rem;
-    letter-spacing: -0.2rem;
+    font-size: 1rem;
+    letter-spacing: -0.02rem;
     color: ${({ theme }) => theme.colors.yallow};
   }
 
   .question-content {
     background: ${({ theme }) => theme.colors.white};
-    padding: 16px 40px;
+    padding: 1rem 40px;
     border-radius: 18px;
     position: relative;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2em;
   }
 
   .question-text {
-    font-size: 2.2rem;
+    font-size: 1rem;
     color: #1d502c;
     font-weight: bold;
   }
@@ -81,7 +83,7 @@ export const ContainerQuiz = styled.div`
     justify-content: center;
     align-items: center;
     font-family: "Grandstander Variable", "Poppins", sans-serif;
-    font-size: 3.5rem;
+    font-size: 1rem;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.white};
     background-color: #1d502c;
@@ -103,7 +105,7 @@ export const ContainerQuiz = styled.div`
 
   .button {
     font-family: "Grandstander Variable", "Poppins", sans-serif;
-    font-size: 3rem;
+    font-size: 1rem;
     color: #1d502c;
     background: #ffc107;
     padding: 10px 30px;
@@ -112,7 +114,7 @@ export const ContainerQuiz = styled.div`
     letter-spacing: -0.2rem;
     cursor: pointer;
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
 
     &:hover {
       transform: scale(1.2);

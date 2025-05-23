@@ -1,5 +1,5 @@
 import { useQuiz } from "../hooks/useQuiz";
-import * as S from "../styles";
+import * as S from "./QuizWrapper/styles";
 
 export const Question = () => {
   const { state, dispatch } = useQuiz();

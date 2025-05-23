@@ -1,7 +1,7 @@
 import Character from "@/screens/Game/@components/Character";
 import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
 import { Islands } from "@/screens/Game/@components/Islands/Islands";
-import { Quiz } from "@/screens/Game/@components/Quiz";
+import { Quiz } from "@/screens/Game/@components/Quiz/Quiz";
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";

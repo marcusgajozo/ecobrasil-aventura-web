@@ -1,9 +1,9 @@
 import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
-import { Question } from "./components/Question";
-import { useQuiz } from "./hooks/useQuiz";
-import * as S from "./styles";
 import { useEffect } from "react";
+import * as S from "./styles";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useQuiz } from "../../hooks/useQuiz";
+import { Question } from "../Question";
 
 export const QuizWrapper = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
