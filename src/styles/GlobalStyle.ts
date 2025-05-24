@@ -41,6 +41,13 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.11rem;
 }
 
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
+
 `;
 
 export default GlobalStyle;
