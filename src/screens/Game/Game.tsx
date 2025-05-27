@@ -9,6 +9,7 @@ import AccountPlayer from "./@components/AccountPlayer";
 import { HelpUs } from "./@components/HelpUs";
 import { GameProviders } from "./GameProviders";
 import { Quiz } from "./@components/Quiz/Quiz";
+import { Leva } from "leva";
 
 export const Game = () => {
   return (
@@ -19,6 +20,7 @@ export const Game = () => {
         <Quiz />
         <HelpUs />
         <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
+          <Leva hidden />
           <ambientLight intensity={0.8} />
           <directionalLight position={[10, 10, 0]} intensity={1.5} castShadow />
           <Physics>
