@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import bgModal from "@images/bg-modal.svg";
 
 export const Container = styled.div`
   position: absolute;
@@ -47,10 +48,18 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.green[200]};
   min-width: 30rem;
   min-height: 30rem;
   border-radius: 15%;
+  padding: 1.7rem;
+  gap: 1rem;
+  background-image: url(${bgModal});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* opcional */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
