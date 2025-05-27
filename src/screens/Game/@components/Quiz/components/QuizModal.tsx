@@ -7,11 +7,13 @@ import { useQuiz } from "../hooks/useQuiz";
 import { Question } from "./Question/Question";
 import { ButtonText } from "@/components/atoms/ButtonText/ButtonText";
 import theme from "@/styles/theme";
+import { useToastCustom } from "@/lib/hooks/useToastCustom";
 
 // TODO: create Congratulation component to show when the user answers 3 questions correctly
 export const QuizModal = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
   const { currrentMap, saveMap } = useMapsManager();
+  const { showToast } = useToastCustom();
   const { state, dispatch } = useQuiz();
   const { questionsAnsweredCorrectly, selectedOption } = state;
 
@@ -22,6 +24,10 @@ export const QuizModal = () => {
 
   const handleClick = () => {
     if (selectedOption !== undefined) dispatch({ type: "NEXT_QUESTION" });
+    showToast({
+      message: "Resposta enviada!",
+      backgroundColor: theme.colors.yallow,
+    });
   };
 
   useEffect(() => {
