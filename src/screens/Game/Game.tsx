@@ -1,14 +1,14 @@
 import Character from "@/screens/Game/@components/Character";
-import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
 import { Islands } from "@/screens/Game/@components/Islands/Islands";
-import { Quiz } from "@/screens/Game/@components/Quiz/Quiz";
+import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
+import { keyboardMap } from "../../lib/constants/keyboardMap";
 import AccountPlayer from "./@components/AccountPlayer";
 import { HelpUs } from "./@components/HelpUs";
 import { GameProviders } from "./GameProviders";
-import { keyboardMap } from "../../lib/constants/keyboardMap";
+import { Quiz } from "./@components/Quiz/Quiz";
 
 export const Game = () => {
   return (

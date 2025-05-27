@@ -1,20 +1,32 @@
-import { useQuiz } from "../hooks/useQuiz";
-import * as S from "./QuizWrapper/styles";
+import { useEffect } from "react";
+import { useQuiz } from "../../hooks/useQuiz";
+import * as S from "./styles";
+import { useTimer } from "../../hooks/useTimer";
 
 export const Question = () => {
   const { state, dispatch } = useQuiz();
   const { questions, currentQuestionIndex, selectedOption } = state;
   const currentQuestion = questions[currentQuestionIndex];
 
-  const handleClick = () => {
-    if (selectedOption !== undefined) dispatch({ type: "NEXT_QUESTION" });
-  };
+  // TODO: ajustar contagem regressiva para reiniciar quando a pergunta mudar
+  const { timeLeft, start, reset } = useTimer(10, () => {
+    dispatch({ type: "NEXT_QUESTION" });
+  });
+
+  useEffect(() => {
+    start();
+  }, [start]);
+
+  useEffect(() => {
+    reset(10);
+    start();
+  }, [currentQuestionIndex, reset, start]);
 
   return (
-    <>
+    <S.Container>
       <div className="question-content">
-        <div className="question-text">{currentQuestion.pergunta}</div>
-        <div className="question-timer">10</div>
+        <p>{currentQuestion.pergunta}</p>
+        <div className="question-timer">{timeLeft}</div>
       </div>
       <div className="options">
         {currentQuestion.opcoes.map((item, index) => (
@@ -28,9 +40,6 @@ export const Question = () => {
           </S.Option>
         ))}
       </div>
-      <div className="button" onClick={handleClick}>
-        Enviar
-      </div>
-    </>
+    </S.Container>
   );
 };
