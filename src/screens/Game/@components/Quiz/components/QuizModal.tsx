@@ -8,6 +8,7 @@ import { Question } from "./Question/Question";
 import { ButtonText } from "@/components/atoms/ButtonText/ButtonText";
 import theme from "@/styles/theme";
 
+// TODO: create Congratulation component to show when the user answers 3 questions correctly
 export const QuizModal = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
   const { currrentMap, saveMap } = useMapsManager();
@@ -42,7 +43,8 @@ export const QuizModal = () => {
         <Modal.Body>
           {questionsAnsweredCorrectly === 3 && (
             <h2>
-              Parabéns! Você salvou a ilha respondendo 3 perguntas corretamente!
+              Parabéns! Você salvou a ilha <br /> Respondeu 3 perguntas
+              corretamente!
             </h2>
           )}
           {questionsAnsweredCorrectly < 3 && <Question />}
@@ -62,6 +64,7 @@ export const QuizModal = () => {
               title="Fechar"
               onClick={handleClick}
               colorText={theme.colors.yallow}
+              colorBorder={"none"}
             />
           )}
         </Modal.Footer>
