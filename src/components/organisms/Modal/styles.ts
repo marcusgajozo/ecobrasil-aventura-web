@@ -1,5 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import bgModal from "@images/bg-modal.svg";
+
+const gentleCartoonZoom = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const Container = styled.div`
   position: absolute;
@@ -10,6 +28,7 @@ export const Container = styled.div`
   width: 100vw;
   z-index: 9999;
   user-select: none;
+  animation: ${gentleCartoonZoom} 0.4s ease-out;
 
   .content {
     position: relative;
@@ -50,7 +69,6 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.green[200]};
   min-width: 30rem;
   min-height: 30rem;
   border-radius: 15%;
@@ -60,6 +78,5 @@ export const Content = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* opcional */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
