@@ -66,7 +66,7 @@ export const ControllerCharacter = () => {
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
   const [sub] = useKeyboardControls<Controls>();
-  const { character: rb } = useCharacterTeleport();
+  const { character: rb, positionInicial } = useCharacterTeleport();
 
   const forward = useKeyboardControls<Controls>((state) => state.forward);
   const backward = useKeyboardControls<Controls>((state) => state.backward);
@@ -181,7 +181,12 @@ export const ControllerCharacter = () => {
   });
 
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} position={[2, 15, 2]}>
+    <RigidBody
+      colliders={false}
+      lockRotations
+      ref={rb}
+      position={positionInicial}
+    >
       <group ref={container} position={[0, -1.2, 0]}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />
