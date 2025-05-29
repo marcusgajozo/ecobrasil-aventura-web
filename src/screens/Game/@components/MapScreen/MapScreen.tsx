@@ -1,6 +1,8 @@
+import { Modal } from "@/components/organisms/Modal/Modal";
 import { useControllerMap } from "@/lib/hooks/useControllerMap";
-import { CurrentMap } from "./CurrentMap";
-import { MapsVisited } from "./MapsVisited";
+import mapaSvg from "@images/mapa.svg";
+import { CurrentMap } from "./components/CurrentMap";
+import { MapsVisited } from "./components/MapsVisited";
 import * as S from "./styles";
 
 export const MapScreen = () => {
@@ -11,21 +13,22 @@ export const MapScreen = () => {
   };
 
   return (
-    <S.Container openMap={openMap}>
-      <S.Content>
-        <img
-          className="close-svg"
-          src="/close.svg"
-          alt="Fechar"
-          onClick={handleCloseQuiz}
-        />
-        <img className="mapa-svg" src="/mapa.svg" alt="mapa" />
-        <span className="subtitle">EcoBrasil Aventura</span>
-        <div className="content-maps">
-          <MapsVisited />
-          <CurrentMap />
-        </div>
-      </S.Content>
-    </S.Container>
+    <Modal.Root
+      open={openMap}
+      onClose={handleCloseQuiz}
+      imageTitlePath={mapaSvg}
+    >
+      <Modal.Content>
+        <Modal.Header>
+          <S.Subtitle>Visite as ilhas</S.Subtitle>
+        </Modal.Header>
+        <Modal.Body>
+          <S.Container>
+            <MapsVisited />
+            <CurrentMap />
+          </S.Container>
+        </Modal.Body>
+      </Modal.Content>
+    </Modal.Root>
   );
 };

@@ -1,3 +1,4 @@
+// Styles
 import styled, { keyframes } from "styled-components";
 import bgModal from "@images/bg-modal.svg";
 
@@ -19,7 +20,25 @@ const gentleCartoonZoom = keyframes`
   }
 `;
 
-export const Container = styled.div`
+const gentleCartoonZoomOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.98);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.01);
+  }
+`;
+
+export const Container = styled.div<{ $isClosing: boolean }>`
   position: absolute;
   display: flex;
   justify-content: center;
@@ -28,7 +47,9 @@ export const Container = styled.div`
   width: 100vw;
   z-index: 9999;
   user-select: none;
-  animation: ${gentleCartoonZoom} 0.4s ease-out;
+  animation: ${({ $isClosing }) =>
+      $isClosing ? gentleCartoonZoomOut : gentleCartoonZoom}
+    0.4s ease-out;
 
   .content {
     position: relative;
@@ -67,16 +88,25 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  min-width: 30rem;
-  min-height: 30rem;
-  border-radius: 15%;
+  border-radius: clamp(1rem, 5vw, 3rem);
   padding: 1.7rem;
-  gap: 1rem;
+  gap: 2rem;
   background-image: url(${bgModal});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    border-radius: 2rem;
+  }
+
+  @media (min-width: 769px) {
+    border-radius: 2rem;
+  }
+
+  @media (min-width: 1200px) {
+    border-radius: 4rem;
+  }
 `;

@@ -3,6 +3,7 @@ import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useMemo } from "react";
 import * as S from "./styles";
+import { NameMapsType } from "@/lib/types/types";
 
 export const MapsVisited = () => {
   const { currrentMap, savedMap, mapsPaths } = useMapsManager();
@@ -22,14 +23,17 @@ export const MapsVisited = () => {
   return (
     <S.Container>
       <div className="badge-maps-visited">Mapas visitados</div>
-      {mapsVisited.map((map, index) => (
-        <div
-          key={`${map.name}-${index}`}
-          onClick={() => teleportCharacter(map.name)}
-        >
-          <img src={IMG_MAPS[map.name]} width={80} height="auto" />
-        </div>
-      ))}
+      <div className="maps">
+        {mapsVisited.slice(5).map((map, index) => (
+          <div
+            className="map"
+            key={`${map.name}-${index}`}
+            onClick={() => teleportCharacter(map.name as NameMapsType)}
+          >
+            <img src={IMG_MAPS[map.name as NameMapsType]} />
+          </div>
+        ))}
+      </div>
     </S.Container>
   );
 };

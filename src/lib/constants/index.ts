@@ -1,5 +1,12 @@
 import { Vector3 } from "three";
 
+import mataAtlanticaPng from "@images/mata-atlantica.png";
+import pantanalPng from "@images/pantanal.png";
+import caatingaPng from "@images/caatinga.png";
+import cerradoPng from "@images/cerrado.png";
+import amazoniaPng from "@images/amazonia.png";
+import pampaPng from "@images/pampa.png";
+
 export const NAME_MAPS = [
   "amazonia",
   "pantanal",
@@ -28,10 +35,10 @@ export const NAME_MAPS_FORMATED: Record<(typeof NAME_MAPS)[number], string> = {
 };
 
 export const IMG_MAPS: Record<(typeof NAME_MAPS)[number], string> = {
-  "mata-atlantica": "/mata-atlantica.png",
-  pantanal: "/pantanal.png",
-  caatinga: "/caatinga.png",
-  cerrado: "/cerrado.png",
-  amazonia: "/amazonia.png",
-  pampa: "/pampa.png",
+  "mata-atlantica": mataAtlanticaPng,
+  pantanal: pantanalPng,
+  caatinga: caatingaPng,
+  cerrado: cerradoPng,
+  amazonia: amazoniaPng,
+  pampa: pampaPng,
 };

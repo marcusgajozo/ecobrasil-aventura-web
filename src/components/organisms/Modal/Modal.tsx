@@ -1,3 +1,4 @@
+// Component
 import { useEffect, useState } from "react";
 import * as S from "./styles";
 
@@ -15,14 +16,29 @@ type RootProps = {
 
 const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
   const [isOpen, setIsOpen] = useState(open);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    setIsOpen(open);
-  }, [open]);
+    if (open) {
+      setIsOpen(true);
+      setIsClosing(false);
+    } else if (isOpen) {
+      setIsClosing(true);
+      // Aguarda a animação terminar antes de remover o modal
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsClosing(false);
+      }, 400); // Duração da animação
+    }
+  }, [open, isOpen]);
 
   const handleClose = () => {
-    setIsOpen(false);
-    onClose?.();
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      onClose?.();
+    }, 400);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -34,7 +50,7 @@ const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
   if (!isOpen) return null;
 
   return (
-    <S.Container onClick={handleBackdropClick}>
+    <S.Container $isClosing={isClosing} onClick={handleBackdropClick}>
       <div className="content" onClick={(e) => e.stopPropagation()}>
         {imageTitlePath && (
           <div className="title-modal">
