@@ -1,21 +1,14 @@
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
-import { useControllerMap } from "@/lib/hooks/useControllerMap";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { Controls } from "../../../../../../lib/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
-import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
-
-// TODO: corrigir o correr do personagem
-// TODO: melhorar a movimentação do personagem w,s,a,d
-// TODO: ler doc do useKeyboardControls
-// TODO: corrigir w,s,a,d não funcionam quando o capslock está ativado
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -43,7 +36,7 @@ export const ControllerCharacter = () => {
     "Character Control",
     {
       WALK_SPEED: { value: 3.5, min: 0.1, max: 4, step: 0.1 },
-      RUN_SPEED: { value: 1.6, min: 0.2, max: 12, step: 0.1 },
+      RUN_SPEED: { value: 6, min: 0.2, max: 12, step: 0.1 },
       ROTATION_SPEED: {
         value: degToRad(0.5),
         min: degToRad(0.1),
@@ -65,7 +58,6 @@ export const ControllerCharacter = () => {
   const cameraWorldPosition = useRef(new Vector3());
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
-  const [sub] = useKeyboardControls<Controls>();
   const { character: rb, positionInicial } = useCharacterTeleport();
 
   const forward = useKeyboardControls<Controls>((state) => state.forward);
@@ -78,21 +70,6 @@ export const ControllerCharacter = () => {
   );
   const rotateLeft = useKeyboardControls<Controls>((state) => state.rotateLeft);
   const action = useKeyboardControls<Controls>((state) => state.action);
-
-  const { setOpenMap } = useControllerMap();
-  const { setOpenQuiz } = useControllerQuiz();
-
-  useEffect(() => {
-    return sub(
-      (state) => state.map,
-      (press) => {
-        if (press) {
-          setOpenMap((openMap) => !openMap);
-          setOpenQuiz(false);
-        }
-      }
-    );
-  }, [setOpenMap, setOpenQuiz, sub]);
 
   useFrame(({ camera }) => {
     if (rb.current) {
@@ -124,22 +101,25 @@ export const ControllerCharacter = () => {
         rotationTarget.current += ROTATION_SPEED * movement.x;
       }
 
-      const speed = run ? RUN_SPEED : WALK_SPEED;
-
       if (movement.x !== 0 || movement.z !== 0) {
         characterRotationTarget.current = Math.atan2(movement.x, movement.z);
+        const currentSpeed = run ? RUN_SPEED : WALK_SPEED;
+
         vel.x =
           Math.sin(rotationTarget.current + characterRotationTarget.current) *
-          speed;
+          currentSpeed;
         vel.z =
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
-          speed;
-        if (speed === RUN_SPEED) {
+          currentSpeed;
+
+        if (run) {
           setAnimation("RobotArmature|Robot_Running");
         } else {
           setAnimation("RobotArmature|Robot_Walking");
         }
       } else {
+        vel.x = 0;
+        vel.z = 0;
         setAnimation("RobotArmature|Robot_Idle");
       }
 
