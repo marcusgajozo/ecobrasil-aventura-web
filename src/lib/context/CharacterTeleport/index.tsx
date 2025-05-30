@@ -1,16 +1,17 @@
-import { POSITIONS_MAPS } from "@/lib/constants";
+import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "@/lib/constants";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
-import { NameMapsType } from "@/lib/types/types";
-import { positionRelative } from "@/lib/utils/positionRelative";
+import { calculateWorldPosition } from "@/lib/utils/calculateWorldPosition";
 import { SpringValue, useSpring } from "@react-spring/three";
 import { RapierRigidBody } from "@react-three/rapier";
 import { createContext, ReactNode, useRef, useState } from "react";
 import { Vector3 } from "three";
 
+type NameIsland = (typeof NAME_ISLAND)[number];
+
 type CharacterTeleportContextType = {
   positionInicial: Vector3;
   character: React.RefObject<RapierRigidBody>;
-  teleportCharacter: (nameMap: NameMapsType) => void;
+  teleportCharacter: (nameMap: NameIsland) => void;
   animationTeleport: {
     scale: SpringValue<number>;
   };
@@ -29,9 +30,9 @@ export const CharacterTeleportProvider = ({
   const character = useRef<RapierRigidBody>(null);
   const { setCurrentMap, currrentMap } = useMapsManager();
   const [positionInicial] = useState<Vector3>(() =>
-    positionRelative({
-      position: POSITIONS_MAPS[currrentMap],
-      newPosition: new Vector3(0, 15, 0),
+    calculateWorldPosition({
+      basePosition: POSITIONS_ISLAND_DATA[currrentMap],
+      relativeOffset: new Vector3(0, 15, 0),
     })
   );
 
@@ -42,8 +43,8 @@ export const CharacterTeleportProvider = ({
     config: { duration: 300 },
   });
 
-  const teleportCharacter = (nameMap: NameMapsType) => {
-    const positionMap = POSITIONS_MAPS[nameMap];
+  const teleportCharacter = (nameMap: NameIsland) => {
+    const positionMap = POSITIONS_ISLAND_DATA[nameMap];
     positionMap.y = 15;
     setIsTeleporting(true);
     setTimeout(() => {

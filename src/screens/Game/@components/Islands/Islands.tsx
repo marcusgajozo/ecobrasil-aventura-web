@@ -1,12 +1,14 @@
-import { NAME_MAPS } from "@/lib/constants";
-import { Pantanal } from "./components/Pantanal";
-import { MataAtlantica } from "./components/MataAtlantica";
+import { NAME_ISLAND } from "@/lib/constants";
 import { Amazonia } from "./components/Amazonia";
 import { Caatinga } from "./components/Caatinga";
 import { Cerrado } from "./components/Cerrado";
+import { MataAtlantica } from "./components/MataAtlantica";
 import { Pampa } from "./components/Pampa";
+import { Pantanal } from "./components/Pantanal";
 
-const maps: Record<(typeof NAME_MAPS)[number], () => JSX.Element> = {
+type NameIsland = (typeof NAME_ISLAND)[number];
+
+const maps: Record<NameIsland, () => JSX.Element> = {
   pantanal: Pantanal,
   "mata-atlantica": MataAtlantica,
   amazonia: Amazonia,
@@ -19,7 +21,7 @@ export const Islands = () => {
   return (
     <>
       {Object.keys(maps).map((key) => {
-        const Map = maps[key as (typeof NAME_MAPS)[number]];
+        const Map = maps[key as NameIsland];
         return <Map key={key} />;
       })}
     </>

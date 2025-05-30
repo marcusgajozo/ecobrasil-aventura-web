@@ -1,71 +1,23 @@
-import { POSITIONS_MAPS } from "@/lib/constants";
+import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { BigIsland } from "../BigIsland";
-import { BushStone } from "../BushStone";
-import { DryTree } from "../DryTree";
-import { Tree1 } from "../Tree1";
-import { Tree2 } from "../Tree2";
-import { positionRelative } from "@/lib/utils/positionRelative";
-import { Vector3 } from "three";
 import { QuestionBox } from "../QuestionBox";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { TeleportPlatform } from "../TeleportPlatform";
-import { useCallback } from "react";
-
-const POSITION_CAATINGA = POSITIONS_MAPS["caatinga"];
 
 export const Caatinga = () => {
-  const { savedMap } = useMapsManager();
-  const saved = savedMap["caatinga"].saved;
-
-  const handlePositionRelative = useCallback((newPosition: Vector3) => {
-    return positionRelative({
-      newPosition,
-      position: POSITION_CAATINGA,
-    });
-  }, []);
+  const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
+    nameIsland: "caatinga",
+  });
 
   return (
     <>
       <TeleportPlatform
-        positionPlatformA={handlePositionRelative(new Vector3(-12, 6, 1))}
-        positionPlatformB={handlePositionRelative(new Vector3(-12, 6, -8))}
-      />
-      <BushStone
-        scale={1}
-        position={handlePositionRelative(new Vector3(10, 6, 0))}
-      />
-      <BushStone
-        scale={1}
-        position={handlePositionRelative(new Vector3(0, 6, 0))}
-      />
-      <DryTree
-        scale={1}
-        position={handlePositionRelative(new Vector3(3, 8, 0))}
-      />
-      <Tree2
-        scale={4}
-        position={handlePositionRelative(new Vector3(10, 11, 0))}
-      />
-      <Tree2
-        scale={4}
-        position={handlePositionRelative(new Vector3(10, 11, 13))}
-      />
-      <Tree2
-        scale={4}
-        position={handlePositionRelative(new Vector3(10, 11, 13))}
-      />
-      <Tree1
-        scale={4}
-        position={handlePositionRelative(new Vector3(0, 11, 10))}
+        positionPlatformA={handlePositionRelative({ x: -12, y: 6, z: 1 })}
+        positionPlatformB={handlePositionRelative({ x: -12, y: 6, z: -8 })}
       />
       {!saved && (
-        <QuestionBox position={handlePositionRelative(new Vector3(-8, 8, 7))} />
+        <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <Tree1
-        scale={4}
-        position={handlePositionRelative(new Vector3(5, 11, 10))}
-      />
-      <BigIsland color="#C96F03" positionMap={POSITION_CAATINGA} />
+      <BigIsland color="##40A42F" positionMap={positionIsland} />
     </>
   );
 };

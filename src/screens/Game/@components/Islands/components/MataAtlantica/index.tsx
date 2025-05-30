@@ -1,21 +1,23 @@
-import { POSITIONS_MAPS } from "@/lib/constants";
+import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { BigIsland } from "../BigIsland";
-import { BushStone } from "../BushStone";
-import { DryTree } from "../DryTree";
-import { Tree1 } from "../Tree1";
-import { Tree2 } from "../Tree2";
+import { QuestionBox } from "../QuestionBox";
+import { TeleportPlatform } from "../TeleportPlatform";
 
 export const MataAtlantica = () => {
+  const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
+    nameIsland: "mata-atlantica",
+  });
+
   return (
     <>
-      <BushStone scale={1} position={[10, 6, 0]} />
-      <BushStone scale={1} position={[0, 6, 0]} />
-      <DryTree scale={1} position={[3, 8, 0]} />
-      <Tree2 scale={4} position={[10, 11, 0]} />
-      <Tree2 scale={4} position={[10, 11, 13]} />
-      <Tree1 scale={4} position={[0, 11, 10]} />
-      <Tree1 scale={4} position={[5, 11, 10]} />
-      <BigIsland positionMap={POSITIONS_MAPS["mata-atlantica"]} />
+      <TeleportPlatform
+        positionPlatformA={handlePositionRelative({ x: -12, y: 6, z: 1 })}
+        positionPlatformB={handlePositionRelative({ x: -12, y: 6, z: -8 })}
+      />
+      {!saved && (
+        <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
+      )}
+      <BigIsland color="##40A42F" positionMap={positionIsland} />
     </>
   );
 };

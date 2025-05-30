@@ -1,26 +1,27 @@
-import { NAME_MAPS } from "@/lib/constants";
-import { NameMapsType } from "@/lib/types/types";
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { generateRandomMapsPaths } from "./functions";
+import { NAME_ISLAND } from "@/lib/constants";
+
+type NameIsland = (typeof NAME_ISLAND)[number];
 
 type MapsManagerContextType = {
-  saveMap: (nameMap: NameMapsType) => void;
-  savePathName: (nameMap: NameMapsType, path: "A" | "B") => void;
-  currrentMap: NameMapsType;
+  saveMap: (nameMap: NameIsland) => void;
+  savePathName: (nameMap: NameIsland, path: "A" | "B") => void;
+  currrentMap: NameIsland;
   savedMap: Record<
-    NameMapsType,
+    NameIsland,
     {
       saved: boolean;
-      pathA: NameMapsType | undefined;
-      pathB: NameMapsType | undefined;
+      pathA: NameIsland | undefined;
+      pathB: NameIsland | undefined;
     }
   >;
-  setCurrentMap: (nameMap: NameMapsType) => void;
+  setCurrentMap: (nameMap: NameIsland) => void;
   mapsPaths: Array<{
-    name: NameMapsType;
+    name: NameIsland;
     path: {
-      A: NameMapsType;
-      B: NameMapsType;
+      A: NameIsland;
+      B: NameIsland;
     };
   }>;
 };
@@ -30,34 +31,34 @@ export const MapsManagerContext = createContext({} as MapsManagerContextType);
 export const MapsManagerProvider = ({
   children,
 }: Readonly<{ children: ReactNode }>) => {
-  const [currrentMap, setCurrentMap] = useState<NameMapsType>("amazonia");
+  const [currrentMap, setCurrentMap] = useState<NameIsland>("pampa");
   const [savedMap, setSavedMap] = useState<
     Record<
-      NameMapsType,
+      NameIsland,
       {
         saved: boolean;
-        pathA: NameMapsType | undefined;
-        pathB: NameMapsType | undefined;
+        pathA: NameIsland | undefined;
+        pathB: NameIsland | undefined;
       }
     >
   >(() =>
-    NAME_MAPS.reduce(
+    NAME_ISLAND.reduce(
       (acc, nameMap) => ({
         ...acc,
         [nameMap]: { saved: false, pathA: undefined, pathB: undefined },
       }),
       {} as Record<
-        NameMapsType,
+        NameIsland,
         {
           saved: boolean;
-          pathA: NameMapsType | undefined;
-          pathB: NameMapsType | undefined;
+          pathA: NameIsland | undefined;
+          pathB: NameIsland | undefined;
         }
       >
     )
   );
 
-  const saveMap = (nameMap: NameMapsType) => {
+  const saveMap = (nameMap: NameIsland) => {
     const attributes = savedMap[nameMap];
     setSavedMap((prev) => ({
       ...prev,
@@ -65,7 +66,7 @@ export const MapsManagerProvider = ({
     }));
   };
 
-  const savePathName = (nameMap: NameMapsType, path: "A" | "B") => {
+  const savePathName = (nameMap: NameIsland, path: "A" | "B") => {
     const attributes = savedMap[currrentMap];
     setSavedMap((prev) => {
       if (path === "A") {
