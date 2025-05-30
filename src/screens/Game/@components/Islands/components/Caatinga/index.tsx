@@ -17,7 +17,7 @@ export const Caatinga = () => {
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <BigIsland color="##40A42F" positionMap={positionIsland} />
+      <BigIsland color="#CB7103" positionMap={positionIsland} />
     </>
   );
 };

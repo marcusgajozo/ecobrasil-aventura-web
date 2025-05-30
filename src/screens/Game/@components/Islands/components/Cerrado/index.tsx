@@ -17,7 +17,7 @@ export const Cerrado = () => {
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <BigIsland color="##40A42F" positionMap={positionIsland} />
+      <BigIsland color="#85A649" positionMap={positionIsland} />
     </>
   );
 };

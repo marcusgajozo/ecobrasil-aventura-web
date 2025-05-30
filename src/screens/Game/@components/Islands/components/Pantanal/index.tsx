@@ -17,7 +17,7 @@ export const Pantanal = () => {
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <BigIsland color="##40A42F" positionMap={positionIsland} />
+      <BigIsland color="#546F08" positionMap={positionIsland} />
     </>
   );
 };
