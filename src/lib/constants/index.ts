@@ -4,6 +4,7 @@ import cerradoPng from "@images/cerrado.png";
 import mataAtlanticaPng from "@images/mata-atlantica.png";
 import pampaPng from "@images/pampa.png";
 import pantanalPng from "@images/pantanal.png";
+import { Vector3Like } from "three";
 
 export const NAME_ISLAND = [
   "amazonia",
@@ -16,7 +17,7 @@ export const NAME_ISLAND = [
 
 export const POSITIONS_ISLAND_DATA: Record<
   (typeof NAME_ISLAND)[number],
-  { x: number; y: number; z: number }
+  Vector3Like
 > = {
   amazonia: { x: 0, y: 0, z: 0 },
   pantanal: { x: 80, y: 0, z: -30 },
