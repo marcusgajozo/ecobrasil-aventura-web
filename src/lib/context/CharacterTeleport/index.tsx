@@ -44,12 +44,14 @@ export const CharacterTeleportProvider = ({
   });
 
   const teleportCharacter = (nameMap: NameIsland) => {
-    const positionMap = POSITIONS_ISLAND_DATA[nameMap];
-    positionMap.y = 15;
+    const position = calculateWorldPosition({
+      basePosition: POSITIONS_ISLAND_DATA[nameMap],
+      relativeOffset: new Vector3(0, 15, 0),
+    });
+
     setIsTeleporting(true);
     setTimeout(() => {
-      if (character.current)
-        character.current.setTranslation(positionMap, true);
+      if (character.current) character.current.setTranslation(position, true);
       setIsTeleporting(false);
     }, 300);
     setCurrentMap(nameMap);
