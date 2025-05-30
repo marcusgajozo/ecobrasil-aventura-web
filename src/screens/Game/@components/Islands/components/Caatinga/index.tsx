@@ -9,18 +9,20 @@ import { Vector3 } from "three";
 import { QuestionBox } from "../QuestionBox";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { TeleportPlatform } from "../TeleportPlatform";
+import { useCallback } from "react";
+
+const POSITION_CAATINGA = POSITIONS_MAPS["caatinga"];
 
 export const Caatinga = () => {
-  const positionMap = POSITIONS_MAPS["caatinga"];
   const { savedMap } = useMapsManager();
   const saved = savedMap["caatinga"].saved;
 
-  const handlePositionRelative = (newPosition: Vector3) => {
+  const handlePositionRelative = useCallback((newPosition: Vector3) => {
     return positionRelative({
       newPosition,
-      position: positionMap,
+      position: POSITION_CAATINGA,
     });
-  };
+  }, []);
 
   return (
     <>
@@ -63,7 +65,7 @@ export const Caatinga = () => {
         scale={4}
         position={handlePositionRelative(new Vector3(5, 11, 10))}
       />
-      <BigIsland color="#C96F03" positionMap={positionMap} />
+      <BigIsland color="#C96F03" positionMap={POSITION_CAATINGA} />
     </>
   );
 };
