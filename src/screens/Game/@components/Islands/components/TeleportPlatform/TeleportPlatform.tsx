@@ -6,6 +6,8 @@ import { Controls } from "@/lib/constants/keyboardMap";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { Vector3 } from "three";
+import { useToastCustom } from "@/lib/hooks/useToastCustom";
+import theme from "@/styles/theme";
 
 // TODO: colocar uma transição de teletransporte bonitinha
 // TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
@@ -27,16 +29,30 @@ export const TeleportPlatform = ({
   const { teleportCharacter } = useCharacterTeleport();
 
   const [sub] = useKeyboardControls<Controls>();
+  const { showToast } = useToastCustom();
 
   const handleTeleport = useCallback(
     (mapPath: "A" | "B") => {
-      if (savedMap[currrentMap].saved === false) return;
+      if (savedMap[currrentMap].saved === false) {
+        showToast({
+          message: "Você precisa salvar o mapa atual antes de teletransportar!",
+          backgroundColor: theme.colors.yallow,
+        });
+        return;
+      }
       const map = mapsPaths.find((map) => map.name === currrentMap);
       if (!map) return;
       savePathName(map.path[mapPath], mapPath);
       teleportCharacter(map.path[mapPath]);
     },
-    [currrentMap, mapsPaths, savePathName, savedMap, teleportCharacter]
+    [
+      currrentMap,
+      mapsPaths,
+      savePathName,
+      savedMap,
+      showToast,
+      teleportCharacter,
+    ]
   );
 
   useEffect(() => {
