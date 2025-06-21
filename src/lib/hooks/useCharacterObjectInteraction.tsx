@@ -3,23 +3,23 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
 type useCharacterObjectInteractionProps = {
-  control: Controls;
-  action: () => void;
+  control?: Controls;
+  action?: () => void;
 };
 
 export const useCharacterObjectInteraction = ({
   control,
   action,
-}: useCharacterObjectInteractionProps) => {
+}: useCharacterObjectInteractionProps = {}) => {
   const [isClose, setIsClose] = useState(false);
   const [sub] = useKeyboardControls<Controls>();
 
   useEffect(() => {
     const unsubscribe = sub(
-      (state) => state[control],
+      (state) => (control ? state[control] : null),
       (press) => {
         if (press && isClose) {
-          action();
+          action?.();
         }
       }
     );
