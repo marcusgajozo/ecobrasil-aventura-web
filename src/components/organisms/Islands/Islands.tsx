@@ -3,7 +3,7 @@ import { Amazonia } from "../Amazonia";
 import { Caatinga } from "../Caatinga";
 import { Cerrado } from "../Cerrado";
 import { MataAtlantica } from "../MataAtlantica";
-import { Pampa } from "../Pampa";
+import { PampaIsland } from "../PampaIsland/PampaIsland";
 import { Pantanal } from "../Pantanal";
 
 type NameIsland = (typeof NAME_ISLAND)[number];
@@ -14,7 +14,7 @@ const maps: Record<NameIsland, () => JSX.Element> = {
   amazonia: Amazonia,
   caatinga: Caatinga,
   cerrado: Cerrado,
-  pampa: Pampa,
+  pampa: PampaIsland,
 };
 
 export const Islands = () => {
