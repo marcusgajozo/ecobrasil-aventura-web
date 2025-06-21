@@ -1,11 +1,11 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
-import { BigIsland } from "../BigIsland";
-import { QuestionBox } from "../QuestionBox";
-import { TeleportPlatform } from "../TeleportPlatform";
+import { BigIsland } from "../../atoms/BigIsland";
+import { QuestionBox } from "../../atoms/QuestionBox";
+import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
-export const Pantanal = () => {
+export const Caatinga = () => {
   const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
-    nameIsland: "pantanal",
+    nameIsland: "caatinga",
   });
 
   return (
@@ -17,7 +17,7 @@ export const Pantanal = () => {
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <BigIsland color="#546F08" positionMap={positionIsland} />
+      <BigIsland color="#CB7103" positionMap={positionIsland} />
     </>
   );
 };

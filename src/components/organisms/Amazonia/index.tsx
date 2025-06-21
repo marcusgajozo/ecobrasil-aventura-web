@@ -1,7 +1,7 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
-import { BigIsland } from "../BigIsland";
-import { QuestionBox } from "../QuestionBox";
-import { TeleportPlatform } from "../TeleportPlatform";
+import { BigIsland } from "../../atoms/BigIsland";
+import { QuestionBox } from "../../atoms/QuestionBox";
+import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
 export const Amazonia = () => {
   const { handlePositionRelative, positionIsland, saved } = useBuildIsland({

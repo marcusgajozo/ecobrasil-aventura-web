@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { Controls } from "../../../../../../lib/constants/keyboardMap";
+import { Controls } from "../../../../lib/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
 
 const normalizeAngle = (angle: number) => {

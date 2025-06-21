@@ -1,11 +1,11 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
-import { BigIsland } from "../BigIsland";
-import { QuestionBox } from "../QuestionBox";
-import { TeleportPlatform } from "../TeleportPlatform";
+import { BigIsland } from "../../atoms/BigIsland";
+import { QuestionBox } from "../../atoms/QuestionBox";
+import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
-export const Cerrado = () => {
+export const MataAtlantica = () => {
   const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
-    nameIsland: "cerrado",
+    nameIsland: "mata-atlantica",
   });
 
   return (
@@ -17,7 +17,7 @@ export const Cerrado = () => {
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
-      <BigIsland color="#85A649" positionMap={positionIsland} />
+      <BigIsland color="#3B6605" positionMap={positionIsland} />
     </>
   );
 };

@@ -1,10 +1,10 @@
 import { NAME_ISLAND } from "@/lib/constants";
-import { Amazonia } from "./components/Amazonia";
-import { Caatinga } from "./components/Caatinga";
-import { Cerrado } from "./components/Cerrado";
-import { MataAtlantica } from "./components/MataAtlantica";
-import { Pampa } from "./components/Pampa";
-import { Pantanal } from "./components/Pantanal";
+import { Amazonia } from "../Amazonia";
+import { Caatinga } from "../Caatinga";
+import { Cerrado } from "../Cerrado";
+import { MataAtlantica } from "../MataAtlantica";
+import { Pampa } from "../Pampa";
+import { Pantanal } from "../Pantanal";
 
 type NameIsland = (typeof NAME_ISLAND)[number];
 

@@ -1,12 +1,12 @@
-import Character from "@/screens/Game/@components/Character";
-import { Islands } from "@/screens/Game/@components/Islands/Islands";
-import { MapScreen } from "@/screens/Game/@components/MapScreen/MapScreen";
+import Character from "@/components/Character";
+import { Islands } from "@/components/organisms/Islands/Islands";
+import { MapScreen } from "@/components/MapScreen/MapScreen";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
-import AccountPlayer from "./@components/AccountPlayer";
-import { HelpUs } from "./@components/HelpUs";
-import { Quiz } from "./@components/Quiz/Quiz";
+import AccountPlayer from "../../components/AccountPlayer";
+import { HelpUs } from "../../components/HelpUs";
+import { Quiz } from "../../components/Quiz/Quiz";
 import { GameProviders } from "./GameProviders";
 
 export const Game = () => {
