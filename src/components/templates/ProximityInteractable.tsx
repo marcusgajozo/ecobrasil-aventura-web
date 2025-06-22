@@ -2,12 +2,11 @@ import { useCharacterObjectInteraction } from "@/lib/hooks/useCharacterObjectInt
 import { Billboard, Text } from "@react-three/drei";
 import { CuboidCollider, RigidBody, RigidBodyProps } from "@react-three/rapier";
 
-// Adicionamos props para o tamanho e posição do colisor físico
 type ProximityInteractableProps = {
   promptText: string;
   children: React.ReactNode;
-  colliderArgs?: [number, number, number]; // Tamanho [largura/2, altura/2, profundidade/2]
-  colliderPosition?: [number, number, number]; // Posição [x, y, z]
+  colliderArgs?: [number, number, number];
+  colliderPosition?: [number, number, number];
 } & RigidBodyProps;
 
 export const ProximityInteractable = ({
@@ -29,11 +28,11 @@ export const ProximityInteractable = ({
       {children}
       <CuboidCollider args={colliderArgs} position={colliderPosition} />
 
-      <CuboidCollider args={[2, 2, 2]} sensor />
+      <CuboidCollider position={[0, 2, 0]} args={[2, 2, 2]} sensor />
 
       <Billboard>
         <Text
-          position={[0, 2.0, 0]}
+          position={[0, 3.5, 0]}
           fontSize={0.4}
           color="white"
           anchorX="center"
