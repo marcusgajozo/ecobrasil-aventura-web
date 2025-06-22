@@ -24,7 +24,7 @@ export const PampaIsland = () => {
         position={handlePositionRelative({ x: 5, y: 6, z: 8 })}
         type="fixed"
         promptText="Veado Campeiro"
-        colliderPosition={[0, 2, 0]}
+        colliderPosition={[0, 1.5, 0]}
         colliderArgs={[0.4, 1.6, 1.0]}
       >
         <DeerModel scale={0.8} />
