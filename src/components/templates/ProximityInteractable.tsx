@@ -1,38 +1,48 @@
 import { useCharacterObjectInteraction } from "@/lib/hooks/useCharacterObjectInteraction";
 import { Billboard, Text } from "@react-three/drei";
-import { CuboidCollider, RigidBody, RigidBodyProps } from "@react-three/rapier";
+import {
+  BallCollider,
+  CuboidCollider,
+  RigidBody,
+  RigidBodyProps,
+} from "@react-three/rapier";
 
 type ProximityInteractableProps = {
-  promptText: string;
   children: React.ReactNode;
   colliderArgs?: [number, number, number];
   colliderPosition?: [number, number, number];
+  sensorRadius?: number;
+  billboardText?: string;
+  billboardTextPosition?: [number, number, number];
 } & RigidBodyProps;
 
 export const ProximityInteractable = ({
-  promptText,
+  billboardText,
   children,
   colliderArgs = [0.5, 0.5, 0.5],
   colliderPosition = [0, 0.5, 0],
+  sensorRadius = 3,
+  billboardTextPosition = [0, 3.5, 0],
   ...props
 }: ProximityInteractableProps) => {
   const { isClose, setIsClose } = useCharacterObjectInteraction();
 
   return (
-    <RigidBody
-      {...props}
-      onIntersectionEnter={() => setIsClose(true)}
-      onIntersectionExit={() => setIsClose(false)}
-      colliders={false}
-    >
+    <RigidBody {...props} colliders={false}>
       {children}
       <CuboidCollider args={colliderArgs} position={colliderPosition} />
 
-      <CuboidCollider position={[0, 2, 0]} args={[2, 2, 2]} sensor />
+      <BallCollider
+        args={[sensorRadius]}
+        onIntersectionEnter={() => setIsClose(true)}
+        onIntersectionExit={() => setIsClose(false)}
+        position={colliderPosition}
+        sensor
+      />
 
       <Billboard>
         <Text
-          position={[0, 3.5, 0]}
+          position={billboardTextPosition}
           fontSize={0.4}
           color="white"
           anchorX="center"
@@ -40,7 +50,7 @@ export const ProximityInteractable = ({
           outlineColor="black"
           outlineWidth={0.05}
         >
-          {isClose ? promptText : ""}
+          {isClose ? billboardText : undefined}
         </Text>
       </Billboard>
     </RigidBody>
