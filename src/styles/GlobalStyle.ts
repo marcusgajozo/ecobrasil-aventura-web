@@ -20,7 +20,7 @@ html {
 
 body {
   color: #333;
-  background-color: #fff;
+  background-color: transparent;
   position: fixed;
   -webkit-font-smoothing: antialiased;
 }
