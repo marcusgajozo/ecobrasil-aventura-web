@@ -7,6 +7,7 @@ import { degToRad } from "three/src/math/MathUtils.js";
 import { BigIsland } from "../../atoms/BigIsland";
 import { QuestionBox } from "../../atoms/QuestionBox";
 import { TeleportPlatform } from "../../atoms/TeleportPlatform";
+import { IslandDome } from "@/components/IslandDome/IslandDome";
 
 export const PampaIsland = () => {
   const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
@@ -43,6 +44,12 @@ export const PampaIsland = () => {
       >
         <DeerModel scale={0.8} />
       </ProximityInteractable>
+
+      <IslandDome
+        radius={17.5}
+        opacity={0.35}
+        position={handlePositionRelative({ x: 0, y: 8, z: 0 })}
+      />
 
       <ProximityInteractable
         position={handlePositionRelative({ x: 5, y: 8.7, z: -10 })}
