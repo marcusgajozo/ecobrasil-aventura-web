@@ -1,41 +1,48 @@
+import { NAME_ISLAND } from "@/lib/constants";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { animated, useSpring } from "@react-spring/three";
 import { useControls } from "leva";
 import { useEffect, useRef } from "react";
 import { DirectionalLight } from "three";
 
-// 1. Defina as pré-configurações de iluminação para cada ilha
-const lightingPresets = {
+type NameIsland = (typeof NAME_ISLAND)[number];
+
+type LightingPreset = {
+  ambientIntensity: number;
+  directionalIntensity: number;
+  directionalColor: string;
+};
+
+const lightingPresets: Record<NameIsland, LightingPreset> = {
   pampa: {
     ambientIntensity: 0.8,
     directionalIntensity: 1.5,
-    directionalColor: "#ffffff", // Luz solar branca e forte
+    directionalColor: "#ffffff",
   },
   amazonia: {
     ambientIntensity: 0.6,
     directionalIntensity: 1.2,
-    directionalColor: "#d4ffe9", // Luz um pouco mais fraca e com um tom esverdeado
+    directionalColor: "#d4ffe9",
   },
   cerrado: {
     ambientIntensity: 0.9,
     directionalIntensity: 1.8,
-    directionalColor: "#ffdcb3", // Luz bem forte com tom alaranjado de pôr-do-sol
+    directionalColor: "#ffdcb3",
   },
-  // Adicione outras ilhas aqui...
   caatinga: {
     ambientIntensity: 1.0,
     directionalIntensity: 2.0,
-    directionalColor: "#fff4e0", // Luz muito intensa e clara, como a do meio-dia no sertão
+    directionalColor: "#fff4e0",
   },
   pantanal: {
     ambientIntensity: 0.7,
     directionalIntensity: 1.4,
-    directionalColor: "#e0f8ff", // Luz clara com um tom levemente azulado de céu limpo
+    directionalColor: "#e0f8ff",
   },
-  mataAtlantica: {
+  "mata-atlantica": {
     ambientIntensity: 0.5,
     directionalIntensity: 1.1,
-    directionalColor: "#e8f5e9", // Luz filtrada pela vegetação, suave e esverdeada
+    directionalColor: "#e8f5e9",
   },
 };
 
@@ -43,7 +50,6 @@ export const Lighting = () => {
   const { currrentMap } = useMapsManager();
   const directionalLightRef = useRef<DirectionalLight>(null!);
 
-  // 2. Crie controles no 'leva' para ajustes finos em tempo real
   const { ambient, directional, color, position } = useControls(
     "Iluminação da Cena",
     {
@@ -66,42 +72,31 @@ export const Lighting = () => {
         label: "Cor da Luz",
       },
       position: {
-        value: [10, 10, 0], // Posição X, Y, Z
+        value: [10, 10, 0],
         label: "Posição da Luz",
       },
     }
   );
 
-  // 3. Use 'react-spring' para animar as mudanças de iluminação
   const [animatedProps, api] = useSpring(
     () => ({
       ambientIntensity: lightingPresets[currrentMap].ambientIntensity,
       directionalIntensity: lightingPresets[currrentMap].directionalIntensity,
       directionalColor: lightingPresets[currrentMap].directionalColor,
-      config: { duration: 1000 }, // Duração da transição em milissegundos
+      config: { duration: 1000 },
     }),
     [currrentMap]
   );
 
-  // 4. Dispare a animação quando o mapa atual (currrentMap) mudar
   useEffect(() => {
-    const preset = lightingPresets[currrentMap] || lightingPresets.pampa; // Usa pampa como padrão
+    const preset = lightingPresets[currrentMap] || lightingPresets.pampa;
     api.start({
       ambientIntensity: preset.ambientIntensity,
       directionalIntensity: preset.directionalIntensity,
       directionalColor: preset.directionalColor,
     });
-
-    // Se você também quiser atualizar os controles do leva para refletir a pré-configuração:
-    // (Isso é opcional, mas ajuda a manter a consistência da UI do leva)
-    // import { useStore } from 'leva'
-    // const store = useStore()
-    // store.setValueByPath('Iluminação da Cena.Luz Ambiente', preset.ambientIntensity)
-    // etc...
   }, [currrentMap, api]);
 
-  // Use as props do Leva para debug, ou as props animadas para o jogo final.
-  // Aqui, usamos um misto: a animação controla a intensidade e cor, e o Leva a posição.
   return (
     <>
       <animated.ambientLight intensity={animatedProps.ambientIntensity} />
@@ -112,8 +107,6 @@ export const Lighting = () => {
         color={animatedProps.directionalColor}
         castShadow
       />
-      {/* Opcional: Adicione um 'helper' para ver a posição da luz direcional durante o desenvolvimento */}
-      {/* <directionalLightHelper args={[directionalLightRef.current, 2]} /> */}
     </>
   );
 };
