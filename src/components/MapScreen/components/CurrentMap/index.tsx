@@ -1,4 +1,4 @@
-import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/lib/constants/island";
+import { IMG_MAPS, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import * as S from "./styles";
 
@@ -13,7 +13,9 @@ export const CurrentMap = () => {
     <S.Container>
       <div className="badge-map-current">Mapa Atual</div>
       <div className="content">
-        <h2 className="current-name-map">{NAME_MAPS_FORMATED[currrentMap]}</h2>
+        <h2 className="current-name-map">
+          {NAME_ISLAND_FORMATED[currrentMap]}
+        </h2>
         <img
           className="current-map"
           src={IMG_MAPS[currrentMap]}
@@ -21,8 +23,8 @@ export const CurrentMap = () => {
         />
         {!isCurrentMapSaved && (
           <p className="current-map-description">
-            Salve a ilha da {NAME_MAPS_FORMATED[currrentMap]} para continuar sua
-            aventura e desbloquear os caminhos!
+            Salve a ilha da {NAME_ISLAND_FORMATED[currrentMap]} para continuar
+            sua aventura e desbloquear os caminhos!
           </p>
         )}
         {isCurrentMapSaved && (
@@ -36,13 +38,13 @@ export const CurrentMap = () => {
             {mapaPathA && (
               <div className="map-path">
                 <img src={IMG_MAPS[mapaPathA]} />
-                <h4>{NAME_MAPS_FORMATED[mapaPathA]}</h4>
+                <h4>{NAME_ISLAND_FORMATED[mapaPathA]}</h4>
               </div>
             )}
             {mapaPathB && (
               <div className="map-path">
                 <img src={IMG_MAPS[mapaPathB]} />
-                <h4>{NAME_MAPS_FORMATED[mapaPathB]}</h4>
+                <h4>{NAME_ISLAND_FORMATED[mapaPathB]}</h4>
               </div>
             )}
             {mapaPathA === undefined && <span className="unknown-map">?</span>}
