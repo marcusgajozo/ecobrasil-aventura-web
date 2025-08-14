@@ -1,54 +1,65 @@
 import { IMG_MAPS, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import * as S from "./styles";
+import { TELEPORT_PLATFORM } from "@/lib/constants/teleportPlataform";
 
 export const CurrentMap = () => {
-  const { currrentMap, savedMap } = useMapsManager();
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+  const islandsInformation = useManagerIslandStore(
+    (state) => state.islandsInformation
+  );
 
-  const mapaPathA = savedMap[currrentMap].pathA;
-  const mapaPathB = savedMap[currrentMap].pathB;
-  const isCurrentMapSaved = savedMap[currrentMap].saved;
+  const pathAIsland = TELEPORT_PLATFORM[currentIsland].A.destinationIsland.name;
+  const pathBIsland = TELEPORT_PLATFORM[currentIsland].B.destinationIsland.name;
+
+  const pathAIslandVisited = islandsInformation[pathAIsland].visited;
+  const pathBIslandVisited = islandsInformation[pathBIsland].visited;
+  const isCurrentIslandSaved = islandsInformation[currentIsland].saved;
 
   return (
     <S.Container>
       <div className="badge-map-current">Mapa Atual</div>
       <div className="content">
         <h2 className="current-name-map">
-          {NAME_ISLAND_FORMATED[currrentMap]}
+          {NAME_ISLAND_FORMATED[currentIsland]}
         </h2>
         <img
           className="current-map"
-          src={IMG_MAPS[currrentMap]}
+          src={IMG_MAPS[currentIsland]}
           alt={"mapa atual"}
         />
-        {!isCurrentMapSaved && (
+        {!isCurrentIslandSaved && (
           <p className="current-map-description">
-            Salve a ilha da {NAME_ISLAND_FORMATED[currrentMap]} para continuar
+            Salve a ilha da {NAME_ISLAND_FORMATED[currentIsland]} para continuar
             sua aventura e desbloquear os caminhos!
           </p>
         )}
-        {isCurrentMapSaved && (
+        {isCurrentIslandSaved && (
           <>
             <h3 className="path-description path-a">Caminho A</h3>
             <h3 className="path-description path-b">Caminho B</h3>
           </>
         )}
-        {isCurrentMapSaved && (
+        {isCurrentIslandSaved && (
           <div className="content-maps-paths">
-            {mapaPathA && (
+            {pathAIslandVisited && (
               <div className="map-path">
-                <img src={IMG_MAPS[mapaPathA]} />
-                <h4>{NAME_ISLAND_FORMATED[mapaPathA]}</h4>
+                <img src={IMG_MAPS[pathAIsland]} />
+                <h4>{NAME_ISLAND_FORMATED[pathAIsland]}</h4>
               </div>
             )}
-            {mapaPathB && (
+            {pathBIslandVisited && (
               <div className="map-path">
-                <img src={IMG_MAPS[mapaPathB]} />
-                <h4>{NAME_ISLAND_FORMATED[mapaPathB]}</h4>
+                <img src={IMG_MAPS[pathBIsland]} />
+                <h4>{NAME_ISLAND_FORMATED[pathBIsland]}</h4>
               </div>
             )}
-            {mapaPathA === undefined && <span className="unknown-map">?</span>}
-            {mapaPathB === undefined && <span className="unknown-map">?</span>}
+            {pathAIsland === undefined && (
+              <span className="unknown-map">?</span>
+            )}
+            {pathBIsland === undefined && (
+              <span className="unknown-map">?</span>
+            )}
           </div>
         )}
       </div>
