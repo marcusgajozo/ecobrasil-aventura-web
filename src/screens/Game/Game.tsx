@@ -38,7 +38,7 @@ export const Game = () => {
             speed={1}
           />
 
-          <Physics>
+          <Physics debug>
             <Islands />
             <Character />
           </Physics>

@@ -37,7 +37,6 @@ export const PampaIsland = () => {
         type="fixed"
         billboardText="Veado Campeiro"
         colliderPosition={[0, 1.5, 0]}
-        colliderArgs={[0.4, 1.6, 1.0]}
       >
         <DeerModel scale={0.8} />
       </ProximityInteractable>
@@ -54,7 +53,6 @@ export const PampaIsland = () => {
         billboardText="Ema"
         billboardTextPosition={[0, 3.5, 0]}
         colliderPosition={[0, -1, 0]}
-        colliderArgs={[1, 2, 1.0]}
         sensorRadius={4}
       >
         <EmuModel scale={0.026} />

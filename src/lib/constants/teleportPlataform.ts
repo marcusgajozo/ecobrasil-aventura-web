@@ -27,7 +27,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     A: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.amazonia,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: -8 },
       }),
       destinationIsland: {
         name: "pantanal",
@@ -37,7 +37,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.amazonia,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: 1 },
       }),
       destinationIsland: {
         name: "pampa",
@@ -49,7 +49,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     A: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.pantanal,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: -8 },
       }),
       destinationIsland: {
         name: "amazonia",
@@ -59,7 +59,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.pantanal,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: 1 },
       }),
       destinationIsland: {
         name: "caatinga",
@@ -71,7 +71,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     A: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.caatinga,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: -8 },
       }),
       destinationIsland: {
         name: "cerrado",
@@ -81,7 +81,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.caatinga,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: 1 },
       }),
       destinationIsland: {
         name: "pantanal",
@@ -93,7 +93,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     A: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.cerrado,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: -8 },
       }),
       destinationIsland: {
         name: "caatinga",
@@ -103,7 +103,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.cerrado,
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: 1 },
       }),
       destinationIsland: {
         name: "mata-atlantica",
@@ -115,7 +115,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     A: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA["mata-atlantica"],
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: -8 },
       }),
       destinationIsland: {
         name: "pampa",
@@ -125,7 +125,7 @@ export const TELEPORT_PLATFORM_CONFIG: Record<
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA["mata-atlantica"],
-        relativeOffset: { x: 0, y: 0, z: 0 },
+        relativeOffset: { x: -12, y: 6, z: 1 },
       }),
       destinationIsland: {
         name: "cerrado",

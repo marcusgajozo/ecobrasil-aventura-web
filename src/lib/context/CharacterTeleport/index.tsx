@@ -49,7 +49,7 @@ export const CharacterTeleportProvider = ({
   ) => {
     const position = calculateWorldPosition({
       basePosition: positionTeleport || POSITIONS_ISLAND_DATA[nameMap],
-      relativeOffset: new Vector3(0, 15, 0),
+      relativeOffset: new Vector3(0, 3, 0),
     });
 
     setIsTeleporting(true);

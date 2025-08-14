@@ -9,6 +9,7 @@ import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useCallback, useEffect, useState } from "react";
 import { TeleportPlatformModel } from "./TeleportPlatformModel";
+import { ProximityInteractable } from "@/components/templates/ProximityInteractable";
 
 // TODO: colocar uma transição de teletransporte bonitinha
 // TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
@@ -69,36 +70,16 @@ export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
 
   return (
     <>
-      <RigidBody
-        type="fixed"
-        colliders="trimesh"
+      <ProximityInteractable
         position={TELEPORT_PLATFORM_CONFIG[nameMap].A.position}
+        billboardText={isCloseA ? "Caminho A" : ""}
+        onCollide={() => setIsCloseA(true)}
+        onStopCollide={() => setIsCloseA(false)}
+        type="fixed"
       >
         <TeleportPlatformModel />
-      </RigidBody>
-      <RigidBody
-        type="fixed"
-        colliders="ball"
-        position={TELEPORT_PLATFORM_CONFIG[nameMap].A.position}
-        onIntersectionEnter={() => setIsCloseA((prev) => !prev)}
-        onIntersectionExit={() => setIsCloseA((prev) => !prev)}
-        sensor
-      >
-        <Box>
-          <meshStandardMaterial transparent opacity={0} />
-          <Billboard>
-            <Text
-              position={[0, 1.2, 0]}
-              fontSize={0.5}
-              color="black"
-              anchorX="center"
-              anchorY="bottom"
-            >
-              {isCloseA ? "Caminho A" : ""}
-            </Text>
-          </Billboard>
-        </Box>
-      </RigidBody>
+      </ProximityInteractable>
+
       <RigidBody
         type="fixed"
         colliders="trimesh"
