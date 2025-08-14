@@ -1,19 +1,24 @@
-import { IMG_MAPS } from "@/lib/constants/island";
+import { IMG_MAPS, NAME_ISLAND } from "@/lib/constants/island";
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import { useMemo } from "react";
 import * as S from "./styles";
 
 export const MapsVisited = () => {
-  const { currrentMap, savedMap, mapsPaths } = useMapsManager();
-  const { teleportCharacter } = useCharacterTeleport();
-  const mapsVisited = useMemo(() => {
-    return mapsPaths.filter((map) => {
-      return savedMap[map.name].saved && map.name !== currrentMap;
-    });
-  }, [mapsPaths, savedMap, currrentMap]);
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+  const islandsInformation = useManagerIslandStore(
+    (state) => state.islandsInformation
+  );
 
-  const hasVisitedMap = mapsVisited.length > 0;
+  const { teleportCharacter } = useCharacterTeleport();
+
+  const islandsVisited = useMemo(() => {
+    return NAME_ISLAND.filter((name) => {
+      return islandsInformation[name].saved && name !== currentIsland;
+    });
+  }, [currentIsland, islandsInformation]);
+
+  const hasVisitedMap = islandsVisited.length > 0;
 
   if (!hasVisitedMap) {
     return null;
@@ -23,13 +28,13 @@ export const MapsVisited = () => {
     <S.Container>
       <div className="badge-maps-visited">Mapas visitados</div>
       <div className="maps">
-        {mapsVisited.map((map, index) => (
+        {islandsVisited.map((name, index) => (
           <div
             className="map"
-            key={`${map.name}-${index}`}
-            onClick={() => teleportCharacter(map.name)}
+            key={`${name}-${index}`}
+            onClick={() => teleportCharacter(name)}
           >
-            <img src={IMG_MAPS[map.name]} />
+            <img src={IMG_MAPS[name]} />
           </div>
         ))}
       </div>
