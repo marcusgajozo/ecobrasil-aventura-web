@@ -1,15 +1,12 @@
-import { NAME_ISLAND } from "@/lib/constants";
-import { Controls } from "@/lib/constants/keyboardMap";
-import { TELEPORT_PLATFORM_CONFIG } from "@/lib/constants/teleportPlataform";
+import { ProximityInteractable } from "@/components/templates/ProximityInteractable";
+import { NAME_ISLAND, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
+import { TELEPORT_PLATFORM } from "@/lib/constants/teleportPlataform";
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useToastCustom } from "@/lib/hooks/useToastCustom";
 import theme from "@/styles/theme";
-import { Billboard, Box, Text, useKeyboardControls } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { TeleportPlatformModel } from "./TeleportPlatformModel";
-import { ProximityInteractable } from "@/components/templates/ProximityInteractable";
 
 // TODO: colocar uma transição de teletransporte bonitinha
 // TODO: teleportar personagem para outro mapa somente de mapa atual estiver salvo
@@ -20,13 +17,9 @@ type TeleportPlatformProps = {
 };
 
 export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
-  const [isCloseA, setIsCloseA] = useState(false);
-  const [isCloseB, setIsCloseB] = useState(false);
-
   const { savedMap } = useMapsManager();
   const { teleportCharacter } = useCharacterTeleport();
 
-  const [sub] = useKeyboardControls<Controls>();
   const { showToast } = useToastCustom();
 
   const handleTeleport = useCallback(
@@ -40,11 +33,11 @@ export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
       }
 
       const destinationIsland =
-        TELEPORT_PLATFORM_CONFIG[nameMap][mapPath].destinationIsland;
+        TELEPORT_PLATFORM[nameMap][mapPath].destinationIsland;
 
       teleportCharacter(
         destinationIsland.name,
-        TELEPORT_PLATFORM_CONFIG[destinationIsland.name][
+        TELEPORT_PLATFORM[destinationIsland.name][
           destinationIsland.teleportPlatform
         ].position
       );
@@ -52,64 +45,43 @@ export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
     [nameMap, savedMap, showToast, teleportCharacter]
   );
 
-  useEffect(() => {
-    return sub(
-      (state) => state.action,
-      (press) => {
-        if (press) {
-          if (isCloseA) {
-            handleTeleport("A");
-          }
-          if (isCloseB) {
-            handleTeleport("B");
-          }
-        }
-      }
-    );
-  }, [handleTeleport, isCloseA, isCloseB, sub]);
-
   return (
     <>
       <ProximityInteractable
-        position={TELEPORT_PLATFORM_CONFIG[nameMap].A.position}
-        billboardText={isCloseA ? "Caminho A" : ""}
-        onCollide={() => setIsCloseA(true)}
-        onStopCollide={() => setIsCloseA(false)}
+        position={TELEPORT_PLATFORM[nameMap].A.position}
+        billboardText={
+          NAME_ISLAND_FORMATED[
+            TELEPORT_PLATFORM[nameMap].A.destinationIsland.name
+          ]
+        }
+        characterObjectInteraction={{
+          control: "action",
+          action: () => handleTeleport("A"),
+        }}
         type="fixed"
+        colliderPosition={[0, 2, 0]}
+        sensorRadius={1}
       >
         <TeleportPlatformModel />
       </ProximityInteractable>
 
-      <RigidBody
+      <ProximityInteractable
+        position={TELEPORT_PLATFORM[nameMap].B.position}
+        billboardText={
+          NAME_ISLAND_FORMATED[
+            TELEPORT_PLATFORM[nameMap].B.destinationIsland.name
+          ]
+        }
+        characterObjectInteraction={{
+          control: "action",
+          action: () => handleTeleport("B"),
+        }}
+        colliderPosition={[0, 2, 0]}
+        sensorRadius={1}
         type="fixed"
-        colliders="trimesh"
-        position={TELEPORT_PLATFORM_CONFIG[nameMap].B.position}
       >
         <TeleportPlatformModel />
-      </RigidBody>
-      <RigidBody
-        type="fixed"
-        colliders="ball"
-        position={TELEPORT_PLATFORM_CONFIG[nameMap].B.position}
-        onIntersectionEnter={() => setIsCloseB((prev) => !prev)}
-        onIntersectionExit={() => setIsCloseB((prev) => !prev)}
-        sensor
-      >
-        <Box>
-          <meshStandardMaterial transparent opacity={0} />
-          <Billboard>
-            <Text
-              position={[0, 1.2, 0]}
-              fontSize={0.5}
-              color="black"
-              anchorX="center"
-              anchorY="bottom"
-            >
-              {isCloseB ? "Caminho B" : ""}
-            </Text>
-          </Billboard>
-        </Box>
-      </RigidBody>
+      </ProximityInteractable>
     </>
   );
 };
