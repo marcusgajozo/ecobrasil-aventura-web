@@ -1,5 +1,5 @@
 import { NAME_ISLAND } from "@/lib/constants/island";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import { animated, useSpring } from "@react-spring/three";
 import { useControls } from "leva";
 import { useEffect, useRef } from "react";
@@ -47,28 +47,28 @@ const lightingPresets: Record<NameIsland, LightingPreset> = {
 };
 
 export const Lighting = () => {
-  const { currrentMap } = useMapsManager();
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
   const directionalLightRef = useRef<DirectionalLight>(null!);
 
   const { ambient, directional, color, position } = useControls(
     "Iluminação da Cena",
     {
       ambient: {
-        value: lightingPresets[currrentMap].ambientIntensity,
+        value: lightingPresets[currentIsland].ambientIntensity,
         min: 0,
         max: 2,
         step: 0.1,
         label: "Luz Ambiente",
       },
       directional: {
-        value: lightingPresets[currrentMap].directionalIntensity,
+        value: lightingPresets[currentIsland].directionalIntensity,
         min: 0,
         max: 5,
         step: 0.1,
         label: "Luz Direcional",
       },
       color: {
-        value: lightingPresets[currrentMap].directionalColor,
+        value: lightingPresets[currentIsland].directionalColor,
         label: "Cor da Luz",
       },
       position: {
@@ -80,22 +80,22 @@ export const Lighting = () => {
 
   const [animatedProps, api] = useSpring(
     () => ({
-      ambientIntensity: lightingPresets[currrentMap].ambientIntensity,
-      directionalIntensity: lightingPresets[currrentMap].directionalIntensity,
-      directionalColor: lightingPresets[currrentMap].directionalColor,
+      ambientIntensity: lightingPresets[currentIsland].ambientIntensity,
+      directionalIntensity: lightingPresets[currentIsland].directionalIntensity,
+      directionalColor: lightingPresets[currentIsland].directionalColor,
       config: { duration: 1000 },
     }),
-    [currrentMap]
+    [currentIsland]
   );
 
   useEffect(() => {
-    const preset = lightingPresets[currrentMap] || lightingPresets.pampa;
+    const preset = lightingPresets[currentIsland] || lightingPresets.pampa;
     api.start({
       ambientIntensity: preset.ambientIntensity,
       directionalIntensity: preset.directionalIntensity,
       directionalColor: preset.directionalColor,
     });
-  }, [currrentMap, api]);
+  }, [currentIsland, api]);
 
   return (
     <>
