@@ -2,21 +2,26 @@ import { Vector3 } from "three";
 import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from ".";
 import { calculateWorldPosition } from "../utils/calculateWorldPosition";
 
-type TeleportPlatformPosition = {
+type DestinationIsland = {
+  name: (typeof NAME_ISLAND)[number];
+  teleportPlatform: "A" | "B";
+};
+
+type TeleportPlatformConfig = {
   A: {
     position: Vector3;
-    island: (typeof NAME_ISLAND)[number];
+    destinationIsland: DestinationIsland;
   };
 
   B: {
     position: Vector3;
-    island: (typeof NAME_ISLAND)[number];
+    destinationIsland: DestinationIsland;
   };
 };
 
-export const TELEPORT_PLATFORM: Record<
+export const TELEPORT_PLATFORM_CONFIG: Record<
   (typeof NAME_ISLAND)[number],
-  TeleportPlatformPosition
+  TeleportPlatformConfig
 > = {
   amazonia: {
     A: {
@@ -24,14 +29,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA.amazonia,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "pantanal",
+      destinationIsland: {
+        name: "pantanal",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.amazonia,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "pampa",
+      destinationIsland: {
+        name: "pampa",
+        teleportPlatform: "B",
+      },
     },
   },
   pantanal: {
@@ -40,14 +51,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA.pantanal,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "amazonia",
+      destinationIsland: {
+        name: "amazonia",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.pantanal,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "caatinga",
+      destinationIsland: {
+        name: "caatinga",
+        teleportPlatform: "B",
+      },
     },
   },
   caatinga: {
@@ -56,14 +73,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA.caatinga,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "cerrado",
+      destinationIsland: {
+        name: "cerrado",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.caatinga,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "pantanal",
+      destinationIsland: {
+        name: "pantanal",
+        teleportPlatform: "B",
+      },
     },
   },
   cerrado: {
@@ -72,14 +95,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA.cerrado,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "caatinga",
+      destinationIsland: {
+        name: "caatinga",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.cerrado,
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "mata-atlantica",
+      destinationIsland: {
+        name: "mata-atlantica",
+        teleportPlatform: "B",
+      },
     },
   },
   "mata-atlantica": {
@@ -88,14 +117,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA["mata-atlantica"],
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "pampa",
+      destinationIsland: {
+        name: "pampa",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA["mata-atlantica"],
         relativeOffset: { x: 0, y: 0, z: 0 },
       }),
-      island: "cerrado",
+      destinationIsland: {
+        name: "cerrado",
+        teleportPlatform: "B",
+      },
     },
   },
   pampa: {
@@ -104,14 +139,20 @@ export const TELEPORT_PLATFORM: Record<
         basePosition: POSITIONS_ISLAND_DATA.pampa,
         relativeOffset: { x: -12, y: 6, z: -8 },
       }),
-      island: "mata-atlantica",
+      destinationIsland: {
+        name: "mata-atlantica",
+        teleportPlatform: "A",
+      },
     },
     B: {
       position: calculateWorldPosition({
         basePosition: POSITIONS_ISLAND_DATA.pampa,
         relativeOffset: { x: -12, y: 6, z: 1 },
       }),
-      island: "amazonia",
+      destinationIsland: {
+        name: "amazonia",
+        teleportPlatform: "B",
+      },
     },
   },
 };
