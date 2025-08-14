@@ -1,6 +1,6 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { BigIsland } from "../../atoms/BigIsland";
-import { QuestionBox } from "../../atoms/QuestionBox";
+import { QuestionBox } from "../../atoms/QuestionBox/QuestionBox";
 import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
 export const MataAtlantica = () => {

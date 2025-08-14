@@ -5,7 +5,7 @@ import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { useControls } from "leva";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { BigIsland } from "../../atoms/BigIsland";
-import { QuestionBox } from "../../atoms/QuestionBox";
+import { QuestionBox } from "../../atoms/QuestionBox/QuestionBox";
 import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 import { IslandDome } from "@/components/IslandDome/IslandDome";
 
