@@ -1,5 +1,5 @@
 import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "@/lib/constants/island";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import { calculateWorldPosition } from "@/lib/utils/calculateWorldPosition";
 import { SpringValue, useSpring } from "@react-spring/three";
 import { RapierRigidBody } from "@react-three/rapier";
@@ -28,20 +28,24 @@ export const CharacterTeleportProvider = ({
   children,
 }: Readonly<{ children: ReactNode }>) => {
   const character = useRef<RapierRigidBody>(null);
-  const { setCurrentMap, currrentMap } = useMapsManager();
+  const [isTeleporting, setIsTeleporting] = useState(false);
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+
   const [positionInicial] = useState<Vector3>(() =>
     calculateWorldPosition({
-      basePosition: POSITIONS_ISLAND_DATA[currrentMap],
-      relativeOffset: new Vector3(0, 15, 0),
+      basePosition: POSITIONS_ISLAND_DATA[currentIsland],
+      relativeOffset: new Vector3(0, 10, 0),
     })
   );
-
-  const [isTeleporting, setIsTeleporting] = useState(false);
 
   const animationTeleport = useSpring({
     scale: isTeleporting ? 0 : 1,
     config: { duration: 300 },
   });
+
+  const handleSaveIsland = useManagerIslandStore(
+    (state) => state.handleSaveIsland
+  );
 
   const teleportCharacter = (
     nameMap: NameIsland,
@@ -57,7 +61,7 @@ export const CharacterTeleportProvider = ({
       if (character.current) character.current.setTranslation(position, true);
       setIsTeleporting(false);
     }, 300);
-    setCurrentMap(nameMap);
+    handleSaveIsland(nameMap);
   };
 
   return (
