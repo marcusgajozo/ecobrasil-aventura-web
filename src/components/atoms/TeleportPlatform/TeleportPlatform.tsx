@@ -2,8 +2,8 @@ import { ProximityInteractable } from "@/components/templates/ProximityInteracta
 import { NAME_ISLAND, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
 import { TELEPORT_PLATFORM } from "@/lib/constants/teleportPlataform";
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useToastCustom } from "@/lib/hooks/useToastCustom";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import theme from "@/styles/theme";
 import { useCallback } from "react";
 import { TeleportPlatformModel } from "./TeleportPlatformModel";
@@ -17,14 +17,16 @@ type TeleportPlatformProps = {
 };
 
 export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
-  const { savedMap } = useMapsManager();
+  const islandsInformation = useManagerIslandStore(
+    (state) => state.islandsInformation
+  );
   const { teleportCharacter } = useCharacterTeleport();
 
   const { showToast } = useToastCustom();
 
   const handleTeleport = useCallback(
     (mapPath: "A" | "B") => {
-      if (savedMap[nameMap].saved === false) {
+      if (islandsInformation[nameMap].saved === false) {
         showToast({
           message: "Você precisa salvar o mapa atual antes de teletransportar!",
           backgroundColor: theme.colors.yallow,
@@ -42,7 +44,7 @@ export const TeleportPlatform = ({ nameMap }: TeleportPlatformProps) => {
         ].position
       );
     },
-    [nameMap, savedMap, showToast, teleportCharacter]
+    [islandsInformation, nameMap, showToast, teleportCharacter]
   );
 
   return (
