@@ -11,7 +11,7 @@ type NameIsland = (typeof NAME_ISLAND)[number];
 type CharacterTeleportContextType = {
   positionInicial: Vector3;
   character: React.RefObject<RapierRigidBody>;
-  teleportCharacter: (nameMap: NameIsland) => void;
+  teleportCharacter: (nameMap: NameIsland, positionTeleport?: Vector3) => void;
   animationTeleport: {
     scale: SpringValue<number>;
   };
@@ -43,9 +43,12 @@ export const CharacterTeleportProvider = ({
     config: { duration: 300 },
   });
 
-  const teleportCharacter = (nameMap: NameIsland) => {
+  const teleportCharacter = (
+    nameMap: NameIsland,
+    positionTeleport?: Vector3
+  ) => {
     const position = calculateWorldPosition({
-      basePosition: POSITIONS_ISLAND_DATA[nameMap],
+      basePosition: positionTeleport || POSITIONS_ISLAND_DATA[nameMap],
       relativeOffset: new Vector3(0, 15, 0),
     });
 
