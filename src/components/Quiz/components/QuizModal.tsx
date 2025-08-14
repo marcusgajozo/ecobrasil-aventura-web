@@ -1,22 +1,25 @@
+import { ButtonText } from "@/components/atoms/ButtonText/ButtonText";
 import { Modal } from "@/components/organisms/Modal/Modal";
 import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
-import { useMapsManager } from "@/lib/hooks/useMapsManager";
+import { useToastCustom } from "@/lib/hooks/useToastCustom";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import theme from "@/styles/theme";
 import quizSvg from "@images/quiz.svg";
 import { useEffect } from "react";
 import { useQuiz } from "../hooks/useQuiz";
 import { Question } from "./Question/Question";
-import { ButtonText } from "@/components/atoms/ButtonText/ButtonText";
-import theme from "@/styles/theme";
-import { useToastCustom } from "@/lib/hooks/useToastCustom";
 
 // TODO: create Congratulation component to show when the user answers 3 questions correctly
 export const QuizModal = () => {
   const { openQuiz, setOpenQuiz } = useControllerQuiz();
-  const { currrentMap, saveMap } = useMapsManager();
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
   const { showToast } = useToastCustom();
   const { state, dispatch } = useQuiz();
   const { questionsAnsweredCorrectly, selectedOption } = state;
 
+  const handleSaveIsland = useManagerIslandStore(
+    (state) => state.handleSaveIsland
+  );
   const handleCloseQuiz = () => {
     dispatch({ type: "RESET_QUIZ" });
     setOpenQuiz(false);
@@ -32,9 +35,9 @@ export const QuizModal = () => {
 
   useEffect(() => {
     if (questionsAnsweredCorrectly === 3) {
-      saveMap(currrentMap);
+      handleSaveIsland(currentIsland);
     }
-  }, [currrentMap, questionsAnsweredCorrectly, saveMap]);
+  }, [currentIsland, questionsAnsweredCorrectly, handleSaveIsland]);
 
   return (
     <Modal.Root
