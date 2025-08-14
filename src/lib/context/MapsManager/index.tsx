@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { generateRandomMapsPaths } from "./functions";
-import { NAME_ISLAND } from "@/lib/constants";
+import { NAME_ISLAND } from "@/lib/constants/island";
 
 type NameIsland = (typeof NAME_ISLAND)[number];
 

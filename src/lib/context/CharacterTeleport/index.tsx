@@ -1,4 +1,4 @@
-import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "@/lib/constants";
+import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "@/lib/constants/island";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { calculateWorldPosition } from "@/lib/utils/calculateWorldPosition";
 import { SpringValue, useSpring } from "@react-spring/three";

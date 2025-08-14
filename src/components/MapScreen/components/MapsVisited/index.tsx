@@ -1,4 +1,4 @@
-import { IMG_MAPS } from "@/lib/constants";
+import { IMG_MAPS } from "@/lib/constants/island";
 import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { useMemo } from "react";

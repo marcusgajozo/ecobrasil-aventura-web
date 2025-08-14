@@ -1,5 +1,5 @@
 import { Vector3, Vector3Like } from "three";
-import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "../constants";
+import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "../constants/island";
 import { useMapsManager } from "./useMapsManager";
 import { calculateWorldPosition } from "../utils/calculateWorldPosition";
 

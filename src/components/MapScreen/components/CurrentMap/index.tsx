@@ -1,4 +1,4 @@
-import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/lib/constants";
+import { IMG_MAPS, NAME_MAPS_FORMATED } from "@/lib/constants/island";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import * as S from "./styles";
 

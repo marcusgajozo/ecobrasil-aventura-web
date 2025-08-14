@@ -1,4 +1,4 @@
-import { NAME_ISLAND } from "@/lib/constants";
+import { NAME_ISLAND } from "@/lib/constants/island";
 import { useMapsManager } from "@/lib/hooks/useMapsManager";
 import { animated, useSpring } from "@react-spring/three";
 import { useControls } from "leva";

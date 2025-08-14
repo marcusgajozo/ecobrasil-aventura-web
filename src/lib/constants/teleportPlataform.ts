@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from ".";
+import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "./island";
 import { calculateWorldPosition } from "../utils/calculateWorldPosition";
 
 type DestinationIsland = {
@@ -7,7 +7,7 @@ type DestinationIsland = {
   teleportPlatform: "A" | "B";
 };
 
-type TeleportPlatformConfig = {
+type TeleportPlatform = {
   A: {
     position: Vector3;
     destinationIsland: DestinationIsland;
@@ -19,9 +19,9 @@ type TeleportPlatformConfig = {
   };
 };
 
-export const TELEPORT_PLATFORM_CONFIG: Record<
+export const TELEPORT_PLATFORM: Record<
   (typeof NAME_ISLAND)[number],
-  TeleportPlatformConfig
+  TeleportPlatform
 > = {
   amazonia: {
     A: {

@@ -27,15 +27,17 @@ export const POSITIONS_ISLAND_DATA: Record<
   pampa: { x: -23, y: 0, z: -70 },
 };
 
-export const NAME_MAPS_FORMATED: Record<(typeof NAME_ISLAND)[number], string> =
-  {
-    "mata-atlantica": "Mata Atlântica",
-    pantanal: "Pantanal",
-    caatinga: "Caatinga",
-    cerrado: "Cerrado",
-    amazonia: "Amazônia",
-    pampa: "Pampa",
-  };
+export const NAME_ISLAND_FORMATED: Record<
+  (typeof NAME_ISLAND)[number],
+  string
+> = {
+  "mata-atlantica": "Mata Atlântica",
+  pantanal: "Pantanal",
+  caatinga: "Caatinga",
+  cerrado: "Cerrado",
+  amazonia: "Amazônia",
+  pampa: "Pampa",
+};
 
 export const IMG_MAPS: Record<(typeof NAME_ISLAND)[number], string> = {
   "mata-atlantica": mataAtlanticaPng,

@@ -1,4 +1,4 @@
-import { NAME_ISLAND } from "@/lib/constants";
+import { NAME_ISLAND } from "@/lib/constants/island";
 
 // Função para gerar um mapsPaths aleatório que conecta todos os mapas em NAME_ISLAND
 export const generateRandomMapsPaths = () => {

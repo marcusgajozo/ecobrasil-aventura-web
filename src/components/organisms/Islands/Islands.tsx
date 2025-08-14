@@ -1,4 +1,4 @@
-import { NAME_ISLAND } from "@/lib/constants";
+import { NAME_ISLAND } from "@/lib/constants/island";
 import { Amazonia } from "../Amazonia";
 import { Caatinga } from "../Caatinga";
 import { Cerrado } from "../Cerrado";
