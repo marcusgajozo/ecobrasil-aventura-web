@@ -10,10 +10,7 @@ export const Caatinga = () => {
 
   return (
     <>
-      <TeleportPlatform
-        positionPlatformA={handlePositionRelative({ x: -12, y: 6, z: 1 })}
-        positionPlatformB={handlePositionRelative({ x: -12, y: 6, z: -8 })}
-      />
+      <TeleportPlatform nameMap="caatinga" />
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}

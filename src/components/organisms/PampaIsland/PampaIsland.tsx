@@ -8,7 +8,6 @@ import { BigIsland } from "../../atoms/BigIsland";
 import { QuestionBox } from "../../atoms/QuestionBox";
 import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 import { IslandDome } from "@/components/IslandDome/IslandDome";
-import { TELEPORT_PLATFORM } from "@/lib/constants/teleportPlataform";
 
 export const PampaIsland = () => {
   const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
@@ -27,10 +26,7 @@ export const PampaIsland = () => {
 
   return (
     <>
-      <TeleportPlatform
-        positionPlatformA={TELEPORT_PLATFORM.pampa.A.position}
-        positionPlatformB={TELEPORT_PLATFORM.pampa.B.position}
-      />
+      <TeleportPlatform nameMap="pampa" />
       {!saved && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
