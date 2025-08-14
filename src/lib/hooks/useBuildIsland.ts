@@ -1,6 +1,6 @@
 import { Vector3, Vector3Like } from "three";
 import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "../constants/island";
-import { useMapsManager } from "./useMapsManager";
+import { useManagerIslandStore } from "../stores/useManagerIslandStore";
 import { calculateWorldPosition } from "../utils/calculateWorldPosition";
 
 export const useBuildIsland = ({
@@ -8,18 +8,20 @@ export const useBuildIsland = ({
 }: {
   nameIsland: (typeof NAME_ISLAND)[number];
 }) => {
+  const islandsInformation = useManagerIslandStore(
+    (state) => state.islandsInformation
+  );
+
+  const savedIsland = islandsInformation[nameIsland].saved;
   const positionIslandData = POSITIONS_ISLAND_DATA[nameIsland];
   const positionIsland = new Vector3().copy(positionIslandData);
-
-  const { savedMap } = useMapsManager();
-  const saved = savedMap[nameIsland].saved;
 
   const handlePositionRelative = (relativeOffset: Vector3Like) =>
     calculateWorldPosition({ basePosition: positionIsland, relativeOffset });
 
   return {
     positionIsland,
-    saved,
+    savedIsland,
     handlePositionRelative,
   };
 };

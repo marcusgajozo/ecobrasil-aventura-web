@@ -10,9 +10,10 @@ import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 import { IslandDome } from "@/components/IslandDome/IslandDome";
 
 export const PampaIsland = () => {
-  const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
-    nameIsland: "pampa",
-  });
+  const { handlePositionRelative, positionIsland, savedIsland } =
+    useBuildIsland({
+      nameIsland: "pampa",
+    });
 
   const { deerRotationY } = useControls("Veado", {
     deerRotationY: {
@@ -27,7 +28,7 @@ export const PampaIsland = () => {
   return (
     <>
       <TeleportPlatform nameMap="pampa" />
-      {!saved && (
+      {!savedIsland && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
 

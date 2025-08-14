@@ -4,14 +4,15 @@ import { QuestionBox } from "../../atoms/QuestionBox/QuestionBox";
 import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
 export const Amazonia = () => {
-  const { handlePositionRelative, positionIsland, saved } = useBuildIsland({
-    nameIsland: "amazonia",
-  });
+  const { handlePositionRelative, positionIsland, savedIsland } =
+    useBuildIsland({
+      nameIsland: "amazonia",
+    });
 
   return (
     <>
       <TeleportPlatform nameMap="amazonia" />
-      {!saved && (
+      {!savedIsland && (
         <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
       )}
       <BigIsland color="#72922B" positionMap={positionIsland} />
