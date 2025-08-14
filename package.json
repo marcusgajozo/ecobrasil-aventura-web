@@ -30,7 +30,8 @@
     "react-hot-toast": "^2.5.2",
     "styled-components": "^6.1.13",
     "three": "^0.169.0",
-    "three-x3": "^0.0.10"
+    "three-x3": "^0.0.10",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
