@@ -14,6 +14,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       "@images": path.resolve(__dirname, "./src/assets/images"),
       "@models": path.resolve(__dirname, "./src/assets/models"),
+      "@audios": path.resolve(__dirname, "./src/assets/audios"),
     },
   },
   assetsInclude: ["**/*.glb"],
