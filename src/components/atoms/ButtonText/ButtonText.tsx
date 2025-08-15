@@ -4,7 +4,7 @@ import * as S from "./styles";
 export type ButtonTextProps = {
   title: string;
 } & Partial<S.ButtonProps> &
-  React.HTMLProps<HTMLDivElement>;
+  Omit<React.HTMLProps<HTMLDivElement>, "children">;
 
 export const ButtonText = ({
   title,
