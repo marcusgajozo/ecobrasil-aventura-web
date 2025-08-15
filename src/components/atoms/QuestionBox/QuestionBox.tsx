@@ -5,17 +5,27 @@ import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
 import { QuestionBoxModel } from "./QuestionBoxModel";
+import { QUESTION_BOX_POSITION } from "@/lib/constants/quiz";
+import { NAME_ISLAND } from "@/lib/constants/island";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 
 type QuestionBoxProps = {
-  position: Vector3;
+  islandName: (typeof NAME_ISLAND)[number];
 };
 
-export const QuestionBox = ({ position }: QuestionBoxProps) => {
-  const { setOpenQuiz } = useControllerQuiz();
+export const QuestionBox = ({ islandName }: QuestionBoxProps) => {
   const [isClose, setIsClose] = useState(false);
-
   const modelRef = useRef<RapierRigidBody>(null);
+
+  const islandsInformation = useManagerIslandStore(
+    (state) => state.islandsInformation
+  );
+
+  const { setOpenQuiz } = useControllerQuiz();
+
   const rotationSpeed = 0.8;
+  const position = QUESTION_BOX_POSITION[islandName];
+  const islandIsSaved = islandsInformation[islandName].saved;
 
   useFrame((_, delta) => {
     if (modelRef.current) {
@@ -40,6 +50,10 @@ export const QuestionBox = ({ position }: QuestionBoxProps) => {
       modelRef.current.setNextKinematicRotation(quat);
     }
   });
+
+  if (islandIsSaved) {
+    return null;
+  }
 
   return (
     <ProximityInteractable

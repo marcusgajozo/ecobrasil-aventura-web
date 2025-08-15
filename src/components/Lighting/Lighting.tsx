@@ -50,33 +50,30 @@ export const Lighting = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
   const directionalLightRef = useRef<DirectionalLight>(null!);
 
-  const { ambient, directional, color, position } = useControls(
-    "Iluminação da Cena",
-    {
-      ambient: {
-        value: lightingPresets[currentIsland].ambientIntensity,
-        min: 0,
-        max: 2,
-        step: 0.1,
-        label: "Luz Ambiente",
-      },
-      directional: {
-        value: lightingPresets[currentIsland].directionalIntensity,
-        min: 0,
-        max: 5,
-        step: 0.1,
-        label: "Luz Direcional",
-      },
-      color: {
-        value: lightingPresets[currentIsland].directionalColor,
-        label: "Cor da Luz",
-      },
-      position: {
-        value: [10, 10, 0],
-        label: "Posição da Luz",
-      },
-    }
-  );
+  const { position } = useControls("Iluminação da Cena", {
+    ambient: {
+      value: lightingPresets[currentIsland].ambientIntensity,
+      min: 0,
+      max: 2,
+      step: 0.1,
+      label: "Luz Ambiente",
+    },
+    directional: {
+      value: lightingPresets[currentIsland].directionalIntensity,
+      min: 0,
+      max: 5,
+      step: 0.1,
+      label: "Luz Direcional",
+    },
+    color: {
+      value: lightingPresets[currentIsland].directionalColor,
+      label: "Cor da Luz",
+    },
+    position: {
+      value: [10, 10, 0],
+      label: "Posição da Luz",
+    },
+  });
 
   const [animatedProps, api] = useSpring(
     () => ({

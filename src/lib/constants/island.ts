@@ -27,6 +27,15 @@ export const POSITIONS_ISLAND_DATA: Record<
   pampa: { x: -23, y: 0, z: -70 },
 };
 
+export const SOIL_COLOR_ISLAND: Record<(typeof NAME_ISLAND)[number], string> = {
+  amazonia: "#4E8B31",
+  pantanal: "#4E8B31",
+  caatinga: "#D6C94C",
+  cerrado: "#AFAF4D",
+  "mata-atlantica": "#4E8B31",
+  pampa: "#D6C94C",
+};
+
 export const NAME_ISLAND_FORMATED: Record<
   (typeof NAME_ISLAND)[number],
   string

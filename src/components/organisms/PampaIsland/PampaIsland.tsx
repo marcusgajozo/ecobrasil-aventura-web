@@ -4,15 +4,11 @@ import { ProximityInteractable } from "@/components/templates/ProximityInteracta
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { useControls } from "leva";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { BigIsland } from "../../atoms/BigIsland";
-import { QuestionBox } from "../../atoms/QuestionBox/QuestionBox";
-import { TeleportPlatform } from "../../atoms/TeleportPlatform";
 
 export const PampaIsland = () => {
-  const { handlePositionRelative, positionIsland, savedIsland } =
-    useBuildIsland({
-      nameIsland: "pampa",
-    });
+  const { handlePositionRelative } = useBuildIsland({
+    nameIsland: "pampa",
+  });
 
   const { deerRotationY } = useControls("Veado", {
     deerRotationY: {
@@ -26,11 +22,6 @@ export const PampaIsland = () => {
 
   return (
     <>
-      <TeleportPlatform nameMap="pampa" />
-      {!savedIsland && (
-        <QuestionBox position={handlePositionRelative({ x: -8, y: 8, z: 7 })} />
-      )}
-
       <ProximityInteractable
         position={handlePositionRelative({ x: -6, y: 6, z: -12 })}
         rotation={[0, degToRad(deerRotationY), 0]}
@@ -51,8 +42,6 @@ export const PampaIsland = () => {
       >
         <EmuModel scale={0.026} />
       </ProximityInteractable>
-
-      <BigIsland color="#41A92E" positionMap={positionIsland} />
     </>
   );
 };

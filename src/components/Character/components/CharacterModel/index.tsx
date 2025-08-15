@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-ignore
+// @ts-nocheck
 
 import { animated } from "@react-spring/three";
 import { useAnimations, useGLTF } from "@react-three/drei";
