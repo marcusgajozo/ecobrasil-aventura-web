@@ -1,15 +1,20 @@
-import { useAudio } from "@/lib/hooks/useAudio";
+import { useModalManagerStore } from "@/lib/stores/useModalManagerStore";
 import { ButtonText } from "../atoms/ButtonText/ButtonText";
 import styles from "./styles.module.css";
 
 export const GameInformation = () => {
-  const { toggleBackgroundAudio } = useAudio();
+  const handleOpenModal = useModalManagerStore(
+    (state) => state.handleOpenModal
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.contant}>
         <div className={styles.contantConfig}>
-          <ButtonText title="Config" onClick={toggleBackgroundAudio} />
+          <ButtonText
+            title="Config"
+            onClick={() => handleOpenModal("game-setup")}
+          />
         </div>
       </div>
     </div>
