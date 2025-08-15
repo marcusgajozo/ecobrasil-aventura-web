@@ -14,7 +14,7 @@ import { GameProviders } from "./GameProviders";
 export const Game = () => {
   return (
     <GameProviders>
-      <Leva hidden={false} />
+      <Leva hidden />
 
       <GameInformation />
       <ModalGameSetup />
@@ -36,7 +36,7 @@ export const Game = () => {
           speed={1}
         />
 
-        <Physics debug>
+        <Physics>
           <Islands />
           <Character />
         </Physics>
