@@ -28,7 +28,7 @@ export const QuestionBox = ({ islandName }: QuestionBoxProps) => {
   const islandIsSaved = islandsInformation[islandName].saved;
 
   useFrame((_, delta) => {
-    if (modelRef.current) {
+    if (modelRef.current && !islandIsSaved) {
       const angle = rotationSpeed * delta;
       const quatIncrement = new Quaternion().setFromAxisAngle(
         new Vector3(0, 1, 0),
