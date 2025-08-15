@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { NAME_ISLAND } from "../constants/island";
 
 type ManagerIslandStoreStates = {
@@ -26,14 +27,24 @@ const INITIAL_STATE: ManagerIslandStoreStates = {
 
 export const useManagerIslandStore = create<
   ManagerIslandStoreStates & ManagerIslandStoreActions
->((set) => ({
-  ...INITIAL_STATE,
-  setCurrentIsland: (island) => set({ currentIsland: island }),
-  handleSaveIsland: (island) =>
-    set((state) => ({
-      islandsInformation: {
-        ...state.islandsInformation,
-        [island]: { saved: true },
-      },
-    })),
-}));
+>()(
+  persist(
+    (set) => ({
+      ...INITIAL_STATE,
+      setCurrentIsland: (island) => set({ currentIsland: island }),
+      handleSaveIsland: (island) =>
+        set((state) => ({
+          islandsInformation: {
+            ...state.islandsInformation,
+            [island]: {
+              ...state.islandsInformation[island],
+              saved: true,
+            },
+          },
+        })),
+    }),
+    {
+      name: "manager-island-store",
+    }
+  )
+);
