@@ -19,6 +19,7 @@ type ManagerIslandStoreActions = {
   handleVisitIsland: (
     island: ManagerIslandStoreStates["currentIsland"]
   ) => void;
+  handleResetGame: () => void;
 };
 
 const INITIAL_STATE: ManagerIslandStoreStates = {
@@ -54,6 +55,10 @@ export const useManagerIslandStore = create<
               visited: true,
             },
           },
+        })),
+      handleResetGame: () =>
+        set(() => ({
+          ...INITIAL_STATE,
         })),
     }),
     {
