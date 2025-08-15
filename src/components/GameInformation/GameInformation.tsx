@@ -16,6 +16,12 @@ export const GameInformation = () => {
             onClick={() => handleOpenModal("game-setup")}
           />
         </div>
+        <div className={styles.contantFeedback}>
+          <ButtonText
+            title="Avalie o jogo"
+            onClick={() => handleOpenModal("game-setup")}
+          />
+        </div>
       </div>
     </div>
   );
