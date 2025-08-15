@@ -1,9 +1,16 @@
-import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
+import { POSITIONS_ISLAND_DATA } from "@/lib/constants/island";
+import { useManagerCharacterStore } from "@/lib/stores/useManagerCharacterStore";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { calculateWorldPosition } from "@/lib/utils/calculateWorldPosition";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import {
+  CapsuleCollider,
+  RapierRigidBody,
+  RigidBody,
+} from "@react-three/rapier";
 import { useControls } from "leva";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
@@ -46,6 +53,7 @@ export const ControllerCharacter = () => {
     }
   );
 
+  const characterRigidBody = useRef<RapierRigidBody>(null);
   const container = useRef<THREE.Group>(null);
   const character = useRef<THREE.Group>(null);
 
@@ -58,7 +66,6 @@ export const ControllerCharacter = () => {
   const cameraWorldPosition = useRef(new Vector3());
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
-  const { character: rb, positionInicial } = useCharacterTeleport();
 
   const forward = useKeyboardControls<Controls>((state) => state.forward);
   const backward = useKeyboardControls<Controls>((state) => state.backward);
@@ -71,9 +78,23 @@ export const ControllerCharacter = () => {
   const rotateLeft = useKeyboardControls<Controls>((state) => state.rotateLeft);
   const action = useKeyboardControls<Controls>((state) => state.action);
 
+  const setCharacter = useManagerCharacterStore((state) => state.setCharacter);
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+
+  const [positionInicial] = useState<Vector3>(() =>
+    calculateWorldPosition({
+      basePosition: POSITIONS_ISLAND_DATA[currentIsland],
+      relativeOffset: new Vector3(0, 10, 0),
+    })
+  );
+
+  useEffect(() => {
+    setCharacter(characterRigidBody.current);
+  }, [setCharacter]);
+
   useFrame(({ camera }) => {
-    if (rb.current) {
-      const vel = rb.current.linvel();
+    if (characterRigidBody.current) {
+      const vel = characterRigidBody.current.linvel();
 
       const movement = {
         x: 0,
@@ -135,7 +156,7 @@ export const ControllerCharacter = () => {
         );
       }
 
-      rb.current.setLinvel(vel, true);
+      characterRigidBody.current.setLinvel(vel, true);
     }
 
     // CAMERA
@@ -164,7 +185,7 @@ export const ControllerCharacter = () => {
     <RigidBody
       colliders={false}
       lockRotations
-      ref={rb}
+      ref={characterRigidBody}
       position={positionInicial}
     >
       <group ref={container} position={[0, -1.2, 0]}>

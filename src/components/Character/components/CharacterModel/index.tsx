@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
+// @ts-ignore
 
-import { useCharacterTeleport } from "@/lib/hooks/useCharacterTeleport";
 import { animated } from "@react-spring/three";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { GroupProps, useGraph } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import { SkeletonUtils } from "three-stdlib";
 
+import { useTeleportCharacter } from "@/lib/hooks/useTeleportCharacter";
 import robot from "@models/robot.glb";
 
 type CharacterModelProps = {
@@ -24,7 +24,9 @@ const CharacterModel = ({
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
-  const { animationTeleport } = useCharacterTeleport();
+  const { animationTeleport } = useTeleportCharacter();
+
+  console.log(animationTeleport.scale.get());
 
   useEffect(() => {
     if (actions[animation]) actions[animation].reset().fadeIn(0.5).play();
@@ -35,8 +37,8 @@ const CharacterModel = ({
   }, [actions, animation]);
 
   return (
-    <animated.mesh scale={animationTeleport.scale}>
-      <group ref={group} {...props} dispose={null} scale={0.5}>
+    <animated.group scale={animationTeleport.scale}>
+      <group ref={group} {...props} dispose={null}>
         <group name="Root_Scene">
           <group name="RootNode">
             <group
@@ -88,7 +90,7 @@ const CharacterModel = ({
           </group>
         </group>
       </group>
-    </animated.mesh>
+    </animated.group>
   );
 };
 
