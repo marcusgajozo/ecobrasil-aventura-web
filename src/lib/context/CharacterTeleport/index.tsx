@@ -31,6 +31,13 @@ export const CharacterTeleportProvider = ({
   const [isTeleporting, setIsTeleporting] = useState(false);
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
 
+  const handleVisitIsland = useManagerIslandStore(
+    (state) => state.handleVisitIsland
+  );
+  const setCurrentIsland = useManagerIslandStore(
+    (state) => state.setCurrentIsland
+  );
+
   const [positionInicial] = useState<Vector3>(() =>
     calculateWorldPosition({
       basePosition: POSITIONS_ISLAND_DATA[currentIsland],
@@ -43,17 +50,13 @@ export const CharacterTeleportProvider = ({
     config: { duration: 300 },
   });
 
-  const handleSaveIsland = useManagerIslandStore(
-    (state) => state.handleSaveIsland
-  );
-
   const teleportCharacter = (
     nameMap: NameIsland,
     positionTeleport?: Vector3
   ) => {
     const position = calculateWorldPosition({
       basePosition: positionTeleport || POSITIONS_ISLAND_DATA[nameMap],
-      relativeOffset: new Vector3(0, 3, 0),
+      relativeOffset: new Vector3(0, 7, 0),
     });
 
     setIsTeleporting(true);
@@ -61,7 +64,8 @@ export const CharacterTeleportProvider = ({
       if (character.current) character.current.setTranslation(position, true);
       setIsTeleporting(false);
     }, 300);
-    handleSaveIsland(nameMap);
+    handleVisitIsland(nameMap);
+    setCurrentIsland(nameMap);
   };
 
   return (

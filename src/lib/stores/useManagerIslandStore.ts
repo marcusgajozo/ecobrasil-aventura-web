@@ -16,6 +16,9 @@ type ManagerIslandStoreStates = {
 type ManagerIslandStoreActions = {
   setCurrentIsland: (island: ManagerIslandStoreStates["currentIsland"]) => void;
   handleSaveIsland: (island: ManagerIslandStoreStates["currentIsland"]) => void;
+  handleVisitIsland: (
+    island: ManagerIslandStoreStates["currentIsland"]
+  ) => void;
 };
 
 const INITIAL_STATE: ManagerIslandStoreStates = {
@@ -39,6 +42,16 @@ export const useManagerIslandStore = create<
             [island]: {
               ...state.islandsInformation[island],
               saved: true,
+            },
+          },
+        })),
+      handleVisitIsland: (island) =>
+        set((state) => ({
+          islandsInformation: {
+            ...state.islandsInformation,
+            [island]: {
+              ...state.islandsInformation[island],
+              visited: true,
             },
           },
         })),
