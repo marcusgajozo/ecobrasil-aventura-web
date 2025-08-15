@@ -34,8 +34,8 @@ export const TeleportCharacterProvider = ({
     (state) => state.setCurrentIsland
   );
 
-  const [animationTeleport, api] = useSpring(() => ({
-    scale: 1,
+  const [animationTeleport] = useSpring(() => ({
+    scale: 0.5,
     config: { duration: 500 },
   }));
 
@@ -46,37 +46,13 @@ export const TeleportCharacterProvider = ({
         relativeOffset: new Vector3(0, 2, 0),
       });
 
-      console.log("Iniciando teleporte...");
-
-      // Inicia a animação de encolher e define o que fazer quando ela terminar.
-      api.start({
-        scale: 0,
-        onRest: (result) => {
-          // 'onRest' é executado quando a animação de encolher termina.
-          // Verificamos se a animação terminou com sucesso.
-          if (result.finished) {
-            console.log("Encolhimento completo. Teleportando...");
-
-            // 1. Teleporta o corpo físico do personagem.
-            if (character) character.setTranslation(position, true);
-
-            // 2. Atualiza o estado global para mudar de ilha.
-            // Isto irá causar uma re-renderização que, de outra forma, interromperia a animação.
-            handleVisitIsland(nameMap);
-            setCurrentIsland(nameMap);
-
-            // 3. Usa um 'setTimeout' para iniciar a animação de crescer.
-            // Isto garante que a chamada para 'api.start' acontece no próximo "tick" do JavaScript,
-            // DEPOIS de o React ter terminado a sua re-renderização.
-            setTimeout(() => {
-              console.log("Crescendo...");
-              api.start({ scale: 1 });
-            }, 0);
-          }
-        },
-      });
+      if (character) {
+        character.setTranslation(position, true);
+        handleVisitIsland(nameMap);
+        setCurrentIsland(nameMap);
+      }
     },
-    [api, character, handleVisitIsland, setCurrentIsland]
+    [character, handleVisitIsland, setCurrentIsland]
   );
 
   return (
