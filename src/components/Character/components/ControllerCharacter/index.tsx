@@ -1,21 +1,21 @@
-import { useCharacterTeleport } from "@/hooks/useCharacterTeleport";
-import { useControllerMap } from "@/hooks/useControllerMap";
+import { POSITIONS_ISLAND_DATA } from "@/lib/constants/island";
+import { useManagerCharacterStore } from "@/lib/stores/useManagerCharacterStore";
+import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { calculateWorldPosition } from "@/lib/utils/calculateWorldPosition";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import {
+  CapsuleCollider,
+  RapierRigidBody,
+  RigidBody,
+} from "@react-three/rapier";
 import { useControls } from "leva";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { Controls } from "../../../Game/constants/keyboardMap";
+import { Controls } from "../../../../lib/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
-import { useControllerQuiz } from "@/hooks/useControllerQuiz";
-
-// TODO: corrigir o correr do personagem
-// TODO: melhorar a movimentação do personagem w,s,a,d
-// TODO: ler doc do useKeyboardControls
-// TODO: corrigir w,s,a,d não funcionam quando o capslock está ativado
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -43,7 +43,7 @@ export const ControllerCharacter = () => {
     "Character Control",
     {
       WALK_SPEED: { value: 3.5, min: 0.1, max: 4, step: 0.1 },
-      RUN_SPEED: { value: 1.6, min: 0.2, max: 12, step: 0.1 },
+      RUN_SPEED: { value: 6, min: 0.2, max: 12, step: 0.1 },
       ROTATION_SPEED: {
         value: degToRad(0.5),
         min: degToRad(0.1),
@@ -53,6 +53,7 @@ export const ControllerCharacter = () => {
     }
   );
 
+  const characterRigidBody = useRef<RapierRigidBody>(null);
   const container = useRef<THREE.Group>(null);
   const character = useRef<THREE.Group>(null);
 
@@ -65,8 +66,6 @@ export const ControllerCharacter = () => {
   const cameraWorldPosition = useRef(new Vector3());
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
-  const [sub] = useKeyboardControls<Controls>();
-  const { character: rb } = useCharacterTeleport();
 
   const forward = useKeyboardControls<Controls>((state) => state.forward);
   const backward = useKeyboardControls<Controls>((state) => state.backward);
@@ -79,24 +78,23 @@ export const ControllerCharacter = () => {
   const rotateLeft = useKeyboardControls<Controls>((state) => state.rotateLeft);
   const action = useKeyboardControls<Controls>((state) => state.action);
 
-  const { setOpenMap } = useControllerMap();
-  const { setOpenQuiz } = useControllerQuiz();
+  const setCharacter = useManagerCharacterStore((state) => state.setCharacter);
+  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+
+  const [positionInicial] = useState<Vector3>(() =>
+    calculateWorldPosition({
+      basePosition: POSITIONS_ISLAND_DATA[currentIsland],
+      relativeOffset: new Vector3(0, 10, 0),
+    })
+  );
 
   useEffect(() => {
-    return sub(
-      (state) => state.map,
-      (press) => {
-        if (press) {
-          setOpenMap((openMap) => !openMap);
-          setOpenQuiz(false);
-        }
-      }
-    );
-  }, [setOpenMap, setOpenQuiz, sub]);
+    setCharacter(characterRigidBody.current);
+  }, [setCharacter]);
 
   useFrame(({ camera }) => {
-    if (rb.current) {
-      const vel = rb.current.linvel();
+    if (characterRigidBody.current) {
+      const vel = characterRigidBody.current.linvel();
 
       const movement = {
         x: 0,
@@ -124,22 +122,25 @@ export const ControllerCharacter = () => {
         rotationTarget.current += ROTATION_SPEED * movement.x;
       }
 
-      const speed = run ? RUN_SPEED : WALK_SPEED;
-
       if (movement.x !== 0 || movement.z !== 0) {
         characterRotationTarget.current = Math.atan2(movement.x, movement.z);
+        const currentSpeed = run ? RUN_SPEED : WALK_SPEED;
+
         vel.x =
           Math.sin(rotationTarget.current + characterRotationTarget.current) *
-          speed;
+          currentSpeed;
         vel.z =
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
-          speed;
-        if (speed === RUN_SPEED) {
+          currentSpeed;
+
+        if (run) {
           setAnimation("RobotArmature|Robot_Running");
         } else {
           setAnimation("RobotArmature|Robot_Walking");
         }
       } else {
+        vel.x = 0;
+        vel.z = 0;
         setAnimation("RobotArmature|Robot_Idle");
       }
 
@@ -155,7 +156,7 @@ export const ControllerCharacter = () => {
         );
       }
 
-      rb.current.setLinvel(vel, true);
+      characterRigidBody.current.setLinvel(vel, true);
     }
 
     // CAMERA
@@ -181,7 +182,12 @@ export const ControllerCharacter = () => {
   });
 
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} position={[2, 15, 2]}>
+    <RigidBody
+      colliders={false}
+      lockRotations
+      ref={characterRigidBody}
+      position={positionInicial}
+    >
       <group ref={container} position={[0, -1.2, 0]}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={20} position-z={-30} />

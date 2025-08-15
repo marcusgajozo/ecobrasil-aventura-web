@@ -13,14 +13,14 @@ export const GlobalStyle = createGlobalStyle`
 
 /* Configurações globais */
 html {
-  font-size: 8px;
+  font-size: 16px;
   line-height: 1.5;
   scroll-behavior: smooth;
 }
 
 body {
   color: #333;
-  background-color: #fff;
+  background-color: transparent;
   position: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,6 +35,18 @@ html, body, #root {
   width: 100%;
   height: 100%;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Grandstander Variable", sans-serif;
+  letter-spacing: -0.11rem;
+}
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
 
 `;
 
