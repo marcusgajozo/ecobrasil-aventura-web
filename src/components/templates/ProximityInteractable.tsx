@@ -31,7 +31,7 @@ export const ProximityInteractable = ({
   );
 
   return (
-    <RigidBody {...props} colliders={"trimesh"}>
+    <RigidBody colliders={"hull"} {...props}>
       {children}
 
       <BallCollider
