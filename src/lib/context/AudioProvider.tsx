@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import backgroundAudioSrc from "@audios/background-audio.mp3";
+import backgroundAudioSrc from "@audios/background-audio2.mp3";
 
 type AudioProviderType = {
   isPaused: boolean;
@@ -29,7 +29,7 @@ export const AudioProvider = ({ children }: AudioProviderProps) => {
   useEffect(() => {
     const audio = new Audio(backgroundAudioSrc);
     audio.loop = true;
-    audio.volume = 0.02;
+    audio.volume = 0.1;
     backgroundAudioRef.current = audio;
     return () => {
       audio.pause();
