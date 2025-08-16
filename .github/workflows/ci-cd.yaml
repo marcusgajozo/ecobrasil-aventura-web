@@ -3,11 +3,13 @@ name: Deploy Pipeline
 on:
   push:
     branches:
-      - prd
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ github.ref_name }} # Exporta a tag da imagem para o próximo job
 
     steps:
       # Checkout do código
@@ -22,17 +24,37 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup QEMU para suporte multi-arquitetura
+
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      - name: Setup Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build Docker image and Push Docker image
-        run: |
-          docker buildx build \
-            --platform linux/arm64 \
-            --cache-from=type=registry,ref=ghcr.io/${{ github.repository }}:cache \
-            --cache-to=type=inline \
-            -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} \
-            --push .
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache,mode=max
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            cd projects/ecobrasil-aventura/
+            docker pull ghcr.io/${{ github.repository }}:${{ needs.build.outputs.image_tag }}
+            docker compose up -d
