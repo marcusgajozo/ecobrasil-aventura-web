@@ -1,0 +1,55 @@
+/* This is our main stage, filling the whole screen */
+.teste {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: relative; /* Needed for positioning children */
+  overflow: hidden; /* Hide the text before it scrolls into view */
+}
+
+/* The container sets the perspective for the 3D effect */
+.container {
+  display: flex;
+  justify-content: center; /* Horizontally center the wrapper */
+  height: 100%;
+  width: 100%;
+  perspective: 400px; /* The "camera" distance. Lower is more extreme. */
+}
+
+/* The wrapper MUST preserve the 3D space for its children */
+.wrapper {
+  width: 70%; /* A wider text block can make the effect more obvious */
+  display: flex;
+  justify-content: center;
+  /* THIS IS THE CRITICAL FIX: */
+  transform-style: preserve-3d;
+}
+
+.scrollText {
+  color: #ffc909;
+  font-size: 3.5vw;
+  line-height: 1.5em;
+  font-weight: bold;
+  text-align: justify;
+  position: relative;
+  /* Apply the initial rotation here so it's always inclined */
+  transform-origin: center bottom;
+  transform: rotateX(20deg); /* Adjust angle as you like */
+  animation: scroll 60s linear forwards;
+  width: 100%;
+}
+
+h1,h2 {
+  text-align: center;
+}
+
+@keyframes scroll {
+  /* Start the text well below the screen */
+  from {
+    top: 100%;
+  }
+  /* Scroll it up and far away */
+  to {
+    top: -500%;
+  }
+}
