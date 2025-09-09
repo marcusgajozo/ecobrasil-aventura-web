@@ -12,8 +12,8 @@
 
 .futuristicButton {
   position: relative;
-  width: var(--button-width);
-  height: var(--button-height);
+  min-width: var(--button-width);
+  min-height: var(--button-height);
   background-color: var(--dark-background); /* Fundo escuro do botão */
   border: none;
   cursor: pointer;
