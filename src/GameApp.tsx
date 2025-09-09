@@ -4,7 +4,7 @@ import { Introduction } from "./screens/Introduction/Introduction";
 export const GameApp = () => {
   return (
     <>
-      <Introduction />
+      {/* <Introduction /> */}
       <Game />
     </>
   );

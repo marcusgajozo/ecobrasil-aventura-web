@@ -1,0 +1,184 @@
+/* Importando a fonte pixelada */
+@import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
+
+/* Variáveis CSS para facilitar a manutenção das cores e tamanhos */
+:root {
+  --neon-blue: #ffffff;
+  --dark-background: #59a403;
+  --lighting: #f6ff0080;
+  --button-height: 3rem; /* Ajuste para controlar a altura do botão */
+  --button-width: 10rem; /* Ajuste para controlar a largura do botão */
+}
+
+.futuristicButton {
+  position: relative;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--dark-background); /* Fundo escuro do botão */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Jersey 15", "Poppins", sans-serif; /* Fonte pixelada */
+  font-size: 2rem;
+  color: white; /* Cor do texto padrão */
+  transition: all 0.3s ease;
+  overflow: hidden; /* Garante que os pseudo-elementos não saiam do limite */
+
+  /* Borda principal e brilho inicial */
+  box-shadow: 0 0 10px var(--lighting),
+    /* Brilho leve */ 0 0 20px var(--lighting),
+    /* Brilho médio */ inset 0 0 5px var(--lighting); /* Brilho interno */
+
+  border-radius: 15px; /* Arredondamento básico */
+}
+
+.buttonText {
+  position: relative;
+  z-index: 2; /* Garante que o texto fique acima de tudo */
+  color: var(--neon-blue); /* Cor do texto inicial */
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px var(--neon-blue); /* Sombra do texto */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Espaçamento entre ícone e texto, se houver */
+}
+
+/* --- Pseudo-elementos para a Borda Futurista e Conexões --- */
+
+/* Base da borda interna, criando o efeito de "recorte" e brilho principal */
+.futuristicButton::before,
+.futuristicButton::after {
+  content: "";
+  position: absolute;
+  background: transparent;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  z-index: 1; /* Abaixo do texto */
+}
+
+/* ::before para a borda superior e suas conexões */
+.futuristicButton::before {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--neon-blue); /* Borda principal */
+  border-radius: 15px;
+
+  /* Criando as "interrupções" e pontos de conexão no topo */
+  clip-path: polygon(
+    0% 0%,
+    20% 0%,
+    /* Início do corte esquerdo */ 25% 5px,
+    /* Ponto inferior esquerdo do corte */ 30% 0%,
+
+    /* Fim do corte esquerdo */ 70% 0%,
+    /* Início do corte direito */ 75% 5px,
+    /* Ponto inferior direito do corte */ 80% 0%,
+
+    /* Fim do corte direito */ 100% 0%,
+    100% 100%,
+    0% 100%
+  );
+
+  /* Linhas "pixeladas" conectando o topo */
+  box-shadow: 0 0 5px var(--neon-blue),
+    /* Brilho geral */ -2px -2px 0 0 var(--lighting),
+    /* Linha esquerda superior externa */ 2px -2px 0 0 var(--lighting),
+    /* Linha direita superior externa */ /* Conexões internas */ calc(20% + 2px)
+      0px 0 0 var(--lighting),
+    /* Linha interna esquerda (vertical) */ calc(20% + 2px) 2px 0 0
+      var(--lighting),
+    /* Ponto na linha */ calc(80% - 2px) 0px 0 0 var(--lighting),
+    /* Linha interna direita (vertical) */ calc(80% - 2px) 2px 0 0
+      var(--lighting) /* Ponto na linha */;
+}
+
+/* ::after para os elementos das laterais (círculos e linhas) */
+.futuristicButton::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 20px); /* Para estender além do botão */
+  height: calc(100% + 20px);
+  border: 2px solid var(--neon-blue);
+  border-radius: 15px; /* Mantém o formato geral */
+  pointer-events: none; /* Não interfere com o clique do botão */
+
+  /* Remove a borda do centro, deixando apenas as laterais visíveis */
+  clip-path: polygon(
+    0% 0%,
+    10% 0%,
+    10% 100%,
+    0% 100%,
+
+    90% 100%,
+    100% 100%,
+    100% 0%,
+    90% 0%
+  );
+
+  /* Detalhes de brilho e círculos laterais */
+  box-shadow: 0 0 10px rgba(0, 223, 255, 0.7),
+    /* Círculo esquerdo */ -15px 0 0 0 var(--neon-blue),
+    -15px 0 0 5px rgba(0, 223, 255, 0.3),
+    /* Círculo direito */ calc(100% + 15px) 0 0 0 var(--neon-blue),
+    calc(100% + 15px) 0 0 5px rgba(0, 223, 255, 0.3);
+
+  animation: glowing-sides 1.5s infinite alternate; /* Animação de brilho nas laterais */
+}
+
+/* Posições dos pseudo-elementos (apenas o ::after) */
+.futuristicButton::before {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- ANIMAÇÕES --- */
+
+/* Animação no Hover */
+.futuristicButton:hover {
+  box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue),
+    0 0 45px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+  transform: scale(1.02); /* Leve aumento no tamanho */
+}
+
+.futuristicButton:hover .buttonText {
+  color: white; /* Texto mais branco no hover */
+  text-shadow: 0 0 8px white, 0 0 15px var(--neon-blue);
+}
+
+/* Animação de Clique */
+.futuristicButton:active {
+  transform: scale(0.98); /* Diminui um pouco ao clicar */
+  box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue),
+    inset 0 0 15px var(--neon-blue);
+}
+
+.futuristicButton:active .buttonText {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* Animação para o brilho sutil nas laterais do ::after */
+@keyframes glowing-sides {
+  from {
+    box-shadow: 0 0 8px rgba(0, 223, 255, 0.6), -15px 0 0 0 var(--neon-blue),
+      -15px 0 0 4px rgba(0, 223, 255, 0.2),
+      calc(100% + 15px) 0 0 0 var(--neon-blue),
+      calc(100% + 15px) 0 0 4px rgba(0, 223, 255, 0.2);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(0, 223, 255, 0.9), -15px 0 0 0 var(--neon-blue),
+      -15px 0 0 6px rgba(0, 223, 255, 0.4),
+      calc(100% + 15px) 0 0 0 var(--neon-blue),
+      calc(100% + 15px) 0 0 6px rgba(0, 223, 255, 0.4);
+  }
+}

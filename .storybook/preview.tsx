@@ -17,13 +17,13 @@ const preview: Preview = {
       test: "todo",
     },
   },
-  decorators: [
-    (Story) => (
-      <Providers>
-        <Story />
-      </Providers>
-    ),
-  ],
+  // decorators: [
+  //   (Story) => (
+  //     <Providers>
+  //       <Story />
+  //     </Providers>
+  //   ),
+  // ],
 };
 
 export default preview;
