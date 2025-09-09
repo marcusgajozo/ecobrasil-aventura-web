@@ -14,6 +14,7 @@
   position: relative;
   min-width: var(--button-width);
   min-height: var(--button-height);
+  padding: 0.5rem 1.5rem;
   background-color: var(--dark-background); /* Fundo escuro do botão */
   border: none;
   cursor: pointer;
@@ -36,15 +37,14 @@
 }
 
 .buttonText {
-  position: relative;
-  z-index: 2; /* Garante que o texto fique acima de tudo */
-  color: var(--neon-blue); /* Cor do texto inicial */
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px var(--neon-blue); /* Sombra do texto */
+  z-index: 2;
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px var(--neon-blue);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* Espaçamento entre ícone e texto, se houver */
+  gap: 0.5rem;
 }
 
 /* --- Pseudo-elementos para a Borda Futurista e Conexões --- */
@@ -165,6 +165,44 @@
 .futuristicButton:active .buttonText {
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* Adicione isso ao seu arquivo styles.module.css */
+
+.isLoading {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
+
+.icon {
+  color: var(--neon-blue) !important;
+  /* Para SVGs, filter funciona melhor que text-shadow */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 10px var(--neon-blue));
+  transition: all 0.3s ease;
+}
+
+/* Versão alternativa caso a primeira não funcione */
+.iconNeon {
+  color: var(--neon-blue) !important;
+  fill: var(--neon-blue) !important;
+  stroke: var(--neon-blue) !important;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 10px var(--neon-blue)) drop-shadow(0 0 2px var(--neon-blue));
+  transition: all 0.3s ease;
+}
+
+/* Para garantir que funcione em todos os SVGs */
+.icon svg,
+.iconNeon svg {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Efeito hover para os ícones */
+.futuristicButton:hover .icon {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 15px var(--neon-blue)) drop-shadow(0 0 3px var(--neon-blue));
 }
 
 /* Animação para o brilho sutil nas laterais do ::after */

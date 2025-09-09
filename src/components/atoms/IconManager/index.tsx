@@ -32,7 +32,7 @@ export const IconManager = ({
     React.SVGProps<SVGSVGElement>
   >;
 
-  return <IconComponent onClick={onClick} className={cn("icon", className)} />;
+  return <IconComponent onClick={onClick} className={cn(className)} />;
 };
 
 export const IconButton = ({
