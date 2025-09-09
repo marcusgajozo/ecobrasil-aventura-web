@@ -1,20 +1,16 @@
-// Component
 import { useEffect, useState } from "react";
-import * as S from "./styles";
-
-import closeSvg from "@images/close.svg";
+import styles from "./styles.module.css";
 
 type WithChildren = {
   children: React.ReactNode;
 };
 
 type RootProps = {
-  imageTitlePath?: string;
   open: boolean;
   onClose?: () => void;
 } & WithChildren;
 
-const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
+const Root = ({ open, children, onClose }: RootProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -24,11 +20,10 @@ const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
       setIsClosing(false);
     } else if (isOpen) {
       setIsClosing(true);
-      // Aguarda a animação terminar antes de remover o modal
       setTimeout(() => {
         setIsOpen(false);
         setIsClosing(false);
-      }, 400); // Duração da animação
+      }, 400);
     }
   }, [open, isOpen]);
 
@@ -49,24 +44,16 @@ const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
 
   if (!isOpen) return null;
 
+  const containerClasses = `${styles.container} ${
+    isClosing ? styles.closing : ""
+  }`;
+
   return (
-    <S.Container $isClosing={isClosing} onClick={handleBackdropClick}>
-      <div className="content" onClick={(e) => e.stopPropagation()}>
-        {imageTitlePath && (
-          <div className="title-modal">
-            <img
-              src={imageTitlePath}
-              alt="imagem do título"
-              draggable={false}
-            />
-          </div>
-        )}
-        <div className="close" onClick={handleClose}>
-          <img src={closeSvg} alt="imagem de um X" draggable={false} />
-        </div>
+    <div className={containerClasses} onClick={handleBackdropClick}>
+      <div className={styles.content} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
-    </S.Container>
+    </div>
   );
 };
 
@@ -79,7 +66,7 @@ const Header = ({ children }: HeaderProps) => {
 type ContentProps = {} & WithChildren;
 
 const Content = ({ children }: ContentProps) => {
-  return <S.Content>{children}</S.Content>;
+  return <div className={styles.modalContent}>{children}</div>;
 };
 
 type BodyProps = {} & WithChildren;

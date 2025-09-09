@@ -1,4 +1,4 @@
-import { quiz } from "./questions.json";
+import { quiz } from "../../assets/jsons/questions.json";
 
 export interface QuizState {
   questions: typeof quiz;

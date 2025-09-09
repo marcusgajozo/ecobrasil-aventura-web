@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { quiz as quizData } from "../questions.json";
+import { quiz as quizData } from "../../../assets/jsons/questions.json";
 import { QuizAction, QuizState } from "../types";
 
 const initialState: QuizState = {

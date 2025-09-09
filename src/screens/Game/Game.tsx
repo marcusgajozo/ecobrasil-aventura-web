@@ -3,12 +3,12 @@ import { GameInformation } from "@/components/GameInformation/GameInformation";
 import { Lighting } from "@/components/Lighting/Lighting";
 import { MapScreen } from "@/components/MapScreen/MapScreen";
 import { ModalGameSetup } from "@/components/ModalGameSetup/ModalGameSetup";
+import { ModalQuiz } from "@/components/ModalQuiz/ModalQuiz";
 import { Islands } from "@/components/organisms/Islands/Islands";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
-import { Quiz } from "../../components/Quiz/Quiz";
 import { GameProviders } from "./GameProviders";
 
 export const Game = () => {
@@ -19,7 +19,7 @@ export const Game = () => {
       <GameInformation />
       <ModalGameSetup />
       <MapScreen />
-      <Quiz />
+      <ModalQuiz />
 
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <color attach="background" args={["#000000"]} />
