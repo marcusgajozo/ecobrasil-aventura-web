@@ -1,43 +1,33 @@
-/* Importando a fonte pixelada */
-@import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
-
-/* Variáveis CSS para facilitar a manutenção das cores e tamanhos */
 :root {
   --neon-blue: #ffffff;
   --dark-background: #59a403;
   --lighting: #f6ff0080;
-  --button-height: 3rem; /* Ajuste para controlar a altura do botão */
-  --button-width: 10rem; /* Ajuste para controlar a largura do botão */
 }
 
 .futuristicButton {
   position: relative;
   min-width: var(--button-width);
   min-height: var(--button-height);
-  padding: 0.5rem 1.5rem;
-  background-color: var(--dark-background); /* Fundo escuro do botão */
+  padding: 0.2rem 1.5rem;
+  background-color: var(--dark-background);
   border: none;
   cursor: pointer;
   outline: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Jersey 15", "Poppins", sans-serif; /* Fonte pixelada */
-  font-size: 2rem;
-  color: white; /* Cor do texto padrão */
+  font-family: var(--font-primary);
+  color: white;
   transition: all 0.3s ease;
-  overflow: hidden; /* Garante que os pseudo-elementos não saiam do limite */
+  overflow: hidden;
 
-  /* Borda principal e brilho inicial */
-  box-shadow: 0 0 10px var(--lighting),
-    /* Brilho leve */ 0 0 20px var(--lighting),
-    /* Brilho médio */ inset 0 0 5px var(--lighting); /* Brilho interno */
+  box-shadow: 0 0 10px var(--lighting), 0 0 20px var(--lighting),
+    inset 0 0 5px var(--lighting);
 
-  border-radius: 15px; /* Arredondamento básico */
+  border-radius: 15px;
 }
 
 .buttonText {
-  z-index: 2;
   color: var(--neon-blue);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px var(--neon-blue);
   transition: all 0.3s ease;
@@ -47,8 +37,6 @@
   gap: 0.5rem;
 }
 
-/* --- Pseudo-elementos para a Borda Futurista e Conexões --- */
-
 /* Base da borda interna, criando o efeito de "recorte" e brilho principal */
 .futuristicButton::before,
 .futuristicButton::after {
@@ -57,7 +45,7 @@
   background: transparent;
   box-sizing: border-box;
   transition: all 0.3s ease;
-  z-index: 1; /* Abaixo do texto */
+  z-index: 1;
 }
 
 /* ::before para a borda superior e suas conexões */
