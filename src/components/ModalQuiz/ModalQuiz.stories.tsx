@@ -6,15 +6,9 @@ const meta: Meta<typeof ModalQuiz> = {
   title: "Componentes/ModalQuiz",
   component: ModalQuiz,
   tags: ["autodocs"],
-  argTypes: {
-    isLoading: { control: "boolean" },
-    iconName: { control: "text" },
-  },
+  argTypes: {},
 
-  args: {
-    children: "Button",
-    onClick: () => console.log("Botão Clicado!"),
-  },
+  args: {},
 };
 
 export default meta;

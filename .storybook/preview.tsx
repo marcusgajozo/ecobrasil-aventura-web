@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
-import { Providers } from "../src/Providers";
+import "@/styles/global.css";
 
 const preview: Preview = {
   parameters: {
@@ -17,13 +17,6 @@ const preview: Preview = {
       test: "todo",
     },
   },
-  // decorators: [
-  //   (Story) => (
-  //     <Providers>
-  //       <Story />
-  //     </Providers>
-  //   ),
-  // ],
 };
 
 export default preview;

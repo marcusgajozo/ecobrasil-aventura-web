@@ -3,81 +3,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@theme {
-  --font-poppins: Poppins, sans-serif;
-  --font-jersey: "Jersey 15", "Poppins", sans-serif;
+:root {
+  --font-primary: "Jersey 15", "Poppins", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+@theme inline {
+  --font-primary: var(--font-primary);
+  --font-secondary: var(--font-secondary);
 }
 
-html {
-  font-size: 16px;
-  line-height: 1.5;
-  scroll-behavior: smooth;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply m-0 p-0 box-border;
+  }
 
-body {
-  color: #333;
-  background-color: transparent;
-  position: fixed;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Poppins", sans-serif !important;
-}
+  html {
+    @apply text-base leading-normal scroll-smooth;
+  }
 
-img,
-video {
-  max-width: 100%;
-  height: auto;
-}
+  body {
+    @apply text-gray-800 bg-transparent font-secondary antialiased;
+  }
 
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-}
+  img,
+  video {
+    @apply max-w-full h-auto;
+  }
 
-/* Força a aplicação da fonte Jersey 15 nos títulos */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Jersey 15", "Poppins", sans-serif !important;
-  letter-spacing: -0.11rem;
-}
+  html,
+  body,
+  #root {
+    @apply w-full h-full;
+  }
 
-/* Classes utilitárias personalizadas para as fontes */
-.font-jersey {
-  font-family: "Jersey 15", "Poppins", sans-serif !important;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-primary;
+  }
 
-.font-poppins {
-  font-family: "Poppins", sans-serif !important;
-}
-
-/* Sobrescreve classes específicas do Tailwind se necessário */
-.text-lg,
-.text-xl,
-.text-2xl,
-.text-3xl,
-.text-4xl,
-.text-5xl,
-.text-6xl {
-  font-family: inherit;
-}
-
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
 }
