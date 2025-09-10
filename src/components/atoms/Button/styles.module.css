@@ -24,7 +24,7 @@
   box-shadow: 0 0 10px var(--lighting), 0 0 20px var(--lighting),
     inset 0 0 5px var(--lighting);
 
-  border-radius: 15px;
+  border-radius: 20%;
 }
 
 .buttonText {
@@ -34,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
   gap: 0.5rem;
 }
 
@@ -55,7 +56,7 @@
   width: 100%;
   height: 100%;
   border: 2px solid var(--neon-blue); /* Borda principal */
-  border-radius: 15px;
+  border-radius: 20%;
 
   /* Criando as "interrupções" e pontos de conexão no topo */
   clip-path: polygon(
@@ -95,7 +96,7 @@
   width: calc(100% + 20px); /* Para estender além do botão */
   height: calc(100% + 20px);
   border: 2px solid var(--neon-blue);
-  border-radius: 15px; /* Mantém o formato geral */
+  border-radius: 20%; /* Mantém o formato geral */
   pointer-events: none; /* Não interfere com o clique do botão */
 
   /* Remove a borda do centro, deixando apenas as laterais visíveis */

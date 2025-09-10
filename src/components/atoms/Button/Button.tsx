@@ -17,10 +17,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button
-      className={cn(styles.futuristicButton, "font-primary", className)}
-      {...props}
-    >
+    <button className={cn(styles.futuristicButton, className)} {...props}>
       <span className={cn(styles.buttonText)}>
         {children}
         {iconName && !isLoading && (
