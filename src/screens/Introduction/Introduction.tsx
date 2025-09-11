@@ -54,7 +54,6 @@ export const Introduction = () => {
             Biomas?
           </p>
         </div>
-        {/* <ButtonText title="teste" /> */}
       </div>
     </div>
   );
