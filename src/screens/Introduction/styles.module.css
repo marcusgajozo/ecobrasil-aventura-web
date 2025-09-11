@@ -28,6 +28,7 @@
   transform: scaleY(0.9);
   position: relative;
   overflow: hidden;
+  user-select: none;
 }
 
 .content::before {
