@@ -9,6 +9,12 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     isLoading: { control: "boolean" },
     iconName: { control: "text" },
+    variant: {
+      control: {
+        type: "select",
+        options: ["success", "destructive", "primary"],
+      },
+    },
   },
 
   args: {
