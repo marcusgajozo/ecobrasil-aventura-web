@@ -22,7 +22,7 @@ const ModalRoot = ({ open, children, onClose }: ModalRootProps) => {
   if (!open) return null;
 
   return (
-    <div className="w-screen h-screen absolute display-flex justify-center items-center top-0 left-0">
+    <div className="w-screen h-screen absolute display-flex justify-center items-center top-0 left-0 z-99999">
       <div
         className="flex justify-center items-center h-full w-full"
         onClick={handleBackdropClick}

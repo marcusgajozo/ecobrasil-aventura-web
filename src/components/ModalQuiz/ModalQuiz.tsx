@@ -1,67 +1,75 @@
 import { Modal } from "@/components/organisms/Modal/Modal";
-import { useToastCustom } from "@/lib/hooks/useToastCustom";
-import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
-import { useModalManagerStore } from "@/lib/stores/useModalManagerStore";
-import theme from "@/styles/theme";
 import { useEffect } from "react";
-import { Button } from "../atoms/Button/Button";
-import { useQuizReducer } from "./hooks/useQuizReducer";
+import { useModalQuiz } from "./@hooks/useModalQuiz";
+import { Congratulations } from "./@components/Congratulations";
+import { cn } from "@/lib/utils/utils";
+import { PlayFeedback } from "./@components/ PlayFeedback";
 
 export const ModalQuiz = () => {
-  const currentIsland = useManagerIslandStore((state) => state.currentIsland);
-  const { showToast } = useToastCustom();
-  const [quizState, dispatch] = useQuizReducer();
-
-  const modal = useModalManagerStore((state) => state.modal);
-  const handleCloseModal = useModalManagerStore(
-    (state) => state.handleCloseModal
-  );
-
-  const handleSaveIsland = useManagerIslandStore(
-    (state) => state.handleSaveIsland
-  );
-
-  const handleCloseQuiz = () => {
-    dispatch({ type: "RESET_QUIZ" });
-    handleCloseModal();
-  };
-
-  const handleClick = () => {
-    if (quizState.selectedOption !== undefined)
-      dispatch({ type: "NEXT_QUESTION" });
-    showToast({
-      message: "Resposta enviada!",
-      backgroundColor: theme.colors.yallow,
-    });
-  };
+  const {
+    isQuizCompleted,
+    handleCloseQuiz,
+    handleQuizCompletion,
+    currentQuestion,
+    handleSelectAnswer,
+    selectedAnswer,
+    handleSendAnswer,
+    gotRight,
+    isAnswered,
+    handleNextQuestion,
+    isOpenModal,
+  } = useModalQuiz();
 
   useEffect(() => {
-    if (quizState.questionsAnsweredCorrectly === 3) {
-      handleSaveIsland(currentIsland);
-    }
-  }, [currentIsland, quizState.questionsAnsweredCorrectly, handleSaveIsland]);
+    handleQuizCompletion();
+  }, [isQuizCompleted]);
+
+  const response = currentQuestion.opcoes[currentQuestion.respostaCorreta];
+  const handleButtonAction = isAnswered ? handleNextQuestion : handleSendAnswer;
 
   return (
-    <Modal.Root open onClose={handleCloseQuiz}>
+    <Modal.Root open={isOpenModal} onClose={handleCloseQuiz}>
       <Modal.Content>
-        <Modal.Header>
-          <h2 className="font-jersey">EcoBrasil Aventura</h2>
-        </Modal.Header>
+        <Modal.Header title="Quiz" />
         <Modal.Body>
-          {quizState.questionsAnsweredCorrectly === 3 && (
-            <h2>
-              Parabéns! Você salvou a ilha <br /> Respondeu 3 perguntas
-              corretamente!
-            </h2>
+          {isQuizCompleted && <Congratulations />}
+          {!isQuizCompleted && (
+            <>
+              <h2 className="text-2xl mb-3">{currentQuestion.pergunta}</h2>
+              {isAnswered && (
+                <PlayFeedback gotRight={gotRight} response={response} />
+              )}
+              <div className="flex flex-col gap-2">
+                {currentQuestion.opcoes.map((option, index) => (
+                  <div
+                    key={option}
+                    className={cn("py-2 px-3 rounded-md outline font-bold", {
+                      "bg-primary-300": index === selectedAnswer,
+                      "cursor-pointer hover:bg-primary-400": !isAnswered,
+                      "bg-warning": isAnswered && index === selectedAnswer,
+                      "bg-success":
+                        isAnswered && index === currentQuestion.respostaCorreta,
+                    })}
+                    onClick={() => handleSelectAnswer(index)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            </>
           )}
-          {/* {quizState.questionsAnsweredCorrectly < 3 && </>} */}
         </Modal.Body>
-        <Modal.Footer>
-          {quizState.questionsAnsweredCorrectly < 3 && <Button>Enviar</Button>}
-          {quizState.questionsAnsweredCorrectly === 3 && (
-            <Button onClick={handleClick}>Fechar</Button>
+        <Modal.ContentButtons>
+          <Modal.ButtonClose onClick={handleCloseQuiz} />
+          {!isQuizCompleted && (
+            <Modal.ButtonAction
+              disabled={selectedAnswer === undefined}
+              onClick={handleButtonAction}
+              iconName={isAnswered ? "ArrowBigRight" : "Check"}
+              title={isAnswered ? "Próxima" : "Responder"}
+            />
           )}
-        </Modal.Footer>
+        </Modal.ContentButtons>
       </Modal.Content>
     </Modal.Root>
   );
