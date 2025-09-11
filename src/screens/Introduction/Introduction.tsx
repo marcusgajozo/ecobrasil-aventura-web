@@ -1,11 +1,20 @@
+import { Button } from "@/components/atoms/Button/Button";
 import styles from "./styles.module.css";
+import { useManagerGameStore } from "@/lib/stores/useManagerGameStore";
 
 export const Introduction = () => {
+  const setIsFirstAccess = useManagerGameStore(
+    (state) => state.setIsFirstAccess
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         <h1>EcoBrasil Aventura</h1>
         <h2>Um jogo de educação ambiental</h2>
+        <Button iconName="Play" onClick={() => setIsFirstAccess(false)}>
+          Começar
+        </Button>
       </div>
       <div className={styles.content}>
         <div className={styles.credits}>

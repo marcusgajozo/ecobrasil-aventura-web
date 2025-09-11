@@ -14,9 +14,7 @@ export const MapScreen = () => {
   return (
     <Modal.Root open={openMap} onClose={handleCloseQuiz}>
       <Modal.Content>
-        <Modal.Header>
-          <S.Subtitle>Visite as ilhas</S.Subtitle>
-        </Modal.Header>
+        <Modal.Header title="Visite as ilhas" />
         <Modal.Body>
           <S.Container>
             <MapsVisited />
