@@ -15,6 +15,7 @@ const meta: Meta<typeof Button> = {
         options: ["success", "destructive", "primary"],
       },
     },
+    disabled: { control: "boolean" },
   },
 
   args: {

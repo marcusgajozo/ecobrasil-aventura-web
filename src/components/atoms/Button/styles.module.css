@@ -1,6 +1,5 @@
 :root {
   --neon-white: rgb(255, 255, 255);
-  --dark-background: var(--color-red-500);
   --lighting: rgba(255, 255, 255, 0.681);
 }
 
@@ -90,17 +89,15 @@
 
 /* Animação de Clique */
 .futuristicButton:active {
-  transform: scale(0.98); /* Diminui um pouco ao clicar */
-  box-shadow: 0 0 5px var(--neon-white), 0 0 10px var(--neon-white),
-    inset 0 0 15px var(--neon-white);
+  box-shadow: 0 0 8px var(--neon-white), 0 0 15px var(--neon-white),
+    inset 0 0 5px var(--neon-white);
+  transform: scale(0.98); /* Leve redução no tamanho */
 }
 
 .futuristicButton:active .buttonText {
   color: var(--neon-white);
   text-shadow: 0 0 5px var(--neon-white);
 }
-
-/* Adicione isso ao seu arquivo styles.module.css */
 
 .isLoading {
   margin-left: 1rem;
@@ -138,4 +135,24 @@
   filter: drop-shadow(0 0 8px var(--neon-white))
     drop-shadow(0 0 15px var(--neon-white))
     drop-shadow(0 0 3px var(--neon-white));
+}
+
+.futuristicButton:disabled {
+  cursor: default;
+  box-shadow: none;
+}
+
+.futuristicButton:disabled:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.futuristicButton:disabled .buttonText {
+  box-shadow: none;
+  text-shadow: none;
+  transform: none;
+}
+
+.futuristicButton:disabled:hover .buttonText {
+  text-shadow: none;
 }
