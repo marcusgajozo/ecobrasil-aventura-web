@@ -29,7 +29,7 @@ const ModalRoot = ({ open, children, onClose }: ModalRootProps) => {
       >
         <div className="relative min-w-content">
           <div className="absolute top-[-15px] right-8 z-2">
-            <Button iconName="X" onClick={onClose} />
+            <Button variant="destructive" iconName="X" onClick={onClose} />
           </div>
           {children}
         </div>
@@ -94,7 +94,7 @@ const ModalButtonClose = ({
   ...props
 }: ModalButtonProps) => {
   return (
-    <Button iconName={iconName} {...props}>
+    <Button variant="destructive" iconName={iconName} {...props}>
       {title}
     </Button>
   );
