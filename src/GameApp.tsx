@@ -1,11 +1,13 @@
+import { useManagerGameStore } from "./lib/stores/useManagerGameStore";
 import { Game } from "./screens/Game/Game";
+import { Introduction } from "./screens/Introduction/Introduction";
 
 export const GameApp = () => {
-  // const { firstTime } = useFirstTimePlaying();
+  const isFirstAccess = useManagerGameStore((state) => state.isFirstAccess);
   return (
     <>
-      {/* {firstTime && <Introduction />} */}
-      <Game />
+      {isFirstAccess && <Introduction />}
+      {!isFirstAccess && <Game />}
     </>
   );
 };

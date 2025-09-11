@@ -1,6 +1,5 @@
 import { Modal } from "@/components/organisms/Modal/Modal";
 import { useControllerMap } from "@/lib/hooks/useControllerMap";
-import mapaSvg from "@images/mapa.svg";
 import { CurrentMap } from "./components/CurrentMap";
 import { MapsVisited } from "./components/MapsVisited";
 import * as S from "./styles";
@@ -13,15 +12,9 @@ export const MapScreen = () => {
   };
 
   return (
-    <Modal.Root
-      open={openMap}
-      onClose={handleCloseQuiz}
-      imageTitlePath={mapaSvg}
-    >
+    <Modal.Root open={openMap} onClose={handleCloseQuiz}>
       <Modal.Content>
-        <Modal.Header>
-          <S.Subtitle>Visite as ilhas</S.Subtitle>
-        </Modal.Header>
+        <Modal.Header title="Visite as ilhas" />
         <Modal.Body>
           <S.Container>
             <MapsVisited />

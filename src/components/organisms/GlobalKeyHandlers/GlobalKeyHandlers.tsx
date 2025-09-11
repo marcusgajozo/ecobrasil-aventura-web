@@ -1,6 +1,6 @@
 import { Controls } from "@/lib/constants/keyboardMap"; // Ajuste o caminho
 import { useControllerMap } from "@/lib/hooks/useControllerMap";
-import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
+import { useModalManagerStore } from "@/lib/stores/useModalManagerStore";
 import { useKeyboardControls } from "@react-three/drei";
 import { useEffect } from "react";
 
@@ -8,7 +8,9 @@ export const GlobalKeyHandlers = () => {
   const [sub] = useKeyboardControls<Controls>();
 
   const { setOpenMap } = useControllerMap();
-  const { setOpenQuiz } = useControllerQuiz();
+  const handleCloseModal = useModalManagerStore(
+    (state) => state.handleCloseModal
+  );
 
   useEffect(() => {
     const unsubMap = sub(
@@ -16,7 +18,7 @@ export const GlobalKeyHandlers = () => {
       (pressed) => {
         if (pressed) {
           setOpenMap((prev) => !prev);
-          setOpenQuiz(false);
+          handleCloseModal();
         }
       }
     );
@@ -24,7 +26,7 @@ export const GlobalKeyHandlers = () => {
     return () => {
       unsubMap();
     };
-  }, [sub, setOpenMap, setOpenQuiz]);
+  }, [sub, setOpenMap]);
 
   return null;
 };

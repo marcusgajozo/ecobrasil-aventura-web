@@ -1,103 +1,111 @@
-// Component
-import { useEffect, useState } from "react";
-import * as S from "./styles";
-
-import closeSvg from "@images/close.svg";
+import { Button } from "@/components/atoms/Button/Button";
+import { cn } from "@/lib/utils/utils";
+import React from "react";
+import styles from "./styles.module.css";
 
 type WithChildren = {
   children: React.ReactNode;
 };
 
-type RootProps = {
-  imageTitlePath?: string;
+type ModalRootProps = {
   open: boolean;
   onClose?: () => void;
 } & WithChildren;
 
-const Root = ({ open, imageTitlePath, children, onClose }: RootProps) => {
-  const [isOpen, setIsOpen] = useState(open);
-  const [isClosing, setIsClosing] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      setIsOpen(true);
-      setIsClosing(false);
-    } else if (isOpen) {
-      setIsClosing(true);
-      // Aguarda a animação terminar antes de remover o modal
-      setTimeout(() => {
-        setIsOpen(false);
-        setIsClosing(false);
-      }, 400); // Duração da animação
-    }
-  }, [open, isOpen]);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsOpen(false);
-      setIsClosing(false);
-      onClose?.();
-    }, 400);
-  };
-
+const ModalRoot = ({ open, children, onClose }: ModalRootProps) => {
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      handleClose();
+      onClose?.();
     }
   };
 
-  if (!isOpen) return null;
+  if (!open) return null;
 
   return (
-    <S.Container $isClosing={isClosing} onClick={handleBackdropClick}>
-      <div className="content" onClick={(e) => e.stopPropagation()}>
-        {imageTitlePath && (
-          <div className="title-modal">
-            <img
-              src={imageTitlePath}
-              alt="imagem do título"
-              draggable={false}
-            />
+    <div className="w-screen h-screen absolute display-flex justify-center items-center top-0 left-0 z-99999">
+      <div
+        className="flex justify-center items-center h-full w-full"
+        onClick={handleBackdropClick}
+      >
+        <div className="relative min-w-content">
+          <div className="absolute top-[-15px] right-8 z-2">
+            <Button iconName="X" onClick={onClose} />
           </div>
-        )}
-        <div className="close" onClick={handleClose}>
-          <img src={closeSvg} alt="imagem de um X" draggable={false} />
+          {children}
         </div>
-        {children}
       </div>
-    </S.Container>
+    </div>
   );
 };
 
-type HeaderProps = {} & WithChildren;
+type ModalHeaderProps = { title: string };
 
-const Header = ({ children }: HeaderProps) => {
-  return <>{children}</>;
+const ModalHeader = ({ title }: ModalHeaderProps) => {
+  return (
+    <h1 className={cn(styles.header, "text-4xl animate-bounce")}>{title}</h1>
+  );
 };
 
-type ContentProps = {} & WithChildren;
+type ModalContentProps = {} & WithChildren;
 
-const Content = ({ children }: ContentProps) => {
-  return <S.Content>{children}</S.Content>;
+const ModalContent = ({ children }: ModalContentProps) => {
+  return <div className={cn(styles.content)}>{children}</div>;
 };
 
-type BodyProps = {} & WithChildren;
+type ModalBodyProps = React.ComponentProps<"div">;
 
-const Body = ({ children }: BodyProps) => {
-  return <>{children}</>;
+const ModalBody = ({ children, ...props }: ModalBodyProps) => {
+  return <div {...props}>{children}</div>;
 };
 
-type FooterProps = {} & WithChildren;
+type ModalContentButtonsProps = { className?: string } & WithChildren;
 
-const Footer = ({ children }: FooterProps) => {
-  return <>{children}</>;
+const ModalContentButtons = ({
+  children,
+  className,
+}: ModalContentButtonsProps) => {
+  return (
+    <div className={cn("flex w-full justify-center gap-2", className)}>
+      {children}
+    </div>
+  );
+};
+
+type ModalButtonProps = { title?: string } & Omit<
+  React.ComponentProps<typeof Button>,
+  "children"
+>;
+
+const ModalButtonAction = ({
+  title = "Confirmar",
+  iconName = "Check",
+  ...props
+}: ModalButtonProps) => {
+  return (
+    <Button iconName={iconName} {...props}>
+      {title}
+    </Button>
+  );
+};
+
+const ModalButtonClose = ({
+  title = "Fechar",
+  iconName = "X",
+  ...props
+}: ModalButtonProps) => {
+  return (
+    <Button iconName={iconName} {...props}>
+      {title}
+    </Button>
+  );
 };
 
 export const Modal = {
-  Root,
-  Header,
-  Body,
-  Footer,
-  Content,
+  Root: ModalRoot,
+  Header: ModalHeader,
+  Body: ModalBody,
+  Content: ModalContent,
+  ContentButtons: ModalContentButtons,
+  ButtonAction: ModalButtonAction,
+  ButtonClose: ModalButtonClose,
 };

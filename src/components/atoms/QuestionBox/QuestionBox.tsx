@@ -1,5 +1,4 @@
 import { ProximityInteractable } from "@/components/templates/ProximityInteractable";
-import { useControllerQuiz } from "@/lib/hooks/useControllerQuiz";
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useRef, useState } from "react";
@@ -8,6 +7,7 @@ import { QuestionBoxModel } from "./QuestionBoxModel";
 import { QUESTION_BOX_POSITION } from "@/lib/constants/quiz";
 import { NAME_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { useModalManagerStore } from "@/lib/stores/useModalManagerStore";
 
 type QuestionBoxProps = {
   islandName: (typeof NAME_ISLAND)[number];
@@ -21,7 +21,9 @@ export const QuestionBox = ({ islandName }: QuestionBoxProps) => {
     (state) => state.islandsInformation
   );
 
-  const { setOpenQuiz } = useControllerQuiz();
+  const handleOpenModal = useModalManagerStore(
+    (state) => state.handleOpenModal
+  );
 
   const rotationSpeed = 0.8;
   const position = QUESTION_BOX_POSITION[islandName];
@@ -63,7 +65,7 @@ export const QuestionBox = ({ islandName }: QuestionBoxProps) => {
       onStopCollide={() => setIsClose(false)}
       characterObjectInteraction={{
         control: "action",
-        action: () => setOpenQuiz(true),
+        action: () => handleOpenModal("quiz"),
       }}
       sensor
       position={position}

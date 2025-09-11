@@ -19,9 +19,7 @@ export const ModalGameSetup = () => {
   return (
     <Modal.Root open={modal === "game-setup"} onClose={handleCloseModal}>
       <Modal.Content>
-        <Modal.Header>
-          <p>Visite as ilhas</p>
-        </Modal.Header>
+        <Modal.Header title="Visite as ilhas" />
         <Modal.Body>
           <div>
             <div>
