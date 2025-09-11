@@ -156,3 +156,8 @@
 .futuristicButton:disabled:hover .buttonText {
   text-shadow: none;
 }
+
+.futuristicButton:disabled .icon,
+.futuristicButton:disabled .iconNeon {
+  filter: none;
+}
