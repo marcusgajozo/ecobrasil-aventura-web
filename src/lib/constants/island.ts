@@ -48,7 +48,7 @@ export const NAME_ISLAND_FORMATED: Record<
   pampa: "Pampa",
 };
 
-export const IMG_MAPS: Record<(typeof NAME_ISLAND)[number], string> = {
+export const IMG_ISLAND: Record<(typeof NAME_ISLAND)[number], string> = {
   "mata-atlantica": mataAtlanticaPng,
   pantanal: pantanalPng,
   caatinga: caatingaPng,

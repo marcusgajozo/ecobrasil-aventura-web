@@ -1,9 +1,9 @@
 import Character from "@/components/Character";
-import { GameInformation } from "@/components/GameInformation/GameInformation";
 import { Lighting } from "@/components/Lighting/Lighting";
 import { MapScreen } from "@/components/MapScreen/MapScreen";
 import { ModalGameSetup } from "@/components/ModalGameSetup/ModalGameSetup";
 import { ModalQuiz } from "@/components/ModalQuiz/ModalQuiz";
+import { HUD } from "@/components/organisms/HUD/HUD";
 import { Islands } from "@/components/organisms/Islands/Islands";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -16,7 +16,7 @@ export const Game = () => {
     <GameProviders>
       <Leva hidden />
 
-      <GameInformation />
+      <HUD />
       <ModalGameSetup />
       <MapScreen />
       <ModalQuiz />

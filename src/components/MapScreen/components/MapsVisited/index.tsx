@@ -1,4 +1,4 @@
-import { IMG_MAPS, NAME_ISLAND } from "@/lib/constants/island";
+import { IMG_ISLAND, NAME_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import { useMemo } from "react";
 import * as S from "./styles";
@@ -27,7 +27,7 @@ export const MapsVisited = () => {
       <div className="maps">
         {islandsVisited.map((name, index) => (
           <div className="map" key={`${name}-${index}`}>
-            <img src={IMG_MAPS[name]} />
+            <img src={IMG_ISLAND[name]} />
           </div>
         ))}
       </div>

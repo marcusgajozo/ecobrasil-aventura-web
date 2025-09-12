@@ -1,4 +1,4 @@
-import { IMG_MAPS, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
+import { IMG_ISLAND, NAME_ISLAND_FORMATED } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import * as S from "./styles";
 import { TELEPORT_PLATFORM } from "@/lib/constants/teleportPlataform";
@@ -25,7 +25,7 @@ export const CurrentMap = () => {
         </h2>
         <img
           className="current-map"
-          src={IMG_MAPS[currentIsland]}
+          src={IMG_ISLAND[currentIsland]}
           alt={"mapa atual"}
         />
         {!isCurrentIslandSaved && (
@@ -44,13 +44,13 @@ export const CurrentMap = () => {
           <div className="content-maps-paths">
             {pathAIslandVisited && (
               <div className="map-path">
-                <img src={IMG_MAPS[pathAIsland]} />
+                <img src={IMG_ISLAND[pathAIsland]} />
                 <h4>{NAME_ISLAND_FORMATED[pathAIsland]}</h4>
               </div>
             )}
             {pathBIslandVisited && (
               <div className="map-path">
-                <img src={IMG_MAPS[pathBIsland]} />
+                <img src={IMG_ISLAND[pathBIsland]} />
                 <h4>{NAME_ISLAND_FORMATED[pathBIsland]}</h4>
               </div>
             )}
