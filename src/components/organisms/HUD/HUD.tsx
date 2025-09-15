@@ -1,6 +1,7 @@
-import { CurrentIsland } from "@/components/atoms/CurrentIsland/CurrentIsland";
+
 import { IMG_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { CurrentIsland } from "./@components/CurrentIsland/CurrentIsland";
 
 export const HUD = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
