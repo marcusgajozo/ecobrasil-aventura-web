@@ -1,7 +1,7 @@
-
 import { IMG_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
 import { CurrentIsland } from "./@components/CurrentIsland/CurrentIsland";
+import { GameInfo } from "./@components/GameInfo/GameInfo";
 
 export const HUD = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
@@ -16,6 +16,9 @@ export const HUD = () => {
             src={IMG_ISLAND[currentIsland]}
             alt={`ilustração da ilha ${currentIsland}`}
           />
+        </div>
+        <div className="absolute top-3 left-3">
+          <GameInfo />
         </div>
       </div>
     </div>

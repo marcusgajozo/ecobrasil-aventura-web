@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { SlidingNumber } from '@/components/moleculas/SlidingNumber';
-import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { SlidingNumber } from "@/components/moleculas/SlidingNumber";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
-export function SlidingNumberBasic() {
+export function SlidingNumberBasic(props: { value: number }) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (value === 100) return;
+    if (value >= props.value) return;
 
     const interval = setInterval(() => {
       setValue(value + 1);
     }, 10);
     return () => clearInterval(interval);
-  }, [value]);
+  }, [value, props.value]);
 
   return (
     <motion.div
@@ -25,9 +25,9 @@ export function SlidingNumberBasic() {
         duration: 1.5,
         delay: 0.3,
       }}
-      className='leading-none'
+      className="leading-none"
     >
-      <div className='inline-flex items-center gap-1 font-primary text-4xl'>
+      <div className="inline-flex items-center gap-1 font-primary text-4xl">
         <SlidingNumber value={value} />%
       </div>
     </motion.div>
