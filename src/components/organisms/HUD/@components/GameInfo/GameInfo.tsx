@@ -33,6 +33,7 @@ export const GameInfo = () => {
   return (
     <div className={cn("font-primary px-4 w-80 text-2xl", styles.borderText)}>
       <div className="text-4xl">EcoBrasil Aventura</div>
+      <div className="text-xl leading-4">Status da sua missão:</div>
       <div className="flex items-center gap-4">
         <SimpleSlider value={percentageIslandsSaved} />
         <SlidingNumberBasic value={percentageIslandsSaved} />
