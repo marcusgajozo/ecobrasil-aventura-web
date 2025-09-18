@@ -1,6 +1,9 @@
-import { CurrentIsland } from "@/components/atoms/CurrentIsland/CurrentIsland";
 import { IMG_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { CurrentIsland } from "./@components/CurrentIsland/CurrentIsland";
+import { GameInfo } from "./@components/GameInfo/GameInfo";
+import configSrc from "@images/config.svg";
+import { Help } from "./@components/Help/Help";
 
 export const HUD = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
@@ -15,6 +18,18 @@ export const HUD = () => {
             src={IMG_ISLAND[currentIsland]}
             alt={`ilustração da ilha ${currentIsland}`}
           />
+          <div className="text-2xl text-white font-primary text-center">
+            Aperte [M] para abrir o mapa
+          </div>
+        </div>
+        <div className="w-20 absolute top-3 right-4 cursor-pointer">
+          <img src={configSrc} alt={`ilustração da ilha ${currentIsland}`} />
+        </div>
+        <div className="absolute top-3 left-3">
+          <GameInfo />
+        </div>
+        <div className="absolute bottom-3 left-3">
+          <Help />
         </div>
       </div>
     </div>

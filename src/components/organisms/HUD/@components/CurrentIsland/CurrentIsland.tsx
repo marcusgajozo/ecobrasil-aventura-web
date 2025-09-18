@@ -8,7 +8,7 @@ export const CurrentIsland = () => {
   return (
     <div className="flex flex-col items-center select-none text-primary-500">
       <span className={cn("text-3xl font-primary", styles.borderText)}>
-        mapa atual
+        Ilha atual
       </span>
       <span
         className={cn("text-5xl font-primary leading-5", styles.borderText)}

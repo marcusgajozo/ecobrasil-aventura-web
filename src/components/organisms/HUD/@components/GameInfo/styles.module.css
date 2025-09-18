@@ -1,0 +1,10 @@
+:root {
+  --color-border: var(--color-primary-700);
+  --color-text: var(--color-primary-50);
+}
+
+.borderText {
+  color: var(--color-text);
+  text-shadow: -1px -1px 0 var(--color-border), 1px -1px 0 var(--color-border),
+    -1px 1px 0 var(--color-border), 1px 1px 0 var(--color-border);
+}
