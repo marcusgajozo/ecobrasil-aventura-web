@@ -2,224 +2,314 @@
   "quiz": {
     "amazonia": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "Qual é a principal ameaça à biodiversidade da Amazônia?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
-        ],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
-        "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "O turismo ecológico",
+          "O desmatamento para a agropecuária",
+          "A pesca esportiva",
+          "A criação de reservas indígenas"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "Os 'rios voadores' da Amazônia são importantes porque:",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "São rotas de transporte aéreo",
+          "Geram energia hidrelétrica",
+          "Levam umidade e chuvas para outras regiões do Brasil",
+          "São usados para a criação de peixes"
+        ],
+        "respostaCorreta": 2
+      },
+      {
+        "pergunta": "Qual prática sustentável é essencial para a conservação dos recursos naturais da Amazônia?",
+        "opcoes": [
+          "A mineração em grande escala",
+          "A exploração de madeira de forma ilegal",
+          "A agricultura intensiva",
+          "O extrativismo de produtos como açaí e castanha-do-pará"
+        ],
+        "respostaCorreta": 3
+      },
+      {
+        "pergunta": "Por que a queima de florestas na Amazônia é prejudicial ao meio ambiente global?",
+        "opcoes": [
+          "Porque afasta os animais selvagens",
+          "Porque libera uma grande quantidade de gás carbônico (CO2), intensificando o efeito estufa",
+          "Porque limpa o terreno para novas plantações",
+          "Porque melhora a qualidade do ar"
         ],
         "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Qual animal, símbolo da Amazônia, está ameaçado de extinção devido à caça e à destruição de seu habitat?",
+        "opcoes": [
+          "A capivara",
+          "O mico-leão-dourado",
+          "A onça-pintada",
+          "O tatu-bola"
+        ],
+        "respostaCorreta": 2
       }
     ],
     "pampa": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "Qual é o principal impacto ambiental da expansão da agricultura moderna (monocultura) sobre o bioma Pampa?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
-        ],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
-        "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "O aumento da diversidade de plantas nativas",
+          "A perda da vegetação campestre original e a compactação do solo",
+          "A melhoria da qualidade da água dos rios",
+          "O fortalecimento da fauna local"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "O que é o 'arenização', um fenômeno que preocupa a conservação do Pampa?",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "A transformação do campo em praia",
+          "O processo de formação de bancos de areia devido ao manejo inadequado do solo",
+          "A construção de castelos de areia",
+          "O aumento das chuvas na região"
         ],
         "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Qual a importância da pecuária sustentável para a conservação do Pampa?",
+        "opcoes": [
+          "Ajuda a manter a vegetação nativa e a evitar a degradação do solo",
+          "Aumenta a poluição dos rios",
+          "Causa o desmatamento de grandes áreas",
+          "Não tem nenhum impacto positivo"
+        ],
+        "respostaCorreta": 0
+      },
+      {
+        "pergunta": "Qual animal é um exemplo da fauna típica do Pampa e que sofre com a alteração do seu habitat?",
+        "opcoes": [
+          "O boto-cor-de-rosa",
+          "O quero-quero",
+          "A arara-azul",
+          "O tamanduá-bandeira"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Por que a preservação das matas ciliares (matas que ficam nas margens dos rios) é importante no Pampa?",
+        "opcoes": [
+          "Para aumentar a área de plantio",
+          "Para facilitar a pesca predatória",
+          "Para proteger os rios do assoreamento e da poluição",
+          "Para construir mais casas perto da água"
+        ],
+        "respostaCorreta": 2
       }
     ],
     "cerrado": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "O Cerrado é conhecido como a 'caixa d'água do Brasil'. Por quê?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
-        ],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
-        "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "Porque chove o ano inteiro sem parar",
+          "Porque suas plantas de raízes profundas ajudam a abastecer importantes bacias hidrográficas do país",
+          "Porque existem muitas caixas d'água espalhadas pelo bioma",
+          "Porque é o bioma com o maior número de rios"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "Qual é a principal causa do desmatamento no Cerrado?",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "A construção de cidades planejadas",
+          "A expansão da agricultura, principalmente da soja e da pecuária",
+          "A coleta de frutos nativos",
+          "A criação de parques nacionais"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "As queimadas naturais e controladas podem ter um papel no ciclo de vida do Cerrado. No entanto, por que os incêndios criminosos são uma grande ameaça?",
+        "opcoes": [
+          "Porque ajudam as plantas a crescerem mais fortes",
+          "Porque ocorrem fora de época, são muito intensos e destroem a biodiversidade",
+          "Porque limpam o terreno de forma eficiente",
+          "Porque espantam os insetos"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Qual a importância de consumir frutos nativos do Cerrado, como pequi e baru?",
+        "opcoes": [
+          "Não tem importância, pois são frutos silvestres",
+          "Apenas para experimentar sabores diferentes",
+          "Incentiva a economia local e a conservação das espécies nativas",
+          "É prejudicial à saúde"
+        ],
+        "respostaCorreta": 2
+      },
+      {
+        "pergunta": "O lobo-guará é um animal típico do Cerrado. Qual a principal ameaça a sua sobrevivência?",
+        "opcoes": [
+          "A caça para alimentação",
+          "A perda de habitat devido ao desmatamento e os atropelamentos",
+          "A competição com outros predadores",
+          "As doenças transmitidas por plantas"
         ],
         "respostaCorreta": 1
       }
     ],
     "mata-atlantica": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "A Mata Atlântica é o bioma mais devastado do Brasil. O que causou essa grande redução de sua área original?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
-        ],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
-        "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "A ocorrência de tsunamis na costa brasileira",
+          "A urbanização, a industrialização e a expansão agrícola desde a colonização",
+          "A criação excessiva de unidades de conservação",
+          "As chuvas ácidas"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "O que são 'fragmentos florestais' na Mata Atlântica e por que é importante conectá-los?",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "São pedaços de floresta que não servem para nada",
+          "São pequenas áreas de mata isoladas, e conectá-las ajuda os animais a se moverem e a manter a diversidade genética",
+          "São ilhas no oceano Atlântico",
+          "São áreas designadas para o corte de madeira"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Qual a importância da Mata Atlântica para o fornecimento de água para grandes cidades como São Paulo e Rio de Janeiro?",
+        "opcoes": [
+          "Nenhuma, a água vem de outros lugares",
+          "Suas matas protegem nascentes e rios que abastecem as cidades",
+          "Ela consome toda a água disponível",
+          "Sua principal função é a produção de madeira"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "O mico-leão-dourado é um animal símbolo da luta pela conservação da Mata Atlântica. Qual foi a principal estratégia para salvá-lo da extinção?",
+        "opcoes": [
+          "Levá-lo para zoológicos em outros países",
+          "Programas de reprodução em cativeiro e reintrodução na natureza, junto com a proteção de seu habitat",
+          "Alimentá-lo com ração especial",
+          "Treiná-lo para viver em cidades"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "O que é o ecoturismo e como ele pode ajudar a preservar a Mata Atlântica?",
+        "opcoes": [
+          "É um turismo que destrói a natureza para construir grandes hotéis",
+          "É uma forma de turismo que valoriza a natureza, gera renda para as comunidades locais e incentiva a conservação",
+          "É visitar a mata apenas de carro",
+          "É a exploração descontrolada dos recursos naturais para turistas"
         ],
         "respostaCorreta": 1
       }
     ],
     "caatinga": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "As plantas da Caatinga, como os cactos, possuem adaptações para sobreviver em qual condição climática?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
+          "Ao frio intenso e à neve",
+          "À umidade excessiva",
+          "À falta de água e ao clima semiárido",
+          "Aos ventos fortes constantes"
         ],
-        "respostaCorreta": 0
+        "respostaCorreta": 2
       },
       {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
+        "pergunta": "Qual é a principal ameaça que leva à desertificação na Caatinga?",
         "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "O plantio de árvores nativas",
+          "O desmatamento para a produção de lenha e carvão e o manejo inadequado do solo",
+          "A construção de açudes",
+          "A chuva em excesso"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "A ararinha-azul, extinta na natureza, é um símbolo da Caatinga. O que sua história nos ensina sobre a conservação?",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "Que os animais podem viver bem em qualquer lugar",
+          "A importância de proteger o habitat natural para evitar que outras espécies desapareçam",
+          "Que a caça não afeta as populações de animais",
+          "Que a reintrodução de espécies é sempre fácil"
         ],
         "respostaCorreta": 1
+      },
+      {
+        "pergunta": "O que é a convivência com o semiárido, um conceito importante para a sustentabilidade na Caatinga?",
+        "opcoes": [
+          "Tentar mudar o clima da região",
+          "Abandonar a região durante a seca",
+          "Utilizar tecnologias sociais, como cisternas, para armazenar água da chuva e garantir a produção de alimentos de forma adaptada",
+          "Plantar culturas que precisam de muita água"
+        ],
+        "respostaCorreta": 2
+      },
+      {
+        "pergunta": "Qual a importância da abelha jandaíra para o ecossistema da Caatinga?",
+        "opcoes": [
+          "Ela não tem importância ecológica",
+          "Sua principal função é produzir mel para exportação",
+          "Ela ataca outras espécies de animais",
+          "É uma importante polinizadora, ajudando na reprodução de muitas plantas nativas"
+        ],
+        "respostaCorreta": 3
       }
     ],
     "pantanal": [
       {
-        "pergunta": "Por que é importante reciclar?",
+        "pergunta": "O Pantanal é conhecido por seu 'pulso de inundação'. O que isso significa para o bioma?",
         "opcoes": [
-          "Para reduzir o lixo nos aterros sanitários",
-          "Porque é moda",
-          "Para gastar mais energia",
-          "Para aumentar a poluição"
-        ],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "Qual desses materiais pode ser reciclado?",
-        "opcoes": ["Plástico", "Casca de banana", "Areia", "Óleo usado"],
-        "respostaCorreta": 0
-      },
-      {
-        "pergunta": "O que devemos fazer ao ver uma torneira pingando?",
-        "opcoes": [
-          "Deixar como está",
-          "Avisar um adulto ou consertar",
-          "Ignorar porque não é problema meu",
-          "Abrir mais para parar o pingamento"
+          "Que o bioma está sempre debaixo d'água",
+          "É um ciclo anual de cheias e secas que define a vida na região e renova os nutrientes do solo",
+          "Significa que há um grande risco de tsunamis",
+          "É um problema que precisa ser resolvido com a construção de barragens"
         ],
         "respostaCorreta": 1
       },
       {
-        "pergunta": "Qual é o melhor destino para restos de alimentos?",
+        "pergunta": "Qual é uma das maiores ameaças recentes à fauna e flora do Pantanal?",
         "opcoes": [
-          "Jogar no lixo comum",
-          "Fazer compostagem",
-          "Deixar na rua",
-          "Guardar no armário"
+          "O frio excessivo",
+          "Os incêndios florestais, que se agravaram com as secas extremas",
+          "O excesso de turistas",
+          "A construção de ciclovias"
         ],
         "respostaCorreta": 1
+      },
+      {
+        "pergunta": "O Tuiuiú é a ave-símbolo do Pantanal. O que a presença dele indica sobre a saúde do ambiente?",
+        "opcoes": [
+          "Que o ambiente está muito poluído",
+          "Que há um bom equilíbrio ecológico, com rios e áreas úmidas conservadas para sua alimentação",
+          "Que não existem predadores na região",
+          "Que a seca está muito forte"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Por que a pesca predatória, fora do período permitido (piracema), é tão prejudicial ao Pantanal?",
+        "opcoes": [
+          "Porque ajuda a controlar a população de peixes",
+          "Porque não permite que os peixes se reproduzam, diminuindo suas populações e afetando todo o ecossistema",
+          "Porque os barcos fazem muito barulho",
+          "Porque os turistas gostam de pescar nessa época"
+        ],
+        "respostaCorreta": 1
+      },
+      {
+        "pergunta": "Como a pecuária extensiva e sustentável pode coexistir com a conservação do Pantanal?",
+        "opcoes": [
+          "Não pode, toda pecuária é destrutiva",
+          "Substituindo toda a vegetação nativa por pasto exótico",
+          "Respeitando os ciclos de cheia e seca, mantendo áreas de vegetação nativa e evitando o desmatamento",
+          "Aumentando o número de bois por hectare para o máximo possível"
+        ],
+        "respostaCorreta": 2
       }
     ]
   }
