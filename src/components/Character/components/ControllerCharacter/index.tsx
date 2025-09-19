@@ -16,6 +16,7 @@ import { MathUtils, Vector3 } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { Controls } from "../../../../lib/constants/keyboardMap";
 import CharacterModel from "../CharacterModel";
+import { useModalManagerStore } from "@/lib/stores/useModalManagerStore";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -80,6 +81,7 @@ export const ControllerCharacter = () => {
 
   const setCharacter = useManagerCharacterStore((state) => state.setCharacter);
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
+  const modal = useModalManagerStore((state) => state.modal);
 
   const [positionInicial] = useState<Vector3>(() =>
     calculateWorldPosition({
@@ -93,6 +95,7 @@ export const ControllerCharacter = () => {
   }, [setCharacter]);
 
   useFrame(({ camera }) => {
+    if (!!modal) return;
     if (characterRigidBody.current) {
       const vel = characterRigidBody.current.linvel();
 
