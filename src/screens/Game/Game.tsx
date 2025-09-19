@@ -11,6 +11,8 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
 import { GameProviders } from "./GameProviders";
+import { ModalHelp } from "@/components/ModalHelp/ModalHelp";
+import { ModalTutorial } from "@/components/ModalTutorial/ModalTutorial";
 
 export const Game = () => {
   return (
@@ -22,6 +24,8 @@ export const Game = () => {
       <ModalQuiz />
       <ModalConfigGame />
       <ModalEndOfGame />
+      <ModalHelp />
+      <ModalTutorial />
 
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <color attach="background" args={["#000000"]} />
