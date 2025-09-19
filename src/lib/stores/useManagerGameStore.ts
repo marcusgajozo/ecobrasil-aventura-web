@@ -9,6 +9,7 @@ type ManagerGameStoreActions = {
   setIsFirstAccess: (
     isFirstAccess: ManagerGameStoreState["isFirstAccess"]
   ) => void;
+  handleResetGame: () => void;
 };
 
 type ManagerGameStore = ManagerGameStoreState & ManagerGameStoreActions;
@@ -22,6 +23,12 @@ export const useManagerGameStore = create<ManagerGameStore>()(
     (set) => ({
       ...INITIAL_STATE,
       setIsFirstAccess: (isFirstAccess: boolean) => set({ isFirstAccess }),
+      handleResetGame: () => {
+        // Limpa todos os dados do localStorage
+        localStorage.clear();
+        // Recarrega a página
+        window.location.reload();
+      },
     }),
     {
       name: "manager-game-store",

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Modal = "game-setup" | "quiz" | "map-screen";
+type Modal = "config-game" | "quiz" | "map-screen" | "end-of-game";
 
 type ModalManagerStoreStates = {
   modal: Modal | null;
