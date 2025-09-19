@@ -1,10 +1,10 @@
 import SimpleSlider from "@/components/slider/Slider";
 import { NAME_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
+import { cn } from "@/lib/utils/utils";
 import { useMemo } from "react";
 import { SlidingNumberBasic } from "../SlidingNumberBasic/SlidingNumberBasic";
 import styles from "./styles.module.css";
-import { cn } from "@/lib/utils/utils";
 
 export const GameInfo = () => {
   const islandsInformation = useManagerIslandStore(

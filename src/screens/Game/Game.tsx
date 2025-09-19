@@ -1,7 +1,8 @@
 import Character from "@/components/Character";
 import { Lighting } from "@/components/Lighting/Lighting";
 import { MapScreen } from "@/components/MapScreen/MapScreen";
-import { ModalGameSetup } from "@/components/ModalGameSetup/ModalGameSetup";
+import { ModalConfigGame } from "@/components/ModalConfigGame/ModalGameSetup";
+import { ModalEndOfGame } from "@/components/ModalEndOfGame/ModalEndOfGame";
 import { ModalQuiz } from "@/components/ModalQuiz/ModalQuiz";
 import { HUD } from "@/components/organisms/HUD/HUD";
 import { Islands } from "@/components/organisms/Islands/Islands";
@@ -17,9 +18,10 @@ export const Game = () => {
       <Leva hidden />
 
       <HUD />
-      <ModalGameSetup />
       <MapScreen />
       <ModalQuiz />
+      <ModalConfigGame />
+      <ModalEndOfGame />
 
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <color attach="background" args={["#000000"]} />
