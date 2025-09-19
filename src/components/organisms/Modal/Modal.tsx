@@ -100,6 +100,27 @@ const ModalButtonClose = ({
   );
 };
 
+/**
+ *
+ * A system component Modal that follows the Compound Component pattern.
+ * Provides a clean separation of concerns and maximum flexibility for different modal.
+ *
+ * @example
+ *
+ * // Basic usage
+ * <Modal.Root open onClose={handleCloseModal}>
+ *   <Modal.Content>
+ *     <Modal.Header title="your title" />
+ *     <Modal.Body>
+ *       <div>Your component</div>
+ *     </Modal.Body>
+ *     <Modal.ContentButtons>
+ *       <Modal.ButtonAction />
+ *       <Modal.ButtonClose />
+ *     </Modal.ContentButtons>
+ *   </Modal.Content>
+ * </Modal.Root>
+ */
 export const Modal = {
   Root: ModalRoot,
   Header: ModalHeader,
