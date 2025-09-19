@@ -25,28 +25,58 @@ type AudioProviderProps = {
 export const AudioProvider = ({ children }: AudioProviderProps) => {
   const [isPaused, setIsPaused] = useState(true);
   const backgroundAudioRef = useRef<HTMLAudioElement | null>(null);
+  const hasStartedOnce = useRef(false);
 
   useEffect(() => {
     const audio = new Audio(backgroundAudioSrc);
     audio.loop = true;
     audio.volume = 0.1;
     backgroundAudioRef.current = audio;
+
+    const handleFirstUserInteraction = async () => {
+      if (!hasStartedOnce.current) {
+        try {
+          await audio.play();
+          hasStartedOnce.current = true;
+          setIsPaused(false);
+        } catch (error) {
+          console.log("Autoplay prevented:", error);
+        }
+      }
+    };
+
+    const events = ["click", "keydown", "touchstart"];
+    events.forEach((event) => {
+      document.addEventListener(event, handleFirstUserInteraction, {
+        once: true,
+      });
+    });
+
     return () => {
       audio.pause();
       audio.src = "";
+      events.forEach((event) => {
+        document.removeEventListener(event, handleFirstUserInteraction);
+      });
     };
   }, []);
 
-  const toggleBackgroundAudio = useCallback(() => {
+  const toggleBackgroundAudio = useCallback(async () => {
     if (!backgroundAudioRef.current) return;
 
-    if (isPaused) {
-      backgroundAudioRef.current.play();
-    } else {
-      backgroundAudioRef.current.pause();
+    try {
+      if (isPaused) {
+        await backgroundAudioRef.current.play();
+        hasStartedOnce.current = true;
+        setIsPaused(false);
+      } else {
+        backgroundAudioRef.current.pause();
+        setIsPaused(true);
+      }
+    } catch (error) {
+      console.log("Error toggling audio:", error);
+      setIsPaused(true);
     }
-
-    setIsPaused((prev) => !prev);
   }, [isPaused]);
 
   const value = { isPaused, toggleBackgroundAudio };
