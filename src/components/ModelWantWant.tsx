@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.3 ./src/assets/models/animals/want-want.glb -t -o ./src
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import wantWantSrc from "@models/animals/want-want.glb";
+import wantWantSrc from "@models/animals/pampa/want-want.glb";
 
 type GLTFResult = GLTF & {
   nodes: {

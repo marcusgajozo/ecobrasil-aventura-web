@@ -8,10 +8,11 @@ import { Tree1 } from "@/components/atoms/Tree1";
 import { BushStone } from "@/components/BushStone";
 import { ModelBush } from "@/components/ModelBush";
 import { ModelFlower } from "@/components/ModelFlower";
-import { ModelOstrich } from "@/components/ModelOstrich";
+import { ModelRhea } from "@/components/ModelRhea";
+import { ModelWantWant } from "@/components/ModelWantWant";
+import { ModelZorrilho } from "@/components/ModelZorrilho";
 import deerSrc from "@audios/animals/deer.mp3";
 import emaSrc from "@audios/animals/ema.mp3";
-import { ModelWantWant } from "@/components/ModelWantWant";
 
 export const PampaIsland = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -39,7 +40,7 @@ export const PampaIsland = () => {
 
       <ProximityInteractable
         position={handlePositionRelative({ x: 5, y: 9, z: -10 })}
-        rotation={[0, degToRad(-30), 0]}
+        rotation={[0, degToRad(-130), 0]}
         type="fixed"
         billboardText="Ema\nPressione [F] para emitir o som"
         billboardTextPosition={[0, 3.5, 0]}
@@ -51,7 +52,7 @@ export const PampaIsland = () => {
         }}
         onStopCollide={() => stopAudio()}
       >
-        <ModelOstrich scale={5} />
+        <ModelRhea scale={2.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
@@ -69,6 +70,23 @@ export const PampaIsland = () => {
         onStopCollide={() => stopAudio()}
       >
         <ModelWantWant scale={1.4} />
+      </ProximityInteractable>
+
+      <ProximityInteractable
+        position={handlePositionRelative({ x: -3, y: 6.6, z: 11 })}
+        rotation={[0, degToRad(90), 0]}
+        type="fixed"
+        billboardText="Ema\nPressione [F] para emitir o som"
+        billboardTextPosition={[0, 3.5, 0]}
+        colliderPosition={[0, -1, 0]}
+        sensorRadius={4}
+        characterObjectInteraction={{
+          control: "action",
+          action: () => playAudio(emaSrc),
+        }}
+        onStopCollide={() => stopAudio()}
+      >
+        <ModelZorrilho scale={1.4} />
       </ProximityInteractable>
 
       <ProximityInteractable
