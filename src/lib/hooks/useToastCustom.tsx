@@ -1,4 +1,4 @@
-import { ToastCustom } from "@/components/atoms/ToastCustom/ToastCustom";
+import { ToastCustom } from "@/components/@atoms/ToastCustom/ToastCustom";
 import toast from "react-hot-toast";
 
 export const useToastCustom = () => {

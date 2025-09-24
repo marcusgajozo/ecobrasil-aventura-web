@@ -1,4 +1,4 @@
-import { Button } from "@/components/atoms/Button/Button";
+import { Button } from "@/components/@atoms/Button/Button";
 import styles from "./styles.module.css";
 import { useManagerGameStore } from "@/lib/stores/useManagerGameStore";
 

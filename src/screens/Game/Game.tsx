@@ -1,18 +1,18 @@
+import { HUD } from "@/components/@organisms/HUD/HUD";
+import { MapScreen } from "@/components/@organisms/MapScreen/MapScreen";
+import { ModalConfigGame } from "@/components/@organisms/ModalConfigGame/ModalGameSetup";
+import { ModalEndOfGame } from "@/components/@organisms/ModalEndOfGame/ModalEndOfGame";
+import { ModalHelp } from "@/components/@organisms/ModalHelp/ModalHelp";
+import { ModalQuiz } from "@/components/@organisms/ModalQuiz/ModalQuiz";
+import { ModalTutorial } from "@/components/@organisms/ModalTutorial/ModalTutorial";
 import Character from "@/components/Character";
-import { Lighting } from "@/components/Lighting/Lighting";
-import { MapScreen } from "@/components/MapScreen/MapScreen";
-import { ModalConfigGame } from "@/components/ModalConfigGame/ModalGameSetup";
-import { ModalEndOfGame } from "@/components/ModalEndOfGame/ModalEndOfGame";
-import { ModalQuiz } from "@/components/ModalQuiz/ModalQuiz";
-import { HUD } from "@/components/organisms/HUD/HUD";
-import { Islands } from "@/components/organisms/Islands/Islands";
+import { Lighting } from "@/components/Lighting";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
 import { GameProviders } from "./GameProviders";
-import { ModalHelp } from "@/components/ModalHelp/ModalHelp";
-import { ModalTutorial } from "@/components/ModalTutorial/ModalTutorial";
+import { Islands } from "@/components/Islands";
 
 export const Game = () => {
   return (

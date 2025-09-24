@@ -1,5 +1,5 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
-import { ProximityInteractable } from "../templates/ProximityInteractable";
+import { ProximityInteractable } from "../ProximityInteractable";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { usePlayAudio } from "@/lib/hooks/usePlayAudio";
 import emaSrc from "@audios/animals/ema.mp3";

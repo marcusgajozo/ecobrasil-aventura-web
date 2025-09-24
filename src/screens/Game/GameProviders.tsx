@@ -1,4 +1,4 @@
-import { GlobalKeyHandlers } from "@/components/organisms/GlobalKeyHandlers/GlobalKeyHandlers";
+import { GlobalKeyHandlers } from "@/components/GlobalKeyHandlers";
 import { keyboardMap } from "@/lib/constants/keyboardMap";
 import { AudioProvider } from "@/lib/context/AudioProvider";
 import { ControllerMapProvider } from "@/lib/context/ControllerMap";
