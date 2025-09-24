@@ -4,16 +4,16 @@ import { Caatinga } from "../Caatinga";
 import { Cerrado } from "../Cerrado";
 import { MataAtlantica } from "../MataAtlantica";
 import { PampaIsland } from "../PampaIsland/PampaIsland";
-import { Pantanal } from "../Pantanal";
 import { TeleportPlatform } from "@/components/atoms/TeleportPlatform";
 import { IslandDome } from "@/components/IslandDome/IslandDome";
 import { IslandSoilModel } from "@/components/atoms/IslandSoil/IslandSoilModel";
 import { QuestionBox } from "@/components/atoms/QuestionBox/QuestionBox";
+import { IslandPantanal } from "@/components/pantanal/IslandPantanal";
 
 type NameIsland = (typeof NAME_ISLAND)[number];
 
 const maps: Record<NameIsland, () => JSX.Element> = {
-  pantanal: Pantanal,
+  pantanal: IslandPantanal,
   "mata-atlantica": MataAtlantica,
   amazonia: Amazonia,
   caatinga: Caatinga,
