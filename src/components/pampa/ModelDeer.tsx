@@ -9,7 +9,7 @@ import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF, SkeletonUtils } from "three-stdlib";
 
-import deer from "@models/animals/deer.glb";
+import deerGlb from "@models/pampa/deer.glb";
 
 type ActionName =
   | "Attack_Headbutt"
@@ -77,7 +77,7 @@ export function ModelDeer({
   animation?: ActionName;
 }) {
   const group = React.useRef<THREE.Group>(null);
-  const { scene, animations } = useGLTF(deer);
+  const { scene, animations } = useGLTF(deerGlb);
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
   const { actions } = useAnimations(animations, group);
@@ -155,4 +155,4 @@ export function ModelDeer({
   );
 }
 
-useGLTF.preload(deer);
+useGLTF.preload(deerGlb);

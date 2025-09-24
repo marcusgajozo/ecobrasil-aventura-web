@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.3 ./src/assets/models/animals/pampa/zorrilho.glb -t -o 
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import zorrilhoGLB from "@models/animals/pampa/zorrilho.glb";
+import zorrilhoGLB from "@models/pampa/zorrilho.glb";
 
 type GLTFResult = GLTF & {
   nodes: {

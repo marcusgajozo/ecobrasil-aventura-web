@@ -1,9 +1,9 @@
-import amazoniaPng from "@images/amazonia.png";
-import caatingaPng from "@images/caatinga.png";
-import cerradoPng from "@images/cerrado.png";
-import mataAtlanticaPng from "@images/mata-atlantica.png";
-import pampaPng from "@images/pampa.png";
-import pantanalPng from "@images/pantanal.png";
+import amazoniaPng from "@images/amazonia/amazonia.png";
+import caatingaPng from "@images/caatinga/caatinga.png";
+import cerradoPng from "@images/cerrado/cerrado.png";
+import mataAtlanticaPng from "@images/mata-atlantica/mata-atlantica.png";
+import pampaPng from "@images/pampa/pampa.png";
+import pantanalPng from "@images/pantanal/pantanal.png";
 import { Vector3Like } from "three";
 
 export const NAME_ISLAND = [

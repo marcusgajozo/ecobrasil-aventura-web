@@ -1,13 +1,13 @@
 import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
-import { ProximityInteractable } from "../ProximityInteractable";
-import { degToRad } from "three/src/math/MathUtils.js";
 import { usePlayAudio } from "@/lib/hooks/usePlayAudio";
-import emaSrc from "@audios/animals/ema.mp3";
-import { ModelCapybara } from "./ModelCapybara";
-import { ModelTuiuiu } from "./ModelTuiuiu";
+import { degToRad } from "three/src/math/MathUtils.js";
+import { ProximityInteractable } from "../ProximityInteractable";
 import { ModelAlligator } from "./ModelAlligator";
-import { ModelSnake } from "./ModelSnake";
+import { ModelCapybara } from "./ModelCapybara";
 import { ModelPinkIpe } from "./ModelPinkIpe";
+import { ModelSnake } from "./ModelSnake";
+import { ModelTuiuiu } from "./ModelTuiuiu";
+import emaMp3 from "@audios/pampa/rhea.mp3";
 
 export const IslandPantanal = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -28,7 +28,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -45,7 +45,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -62,7 +62,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -79,7 +79,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -96,7 +96,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -113,7 +113,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -130,7 +130,7 @@ export const IslandPantanal = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >

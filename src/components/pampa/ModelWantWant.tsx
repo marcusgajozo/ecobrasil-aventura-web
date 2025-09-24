@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.3 ./src/assets/models/animals/want-want.glb -t -o ./src
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import wantWantSrc from "@models/animals/pampa/want-want.glb";
+import wantWantGlb from "@models/pampa/want-want.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
 };
 
 export function ModelWantWant(props: JSX.IntrinsicElements["group"]) {
-  const { nodes } = useGLTF(wantWantSrc) as GLTFResult;
+  const { nodes } = useGLTF(wantWantGlb) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -27,4 +27,4 @@ export function ModelWantWant(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload(wantWantSrc);
+useGLTF.preload(wantWantGlb);

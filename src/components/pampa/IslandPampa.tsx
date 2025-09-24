@@ -10,8 +10,8 @@ import { ModelFlower } from "@/components/ModelFlower";
 import { ModelRhea } from "@/components/pampa/ModelRhea";
 import { ModelWantWant } from "@/components/pampa/ModelWantWant";
 import { ModelZorrilho } from "@/components/pampa/ModelZorrilho";
-import deerSrc from "@audios/animals/deer.mp3";
-import emaSrc from "@audios/animals/ema.mp3";
+import deerMp3 from "@audios/pampa/deer.mp3";
+import emaMp3 from "@audios/pampa/rhea.mp3";
 import { ModelTree1 } from "../ModelTree1";
 
 export const IslandPampa = () => {
@@ -30,7 +30,7 @@ export const IslandPampa = () => {
         billboardText="Veado Campeiro"
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(deerSrc),
+          action: () => playAudio(deerMp3),
         }}
         onStopCollide={() => stopAudio()}
         colliderPosition={[0, 1.5, 0]}
@@ -48,7 +48,7 @@ export const IslandPampa = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -65,7 +65,7 @@ export const IslandPampa = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
@@ -82,7 +82,7 @@ export const IslandPampa = () => {
         sensorRadius={4}
         characterObjectInteraction={{
           control: "action",
-          action: () => playAudio(emaSrc),
+          action: () => playAudio(emaMp3),
         }}
         onStopCollide={() => stopAudio()}
       >
