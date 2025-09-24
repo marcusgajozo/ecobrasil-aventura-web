@@ -4,7 +4,6 @@ import { useBuildIsland } from "@/lib/hooks/useBuildIsland";
 import { usePlayAudio } from "@/lib/hooks/usePlayAudio";
 import { degToRad } from "three/src/math/MathUtils.js";
 
-import { BushStone } from "@/components/BushStone";
 import { ModelBush } from "@/components/ModelBush";
 import { ModelFlower } from "@/components/ModelFlower";
 import { ModelRhea } from "@/components/pampa/ModelRhea";
@@ -12,6 +11,7 @@ import { ModelWantWant } from "@/components/pampa/ModelWantWant";
 import { ModelZorrilho } from "@/components/pampa/ModelZorrilho";
 import deerMp3 from "@audios/pampa/deer.mp3";
 import emaMp3 from "@audios/pampa/rhea.mp3";
+import { ModelBushStone } from "../ModelBushStone";
 import { ModelTree1 } from "../ModelTree1";
 
 export const IslandPampa = () => {
@@ -114,49 +114,49 @@ export const IslandPampa = () => {
         position={handlePositionRelative({ x: 10, y: 6, z: 12 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: 3, y: 6, z: -14 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: -12, y: 6, z: -3 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: -8, y: 6, z: 10 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: 14, y: 6, z: 1 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: -1, y: 6, z: 9 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable
         position={handlePositionRelative({ x: -1, y: 6, z: 9 })}
         type="fixed"
       >
-        <BushStone scale={1.5} />
+        <ModelBushStone scale={1.5} />
       </ProximityInteractable>
 
       <ProximityInteractable

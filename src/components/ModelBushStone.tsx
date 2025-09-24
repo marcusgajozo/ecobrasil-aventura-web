@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.3 public/models/bush-stone.glb -o teste.tsx -r public
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import bushStone from "@models/bush-stone.glb";
+import bushStoneGlb from "@models/bush-stone.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,8 +19,8 @@ type GLTFResult = GLTF & {
   };
 };
 
-export const BushStone = (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF(bushStone) as GLTFResult;
+export const ModelBushStone = (props: JSX.IntrinsicElements["group"]) => {
+  const { nodes, materials } = useGLTF(bushStoneGlb) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={100}>
@@ -37,4 +37,4 @@ export const BushStone = (props: JSX.IntrinsicElements["group"]) => {
   );
 };
 
-useGLTF.preload(bushStone);
+useGLTF.preload(bushStoneGlb);

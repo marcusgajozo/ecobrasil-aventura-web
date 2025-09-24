@@ -10,6 +10,7 @@ import { ModelCapybara } from "./ModelCapybara";
 import { ModelPinkIpe } from "./ModelPinkIpe";
 import { ModelSnake } from "./ModelSnake";
 import { ModelTuiuiu } from "./ModelTuiuiu";
+import { ModelBushStone } from "../ModelBushStone";
 
 export const IslandPantanal = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -121,6 +122,18 @@ export const IslandPantanal = () => {
         rotation={[0, degToRad(-70), 0]}
       >
         <ModelTree2 scale={3} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: 1, y: 6, z: -9 })}>
+        <ModelBushStone scale={1} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: 1, y: 6, z: 15 })}>
+        <ModelBushStone scale={1} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: -14, y: 6, z: -4 })}>
+        <ModelBushStone scale={1} />
       </FixedElement>
     </>
   );
