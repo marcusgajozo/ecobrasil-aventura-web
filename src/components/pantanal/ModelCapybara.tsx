@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import capybaraGLB from "@models/pantanal/capybara.glb";
+import {
+  useBrightenModel,
+  animalBrightenPresets,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,11 +21,17 @@ type GLTFResult = GLTF & {
 
 export function ModelCapybara(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(capybaraGLB) as GLTFResult;
+
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmpyj5ikku8ply.geometry}
         material={nodes.tmpyj5ikku8ply.material}
+        receiveShadow
+        castShadow
       />
     </group>
   );

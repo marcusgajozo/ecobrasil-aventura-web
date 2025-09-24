@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import tuiuiuGLB from "@models/pantanal/tuiuiu.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,11 +21,16 @@ type GLTFResult = GLTF & {
 
 export function ModelTuiuiu(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(tuiuiuGLB) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.bird);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmpgfl54ygrply.geometry}
         material={nodes.tmpgfl54ygrply.material}
+        receiveShadow
+        castShadow
       />
     </group>
   );

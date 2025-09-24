@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import snakeGLB from "@models/pantanal/snake.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,11 +21,16 @@ type GLTFResult = GLTF & {
 
 export function ModelSnake(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(snakeGLB) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmpjy4y03wfply.geometry}
         material={nodes.tmpjy4y03wfply.material}
+        receiveShadow
+        castShadow
       />
     </group>
   );

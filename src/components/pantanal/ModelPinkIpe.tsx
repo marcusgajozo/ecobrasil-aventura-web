@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import pinkIpeGLB from "@models/pantanal/pink-ipe.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,13 +25,17 @@ type GLTFResult = GLTF & {
 
 export function ModelPinkIpe(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(pinkIpeGLB) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.vegetation);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes["??????????_1"].geometry}
         material={materials["??????"]}
       />
       <mesh
+        ref={meshRef}
         geometry={nodes["??????????_1_1"].geometry}
         material={materials["???????_??????"]}
       />

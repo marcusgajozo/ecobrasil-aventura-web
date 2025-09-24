@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import alligatorGLB from "@models/pantanal/alligator.glb";
+import {
+  useBrightenModel,
+  animalBrightenPresets,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,11 +21,17 @@ type GLTFResult = GLTF & {
 
 export function ModelAlligator(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(alligatorGLB) as GLTFResult;
+
+  const { meshRef } = useBrightenModel(animalBrightenPresets.aquatic);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmp1ac7fcj2ply.geometry}
         material={nodes.tmp1ac7fcj2ply.material}
+        receiveShadow
+        castShadow
       />
     </group>
   );
