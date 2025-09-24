@@ -6,19 +6,16 @@ import { ModalHelp } from "@/components/@organisms/ModalHelp/ModalHelp";
 import { ModalQuiz } from "@/components/@organisms/ModalQuiz/ModalQuiz";
 import { ModalTutorial } from "@/components/@organisms/ModalTutorial/ModalTutorial";
 import Character from "@/components/Character";
+import { Islands } from "@/components/Islands";
 import { Lighting } from "@/components/Lighting";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Leva } from "leva";
 import { GameProviders } from "./GameProviders";
-import { Islands } from "@/components/Islands";
 
 export const Game = () => {
   return (
     <GameProviders>
-      <Leva hidden />
-
       <HUD />
       <MapScreen />
       <ModalQuiz />

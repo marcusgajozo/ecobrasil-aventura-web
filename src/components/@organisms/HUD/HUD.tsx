@@ -5,6 +5,7 @@ import configSrc from "@images/config.svg";
 import { CurrentIsland } from "./@components/CurrentIsland/CurrentIsland";
 import { GameInfo } from "./@components/GameInfo/GameInfo";
 import { Help } from "./@components/Help/Help";
+import { Leva } from "leva";
 
 export const HUD = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
@@ -13,6 +14,7 @@ export const HUD = () => {
   );
   return (
     <div className="h-full w-full absolute top-0 left-0 z-99999 select-none">
+      <Leva hidden />
       <div className="relative h-full w-full flex flex-col items-center justify-between">
         <div className="absolute top-3">
           <CurrentIsland />
