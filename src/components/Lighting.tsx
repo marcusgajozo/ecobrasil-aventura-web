@@ -1,8 +1,7 @@
 import { NAME_ISLAND } from "@/lib/constants/island";
 import { useManagerIslandStore } from "@/lib/stores/useManagerIslandStore";
-import { animated, useSpring } from "@react-spring/three";
-import { useControls } from "leva";
-import { useEffect, useRef } from "react";
+import { useControls, button } from "leva";
+import { useRef } from "react";
 import { DirectionalLight } from "three";
 
 type NameIsland = (typeof NAME_ISLAND)[number];
@@ -35,7 +34,7 @@ const lightingPresets: Record<NameIsland, LightingPreset> = {
     directionalColor: "#fff4e0",
   },
   pantanal: {
-    ambientIntensity: 0.7,
+    ambientIntensity: 1.1,
     directionalIntensity: 1.4,
     directionalColor: "#e0f8ff",
   },
@@ -50,60 +49,155 @@ export const Lighting = () => {
   const currentIsland = useManagerIslandStore((state) => state.currentIsland);
   const directionalLightRef = useRef<DirectionalLight>(null!);
 
-  const { position } = useControls("Iluminação da Cena", {
-    ambient: {
+  // Controles simples e essenciais do Leva (sem color pickers problemáticos)
+  const {
+    ambientIntensity,
+    ambientColorPreset,
+    directionalIntensity,
+    directionalColorPreset,
+    directionalPosition,
+    hemisphereIntensity,
+    skyColorPreset,
+    groundColorPreset,
+    enableHemisphere,
+  } = useControls("🌟 Iluminação Simples", {
+    // Luz Ambiente
+    ambientIntensity: {
       value: lightingPresets[currentIsland].ambientIntensity,
       min: 0,
       max: 2,
-      step: 0.1,
-      label: "Luz Ambiente",
+      step: 0.05,
+      label: "💡 Ambiente",
     },
-    directional: {
+    ambientColorPreset: {
+      value: "Branco",
+      options: {
+        Branco: "#ffffff",
+        "Azul Claro": "#e6f3ff",
+        "Amarelo Suave": "#fff8dc",
+        "Verde Claro": "#f0fff0",
+        "Rosa Claro": "#fff0f5",
+      },
+      label: "💡 Cor Ambiente",
+    },
+
+    // Luz Direcional (Sol)
+    directionalIntensity: {
       value: lightingPresets[currentIsland].directionalIntensity,
       min: 0,
-      max: 5,
+      max: 3,
       step: 0.1,
-      label: "Luz Direcional",
+      label: "☀️ Sol",
     },
-    color: {
+    directionalColorPreset: {
       value: lightingPresets[currentIsland].directionalColor,
-      label: "Cor da Luz",
+      options: {
+        Branco: "#ffffff",
+        "Azul Pantanal": "#e0f8ff",
+        "Verde Amazônia": "#d4ffe9",
+        "Dourado Cerrado": "#ffdcb3",
+        "Amarelo Caatinga": "#fff4e0",
+        "Verde Mata": "#e8f5e9",
+      },
+      label: "☀️ Cor do Sol",
     },
-    position: {
-      value: [10, 10, 0],
-      label: "Posição da Luz",
+    directionalPosition: {
+      value: [10, 15, 5],
+      step: 1,
+      label: "☀️ Posição do Sol",
+    },
+
+    enableHemisphere: {
+      value: true,
+      label: "🌍 Ativar Céu",
+    },
+    hemisphereIntensity: {
+      value: 0.4,
+      min: 0,
+      max: 1,
+      step: 0.1,
+      label: "🌍 Intensidade do Céu",
+    },
+    skyColorPreset: {
+      value: "Azul Céu",
+      options: {
+        "Azul Céu": "#87CEEB",
+        "Azul Claro": "#ADD8E6",
+        Branco: "#ffffff",
+        "Amarelo Claro": "#FFFFE0",
+        "Verde Claro": "#F0FFF0",
+      },
+      label: "🌍 Cor do Céu",
+    },
+    groundColorPreset: {
+      value: "Marrom Solo",
+      options: {
+        "Marrom Solo": "#8B7355",
+        "Verde Grama": "#228B22",
+        "Amarelo Areia": "#F4A460",
+        "Cinza Pedra": "#696969",
+        "Marrom Escuro": "#654321",
+      },
+      label: "🌍 Cor do Solo",
     },
   });
 
-  const [animatedProps, api] = useSpring(
-    () => ({
-      ambientIntensity: lightingPresets[currentIsland].ambientIntensity,
-      directionalIntensity: lightingPresets[currentIsland].directionalIntensity,
-      directionalColor: lightingPresets[currentIsland].directionalColor,
-      config: { duration: 1000 },
-    }),
-    [currentIsland]
-  );
+  // Função para copiar configurações
+  const copyValues = () => {
+    const config = {
+      island: currentIsland,
+      ambientIntensity,
+      ambientColor: ambientColorPreset,
+      directionalIntensity,
+      directionalColor: directionalColorPreset,
+      directionalPosition,
+      hemisphereIntensity,
+      hemisphereSkyColor: skyColorPreset,
+      hemisphereGroundColor: groundColorPreset,
+      enableHemisphere,
+    };
+    console.log(
+      "🎨 Configuração de Iluminação:",
+      JSON.stringify(config, null, 2)
+    );
+    navigator.clipboard?.writeText(JSON.stringify(config, null, 2));
+    alert("Configuração copiada! Veja o console para detalhes.");
+  };
 
-  useEffect(() => {
-    const preset = lightingPresets[currentIsland] || lightingPresets.pampa;
-    api.start({
-      ambientIntensity: preset.ambientIntensity,
-      directionalIntensity: preset.directionalIntensity,
-      directionalColor: preset.directionalColor,
-    });
-  }, [currentIsland, api]);
+  // Botão para copiar
+  useControls("📋 Copiar Config", {
+    copiarConfig: button(copyValues),
+  });
 
   return (
     <>
-      <animated.ambientLight intensity={animatedProps.ambientIntensity} />
-      <animated.directionalLight
+      {/* Luz Ambiente */}
+      <ambientLight intensity={ambientIntensity} color={ambientColorPreset} />
+
+      {/* Luz Direcional (Sol) */}
+      <directionalLight
         ref={directionalLightRef}
-        position={position}
-        intensity={animatedProps.directionalIntensity}
-        color={animatedProps.directionalColor}
+        position={directionalPosition}
+        intensity={directionalIntensity}
+        color={directionalColorPreset}
         castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-near={0.1}
+        shadow-camera-far={50}
+        shadow-camera-left={-15}
+        shadow-camera-right={15}
+        shadow-camera-top={15}
+        shadow-camera-bottom={-15}
       />
+
+      {/* Luz Hemisférica (Céu e Solo) */}
+      {enableHemisphere && (
+        <hemisphereLight
+          args={[skyColorPreset, groundColorPreset, hemisphereIntensity]}
+          position={[0, 20, 0]}
+        />
+      )}
     </>
   );
 };
