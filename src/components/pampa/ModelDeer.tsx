@@ -10,6 +10,10 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF, SkeletonUtils } from "three-stdlib";
 
 import deerGlb from "@models/pampa/deer.glb";
+import {
+  animalBrightenPresets,
+  useBrightenComplexModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type ActionName =
   | "Attack_Headbutt"
@@ -90,6 +94,9 @@ export function ModelDeer({
     };
   }, [actions, animation]);
 
+  // Aplicar brilho a todos os materiais do modelo
+  useBrightenComplexModel(materials, animalBrightenPresets.terrestrial);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -111,42 +118,56 @@ export function ModelDeer({
               geometry={nodes.Deer_1.geometry}
               material={materials.Main_Light}
               skeleton={nodes.Deer_1.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_2"
               geometry={nodes.Deer_2.geometry}
               material={materials.Main}
               skeleton={nodes.Deer_2.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_3"
               geometry={nodes.Deer_3.geometry}
               material={materials.Main_Dark}
               skeleton={nodes.Deer_3.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_4"
               geometry={nodes.Deer_4.geometry}
               material={materials.Hooves}
               skeleton={nodes.Deer_4.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_5"
               geometry={nodes.Deer_5.geometry}
               material={materials.Eye_Lighter}
               skeleton={nodes.Deer_5.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_6"
               geometry={nodes.Deer_6.geometry}
               material={materials.Eye_Black}
               skeleton={nodes.Deer_6.skeleton}
+              receiveShadow
+              castShadow
             />
             <skinnedMesh
               name="Deer_7"
               geometry={nodes.Deer_7.geometry}
               material={materials.Eye_White}
               skeleton={nodes.Deer_7.skeleton}
+              receiveShadow
+              castShadow
             />
           </group>
         </group>

@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import zorrilhoGLB from "@models/pampa/zorrilho.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,9 +21,11 @@ type GLTFResult = GLTF & {
 
 export function ModelZorrilho(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(zorrilhoGLB) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmpi_6f6dtuply.geometry}
         material={nodes.tmpi_6f6dtuply.material}
       />

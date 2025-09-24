@@ -7,6 +7,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import rheaGLB from "@models/pampa/rhea.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/useBrightenModel";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,9 +21,13 @@ type GLTFResult = GLTF & {
 
 export function ModelRhea(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(rheaGLB) as GLTFResult;
+
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmprp__qzsyply.geometry}
         material={nodes.tmprp__qzsyply.material}
       />
