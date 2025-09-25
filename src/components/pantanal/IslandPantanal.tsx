@@ -11,6 +11,7 @@ import { ModelPinkIpe } from "./ModelPinkIpe";
 import { ModelSnake } from "./ModelSnake";
 import { ModelTuiuiu } from "./ModelTuiuiu";
 import { ModelBushStone } from "../ModelBushStone";
+import { ModelCattail2 } from "../ModelCattail2";
 
 export const IslandPantanal = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -124,6 +125,13 @@ export const IslandPantanal = () => {
         <ModelTree2 scale={3} />
       </FixedElement>
 
+      <FixedElement
+        position={handlePositionRelative({ x: -8, y: 11.1, z: 10 })}
+        rotation={[0, degToRad(-70), 0]}
+      >
+        <ModelTree2 scale={3} />
+      </FixedElement>
+
       <FixedElement position={handlePositionRelative({ x: 1, y: 6, z: -9 })}>
         <ModelBushStone scale={1} />
       </FixedElement>
@@ -134,6 +142,22 @@ export const IslandPantanal = () => {
 
       <FixedElement position={handlePositionRelative({ x: -14, y: 6, z: -4 })}>
         <ModelBushStone scale={1} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: -14, y: 6, z: 6 })}>
+        <ModelCattail2 scale={0.3} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: -14, y: 6, z: 6 })}>
+        <ModelCattail2 scale={0.3} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: 10, y: 6, z: 6 })}>
+        <ModelCattail2 scale={0.2} />
+      </FixedElement>
+
+      <FixedElement position={handlePositionRelative({ x: -4, y: 6, z: 14 })}>
+        <ModelCattail2 scale={0.3} />
       </FixedElement>
     </>
   );
