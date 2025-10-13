@@ -1,8 +1,8 @@
 import { HUD } from "@/components/@organisms/HUD/HUD";
-import { MapScreen } from "@/components/@organisms/MapScreen/MapScreen";
 import { ModalConfigGame } from "@/components/@organisms/ModalConfigGame/ModalGameSetup";
 import { ModalEndOfGame } from "@/components/@organisms/ModalEndOfGame/ModalEndOfGame";
 import { ModalHelp } from "@/components/@organisms/ModalHelp/ModalHelp";
+import { ModalMapScreen } from "@/components/@organisms/ModalMapScreen";
 import { ModalQuiz } from "@/components/@organisms/ModalQuiz/ModalQuiz";
 import { ModalTutorial } from "@/components/@organisms/ModalTutorial/ModalTutorial";
 import Character from "@/components/Character";
@@ -11,13 +11,13 @@ import { Lighting } from "@/components/Lighting";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { GameProviders } from "./GameProviders";
+import { GameProviders } from "./contexts/GameProviders";
 
 export const Game = () => {
   return (
     <GameProviders>
       <HUD />
-      <MapScreen />
+      <ModalMapScreen />
       <ModalQuiz />
       <ModalConfigGame />
       <ModalEndOfGame />
