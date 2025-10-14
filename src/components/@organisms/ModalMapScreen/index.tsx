@@ -32,7 +32,7 @@ export const ModalMapScreen = () => {
               <span>Pampa</span>
             </div>
             <div className={cn(stylesContainerIsland, "left-0 top-5")}>
-              <img src={arrowPng} alt="Imagem de Pampa" />
+              <img src={arrowPng} alt="Imagem de Pampa" className="rotate-90" />
               <span>Pampa</span>
             </div>
             <div className={cn(stylesContainerIsland, "left-30 bottom-0")}>
