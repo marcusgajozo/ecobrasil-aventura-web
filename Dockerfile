@@ -10,9 +10,9 @@ CMD ["npm", "run", "dev"]
 # build stage
 FROM base AS builder
 COPY . /game
-RUN npm install yarn
-RUN yarn install
-RUN yarn build
+RUN npm install pnpm
+RUN pnpm install
+RUN pnpm build
 
 # production stage
 FROM nginx:alpine AS production
