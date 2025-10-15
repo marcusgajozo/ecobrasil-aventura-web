@@ -1,1 +1,0 @@
-export { TeleportPlatform } from "./TeleportPlatform";

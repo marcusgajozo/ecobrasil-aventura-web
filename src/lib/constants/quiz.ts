@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { calculateWorldPosition } from "../utils/calculateWorldPosition";
+import { calculateWorldPosition } from "../utils/calculate-world-position";
 import { NAME_ISLAND, POSITIONS_ISLAND_DATA } from "./island";
 
 export const QUESTION_BOX_POSITION: Record<
