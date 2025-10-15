@@ -11,7 +11,7 @@ import { ModalTutorial } from "@/components/modal-tutorial";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { GameProviders } from "./contexts/GameProviders";
+import { GameProviders } from "./contexts/game-providers";
 
 export const Game = () => {
   return (
