@@ -12,6 +12,7 @@ import emaMp3 from "@audios/pampa/rhea.mp3";
 import { ModelSloth } from "../model-sloth";
 import { ModelAlligator } from "../model-alligator";
 import { ModelParrot } from "../model-parrot";
+import { ModelGrass2 } from "@/components/model-grass-2";
 
 export const IslandAmazonia = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -89,6 +90,13 @@ export const IslandAmazonia = () => {
       >
         <ModelParrot scale={0.15} />
       </ProximityInteractable>
+
+      <FixedElement
+        position={handlePositionRelative({ x: 10, y: 6, z: 1 })}
+        rotation={[0, degToRad(-70), 0]}
+      >
+        <ModelGrass2 scale={1} />
+      </FixedElement>
 
       <FixedElement
         position={handlePositionRelative({ x: 10, y: 11.1, z: -9 })}
