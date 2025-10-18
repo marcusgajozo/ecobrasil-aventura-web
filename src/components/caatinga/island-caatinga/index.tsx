@@ -3,16 +3,16 @@ import { usePlayAudio } from "@/lib/hooks/use-play-audio";
 import emaMp3 from "@audios/pampa/rhea.mp3";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { FixedElement } from "../../fixed-element";
-import { ModelTree2 } from "../../model-tree-2";
-import { ProximityInteractable } from "../../proximity-interactable";
-import { ModelAlligator } from "../model-alligator";
-import { ModelPinkIpe } from "../model-pink-ipe";
-import { ModelSnake } from "../model-snake";
-import { ModelTuiuiu } from "../model-tuiuiu";
 import { ModelBushStone } from "../../model-bush-stone";
 import { ModelCattail2 } from "../../model-cattail-2";
+import { ModelTree2 } from "../../model-tree-2";
+import { ProximityInteractable } from "../../proximity-interactable";
 import { ModelArmadillo } from "../model-armadillo";
 import { ModelCactus2 } from "../model-cactus-2";
+import { ModelSnake } from "../model-snake";
+import { ModelTuiuiu } from "../model-tuiuiu";
+import { ModelRattlesnake } from "../model-rattlesnake";
+import { ModelCactus3 } from "../model-cactus-3";
 
 export const IslandCaatinga = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -71,7 +71,7 @@ export const IslandCaatinga = () => {
         }}
         onStopCollide={() => stopAudio()}
       >
-        <ModelAlligator scale={3} />
+        <ModelRattlesnake scale={3} />
       </ProximityInteractable>
 
       <ProximityInteractable
@@ -95,14 +95,14 @@ export const IslandCaatinga = () => {
         position={handlePositionRelative({ x: 8, y: 6, z: 9 })}
         rotation={[0, degToRad(140), 0]}
       >
-        <ModelPinkIpe scale={0.08} />
+        <ModelCactus3 scale={0.08} />
       </FixedElement>
 
       <FixedElement
         position={handlePositionRelative({ x: -5, y: 6, z: -11 })}
         rotation={[0, degToRad(-70), 0]}
       >
-        <ModelPinkIpe scale={0.08} />
+        <ModelCactus3 scale={0.08} />
       </FixedElement>
 
       <FixedElement
