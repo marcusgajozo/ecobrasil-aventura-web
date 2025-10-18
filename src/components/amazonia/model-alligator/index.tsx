@@ -17,7 +17,7 @@ type GLTFResult = GLTF & {
   nodes: {
     tmpcly6p1ofply: THREE.Mesh;
   };
-  materials: {};
+  materials: object;
 };
 
 export function ModelAlligator(props: JSX.IntrinsicElements["group"]) {
