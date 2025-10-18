@@ -12,6 +12,7 @@ import { ModelTuiuiu } from "../model-tuiuiu";
 import { ModelBushStone } from "../../model-bush-stone";
 import { ModelCattail2 } from "../../model-cattail-2";
 import { ModelArmadillo } from "../model-armadillo";
+import { ModelCactus2 } from "../model-cactus-2";
 
 export const IslandCaatinga = () => {
   const { handlePositionRelative } = useBuildIsland({
@@ -142,8 +143,8 @@ export const IslandCaatinga = () => {
         <ModelCattail2 scale={0.2} />
       </FixedElement>
 
-      <FixedElement position={handlePositionRelative({ x: -4, y: 6, z: 14 })}>
-        <ModelCattail2 scale={0.3} />
+      <FixedElement position={handlePositionRelative({ x: -4, y: 7, z: 14 })}>
+        <ModelCactus2 scale={1} />
       </FixedElement>
     </>
   );
