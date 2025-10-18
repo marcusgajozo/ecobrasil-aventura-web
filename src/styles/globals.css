@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --font-primary: "Jersey 15", "Poppins", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+}
+
+@theme inline {
+  --font-primary: var(--font-primary);
+  --font-secondary: var(--font-secondary);
+
+  --color-success: #6cd424;
+  --color-success-50: #f0fbe9;
+  --color-success-100: #d1f2bb;
+  --color-success-200: #bbeb9a;
+  --color-success-300: #9de26c;
+  --color-success-400: #89dd50;
+  --color-success-500: #6cd424;
+  --color-success-600: #62c121;
+  --color-success-700: #4d971a;
+  --color-success-800: #3b7514;
+  --color-success-900: #2d590f;
+
+  --color-destructive: #e23c43;
+  --color-destructive-50: #fcecec;
+  --color-destructive-100: #f6c3c5;
+  --color-destructive-200: #f2a5a9;
+  --color-destructive-300: #ec7c81;
+  --color-destructive-400: #e86369;
+  --color-destructive-500: #e23c43;
+  --color-destructive-600: #ce373d;
+  --color-destructive-700: #a02b30;
+  --color-destructive-800: #7c2125;
+  --color-destructive-900: #5f191c;
+
+  --color-warning: #f4bc44;
+  --color-warning-50: #fef8ec;
+  --color-warning-100: #fceac5;
+  --color-warning-200: #fae0a9;
+  --color-warning-300: #f8d282;
+  --color-warning-400: #f6c969;
+  --color-warning-500: #f4bc44;
+  --color-warning-600: #deab3e;
+  --color-warning-700: #ad8530;
+  --color-warning-800: #866725;
+  --color-warning-900: #664f1d;
+
+  --color-primary: #041c44;
+  --color-primary-50: #e6e8ec;
+  --color-primary-100: #b1b9c5;
+  --color-primary-200: #8c97a9;
+  --color-primary-300: #576782;
+  --color-primary-400: #364969;
+  --color-primary-500: #041c44;
+  --color-primary-600: #04193e;
+  --color-primary-700: #031430;
+  --color-primary-800: #020f25;
+  --color-primary-900: #020c1d;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply m-0 p-0 box-border;
+  }
+
+  html {
+    @apply text-base leading-normal scroll-smooth;
+  }
+
+  body {
+    @apply text-gray-800 bg-transparent font-secondary antialiased;
+  }
+
+  img,
+  video {
+    @apply max-w-full h-auto;
+  }
+
+  html,
+  body,
+  #root {
+    @apply w-screen h-screen;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-primary;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
+}
