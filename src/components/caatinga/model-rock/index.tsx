@@ -7,6 +7,8 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
+import rockGlb from "@models/caatinga/rock.glb";
+
 type GLTFResult = GLTF & {
   nodes: {
     Rock_3: THREE.Mesh;
@@ -17,7 +19,7 @@ type GLTFResult = GLTF & {
 };
 
 export function ModelRock(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/rock.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(rockGlb) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -29,4 +31,4 @@ export function ModelRock(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/rock.glb");
+useGLTF.preload(rockGlb);

@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Model(props: JSX.IntrinsicElements["group"]) {
+export function ModelRock2(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(rock2Glb) as GLTFResult;
   return (
     <group {...props} dispose={null}>

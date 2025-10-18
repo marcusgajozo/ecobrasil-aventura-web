@@ -8,6 +8,10 @@ import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
 import rattlesnakeGlb from "@models/caatinga/rattlesnake.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/use-brighten-model";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,9 +22,12 @@ type GLTFResult = GLTF & {
 
 export function ModelRattlesnake(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(rattlesnakeGlb) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmp883gs79yply.geometry}
         material={nodes.tmp883gs79yply.material}
       />

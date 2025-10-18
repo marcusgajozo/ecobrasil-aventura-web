@@ -8,6 +8,10 @@ import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
 import iguanaGlb from "@models/caatinga/iguana.glb";
+import {
+  animalBrightenPresets,
+  useBrightenModel,
+} from "@/lib/hooks/use-brighten-model";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,9 +22,12 @@ type GLTFResult = GLTF & {
 
 export function ModelIguana(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(iguanaGlb) as GLTFResult;
+  const { meshRef } = useBrightenModel(animalBrightenPresets.terrestrial);
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={meshRef}
         geometry={nodes.tmpgxolwgnyply.geometry}
         material={nodes.tmpgxolwgnyply.material}
       />

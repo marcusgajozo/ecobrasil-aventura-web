@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Model(props: JSX.IntrinsicElements["group"]) {
+export function ModelCactus(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(cactusGlb) as GLTFResult;
   return (
     <group {...props} dispose={null}>
