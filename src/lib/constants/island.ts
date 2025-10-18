@@ -32,7 +32,7 @@ export const SOIL_COLOR_ISLAND: Record<(typeof NAME_ISLAND)[number], string> = {
   pantanal: "#557008",
   caatinga: "#CB7103",
   cerrado: "#87A84B",
-  "mata-atlantica": "#4E8B31",
+  "mata-atlantica": "#3D6705",
   pampa: "#40a52e",
 };
 
