@@ -9,7 +9,12 @@
     /* alias */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@models/*": ["src/assets/models/*"],
+      "@audios/*": ["src/assets/audios/*"],
+      "@lib/*": ["src/lib/*"],
+      "@jsons/*": ["src/assets/jsons/*"]
     },
 
     /* Bundler mode */
