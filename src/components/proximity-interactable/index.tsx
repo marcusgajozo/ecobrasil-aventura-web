@@ -50,7 +50,7 @@ export const ProximityInteractable = ({
 
       {isClose && interactionPrompt && (
         <Billboard>
-          <Html center position={billboardPosition}>
+          <Html center position={billboardPosition} zIndexRange={[0, 0]}>
             {interactionPrompt}
           </Html>
         </Billboard>
