@@ -24,6 +24,7 @@ export const ProximityInteractable = ({
   onStopCollide,
   characterObjectInteraction,
   interactionPrompt,
+  type = 'fixed',
   ...props
 }: ProximityInteractableProps) => {
   const { isClose, setIsClose } = useCharacterObjectInteraction(
@@ -31,7 +32,7 @@ export const ProximityInteractable = ({
   )
 
   return (
-    <RigidBody colliders={'hull'} {...props}>
+    <RigidBody type={type} colliders={'hull'} {...props}>
       {children}
 
       <BallCollider
