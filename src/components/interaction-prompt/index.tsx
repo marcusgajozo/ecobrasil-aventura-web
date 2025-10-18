@@ -3,8 +3,8 @@ import styles from './styles/styles.module.css'
 
 interface InteractionPromptProps {
   title: string
-  descriptionAction: string
-  keyboardKey: string
+  descriptionAction?: string
+  keyboardKey?: string
 }
 
 export function InteractionPrompt({
@@ -31,7 +31,7 @@ export function InteractionPrompt({
               !
             </span>
           )}
-          <span className="">{descriptionAction}</span>
+          <span className="leading-5">{descriptionAction}</span>
         </div>
       )}
     </div>
