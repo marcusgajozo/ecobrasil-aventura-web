@@ -1,40 +1,30 @@
-import { useBuildIsland } from "@/lib/hooks/use-build-island";
-import { degToRad } from "three/src/math/MathUtils.js";
-import { FixedElement } from "../../fixed-element";
-import { ModelTree2 } from "../../model-tree-2";
-import { ModelBushStone } from "../../model-bush-stone";
-import { ProximityInteractable } from "../../proximity-interactable";
-import { usePlayAudio } from "@/lib/hooks/use-play-audio";
-import { ModelTree1 } from "../../model-tree-1";
-import emaMp3 from "@audios/pampa/rhea.mp3";
-import { ModelBlueAndYellowMacaw } from "../model-blue-and-yellow-macaw";
-import { ModelJaguar } from "../jaguar";
-import { ModelAnteater } from "../model-anteater";
-import { ModelGiantArmadillo } from "../model-giant-armadillo";
-import { ModelBush } from "@/components/model-bush";
+import { InteractionPrompt } from '@/components/interaction-prompt'
+import { ModelBush } from '@/components/model-bush'
+import { useBuildIsland } from '@/lib/hooks/use-build-island'
+import { degToRad } from 'three/src/math/MathUtils.js'
+import { FixedElement } from '../../fixed-element'
+import { ModelBushStone } from '../../model-bush-stone'
+import { ModelTree1 } from '../../model-tree-1'
+import { ModelTree2 } from '../../model-tree-2'
+import { ProximityInteractable } from '../../proximity-interactable'
+import { ModelJaguar } from '../jaguar'
+import { ModelAnteater } from '../model-anteater'
+import { ModelBlueAndYellowMacaw } from '../model-blue-and-yellow-macaw'
+import { ModelGiantArmadillo } from '../model-giant-armadillo'
 
 export const IslandCerrado = () => {
   const { handlePositionRelative } = useBuildIsland({
-    nameIsland: "cerrado",
-  });
-
-  const { playAudio, stopAudio } = usePlayAudio();
+    nameIsland: 'cerrado',
+  })
 
   return (
     <>
       <ProximityInteractable
         position={handlePositionRelative({ x: 12, y: 6.6, z: -6 })}
         rotation={[0, degToRad(180), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
+        interactionPrompt={<InteractionPrompt title="Tatu-canastra" />}
+        billboardPosition={[0, 2, 0]}
         colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
       >
         <ModelGiantArmadillo scale={1.5} />
       </ProximityInteractable>
@@ -42,16 +32,9 @@ export const IslandCerrado = () => {
       <ProximityInteractable
         position={handlePositionRelative({ x: -5, y: 7.2, z: -12 })}
         rotation={[0, degToRad(-40), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
+        interactionPrompt={<InteractionPrompt title="Onça-pintada" />}
+        billboardPosition={[0, 2, 0]}
         colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
       >
         <ModelJaguar scale={2} />
       </ProximityInteractable>
@@ -59,16 +42,9 @@ export const IslandCerrado = () => {
       <ProximityInteractable
         position={handlePositionRelative({ x: 3, y: 6.7, z: 6 })}
         rotation={[0, degToRad(160), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
+        interactionPrompt={<InteractionPrompt title="Tamanduá-bandeira" />}
+        billboardPosition={[0, 2, 0]}
         colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
       >
         <ModelAnteater scale={2.5} />
       </ProximityInteractable>
@@ -76,16 +52,8 @@ export const IslandCerrado = () => {
       <ProximityInteractable
         position={handlePositionRelative({ x: 2, y: 10, z: -11 })}
         rotation={[0, degToRad(100), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
-        colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
+        interactionPrompt={<InteractionPrompt title="Arara-canindé" />}
+        billboardPosition={[0, 2, 0]}
       >
         <ModelBlueAndYellowMacaw scale={0.7} />
       </ProximityInteractable>
@@ -188,5 +156,5 @@ export const IslandCerrado = () => {
         <ModelBush scale={1} />
       </FixedElement>
     </>
-  );
-};
+  )
+}
