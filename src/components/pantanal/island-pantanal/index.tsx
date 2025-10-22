@@ -58,13 +58,15 @@ export const IslandPantanal = () => {
       <FixedElement
         position={handlePositionRelative({ x: 5, y: 6.8, z: -10 })}
         rotation={[0, degToRad(-40), 0]}
+        colliders="hull"
       >
         <ModelCapybara scale={1} />
       </FixedElement>
 
       <FixedElement
-        position={handlePositionRelative({ x: 2, y: 6.8, z: -10 })}
+        position={handlePositionRelative({ x: 2, y: 6.8, z: -11 })}
         rotation={[0, degToRad(-40), 0]}
+        colliders="hull"
       >
         <ModelCapybara scale={1} />
       </FixedElement>
@@ -72,6 +74,7 @@ export const IslandPantanal = () => {
       <FixedElement
         position={handlePositionRelative({ x: 8, y: 6, z: 9 })}
         rotation={[0, degToRad(140), 0]}
+        colliders="trimesh"
       >
         <ModelPinkIpe scale={0.08} />
       </FixedElement>
@@ -79,6 +82,7 @@ export const IslandPantanal = () => {
       <FixedElement
         position={handlePositionRelative({ x: -5, y: 6, z: -11 })}
         rotation={[0, degToRad(-70), 0]}
+        colliders="trimesh"
       >
         <ModelPinkIpe scale={0.08} />
       </FixedElement>
