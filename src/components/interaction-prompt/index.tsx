@@ -5,12 +5,14 @@ interface InteractionPromptProps {
   title: string
   descriptionAction?: string
   keyboardKey?: string
+  isLoading?: boolean
 }
 
 export function InteractionPrompt({
   title,
   descriptionAction,
   keyboardKey,
+  isLoading,
 }: InteractionPromptProps) {
   return (
     <div
@@ -34,6 +36,7 @@ export function InteractionPrompt({
           <span className="leading-5">{descriptionAction}</span>
         </div>
       )}
+      {isLoading && <span className="mt-2 text-sm">Carregando...</span>}
     </div>
   )
 }
