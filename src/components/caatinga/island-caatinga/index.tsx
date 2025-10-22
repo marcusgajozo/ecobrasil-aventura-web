@@ -1,93 +1,58 @@
-import { useBuildIsland } from "@/lib/hooks/use-build-island";
-import { usePlayAudio } from "@/lib/hooks/use-play-audio";
-import emaMp3 from "@audios/pampa/rhea.mp3";
-import { degToRad } from "three/src/math/MathUtils.js";
-import { FixedElement } from "../../fixed-element";
-import { ModelBushStone } from "../../model-bush-stone";
-import { ProximityInteractable } from "../../proximity-interactable";
-import { ModelArmadillo } from "../model-armadillo";
-import { ModelCactus3 } from "../model-cactus-3";
-import { ModelIguana } from "../model-iguana";
-import { ModelPomp } from "../model-pomp";
-import { ModelRattlesnake } from "../model-rattlesnake";
-import { ModelRock } from "../model-rock";
-import { ModelRock2 } from "../model-rock-2";
-import { ModelRock3 } from "../model-rock-3";
-import { ModelRock4 } from "../model-rock-4";
-import { ModelCactus } from "../model-cactus";
-import { ModelCactus2 } from "../model-cactus-2";
-import { ModelCactus4 } from "../model-cactus-4";
+import { InteractionPrompt } from '@/components/interaction-prompt'
+import { useBuildIsland } from '@/lib/hooks/use-build-island'
+import { degToRad } from 'three/src/math/MathUtils.js'
+import { FixedElement } from '../../fixed-element'
+import { ModelBushStone } from '../../model-bush-stone'
+import { ProximityInteractable } from '../../proximity-interactable'
+import { ModelArmadillo } from '../model-armadillo'
+import { ModelCactus } from '../model-cactus'
+import { ModelCactus2 } from '../model-cactus-2'
+import { ModelCactus3 } from '../model-cactus-3'
+import { ModelCactus4 } from '../model-cactus-4'
+import { ModelIguana } from '../model-iguana'
+import { ModelPomp } from '../model-pomp'
+import { ModelRattlesnake } from '../model-rattlesnake'
+import { ModelRock } from '../model-rock'
+import { ModelRock2 } from '../model-rock-2'
+import { ModelRock3 } from '../model-rock-3'
+import { ModelRock4 } from '../model-rock-4'
 
 export const IslandCaatinga = () => {
   const { handlePositionRelative } = useBuildIsland({
-    nameIsland: "caatinga",
-  });
-
-  const { playAudio, stopAudio } = usePlayAudio();
+    nameIsland: 'caatinga',
+  })
 
   return (
     <>
       <ProximityInteractable
         position={handlePositionRelative({ x: -4, y: 6.5, z: -9 })}
         rotation={[0, degToRad(-40), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
-        colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
+        interactionPrompt={<InteractionPrompt title="Tatu-bola" />}
+        billboardPosition={[0, 2, 0]}
       >
         <ModelArmadillo scale={1} />
       </ProximityInteractable>
       <ProximityInteractable
         position={handlePositionRelative({ x: 2, y: 6.5, z: 10 })}
         rotation={[0, degToRad(130), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
-        colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
+        interactionPrompt={<InteractionPrompt title="Iguana-verde" />}
+        billboardPosition={[0, 2, 0]}
       >
         <ModelIguana scale={1} />
       </ProximityInteractable>
       <ProximityInteractable
         position={handlePositionRelative({ x: 12, y: 6.9, z: 2 })}
         rotation={[0, degToRad(1), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
-        colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
+        interactionPrompt={<InteractionPrompt title="Jararaca-da-seca" />}
+        billboardPosition={[0, 2, 0]}
       >
         <ModelRattlesnake scale={1.3} />
       </ProximityInteractable>
       <ProximityInteractable
         position={handlePositionRelative({ x: 3, y: 8.9, z: -13 })}
         rotation={[0, degToRad(280), 0]}
-        type="fixed"
-        billboardText="Ema\nPressione [F] para emitir o som"
-        billboardTextPosition={[0, 3.5, 0]}
-        colliderPosition={[0, -1, 0]}
-        sensorRadius={4}
-        characterObjectInteraction={{
-          control: "action",
-          action: () => playAudio(emaMp3),
-        }}
-        onStopCollide={() => stopAudio()}
+        interactionPrompt={<InteractionPrompt title="Asa-branca" />}
+        billboardPosition={[0, 2, 0]}
       >
         <ModelPomp scale={0.6} />
       </ProximityInteractable>
@@ -171,5 +136,5 @@ export const IslandCaatinga = () => {
         <ModelRock scale={1} />
       </FixedElement>
     </>
-  );
-};
+  )
+}
