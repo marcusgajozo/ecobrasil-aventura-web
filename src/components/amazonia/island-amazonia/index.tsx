@@ -50,7 +50,6 @@ export const IslandAmazonia = () => {
       <ProximityInteractable
         position={handlePositionRelative({ x: 2, y: 8.4, z: -12 })}
         rotation={[0, degToRad(-30), 0]}
-        type="fixed"
         interactionPrompt={<InteractionPrompt title="Arara-vermelha" />}
         billboardPosition={[0, 2, 0]}
       >
