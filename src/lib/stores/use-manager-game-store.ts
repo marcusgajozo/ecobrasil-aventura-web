@@ -1,37 +1,41 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 type ManagerGameStoreState = {
-  isFirstAccess: boolean;
-};
+  isFirstAccess: boolean
+  didTheTutorial: boolean
+}
 
 type ManagerGameStoreActions = {
   setIsFirstAccess: (
-    isFirstAccess: ManagerGameStoreState["isFirstAccess"]
-  ) => void;
-  handleResetGame: () => void;
-};
+    isFirstAccess: ManagerGameStoreState['isFirstAccess']
+  ) => void
+  setDidTheTutorial: (
+    didTheTutorial: ManagerGameStoreState['didTheTutorial']
+  ) => void
+  handleResetGame: () => void
+}
 
-type ManagerGameStore = ManagerGameStoreState & ManagerGameStoreActions;
+type ManagerGameStore = ManagerGameStoreState & ManagerGameStoreActions
 
 const INITIAL_STATE = {
   isFirstAccess: true,
-};
+  didTheTutorial: false,
+}
 
 export const useManagerGameStore = create<ManagerGameStore>()(
   persist(
-    (set) => ({
+    set => ({
       ...INITIAL_STATE,
       setIsFirstAccess: (isFirstAccess: boolean) => set({ isFirstAccess }),
+      setDidTheTutorial: (didTheTutorial: boolean) => set({ didTheTutorial }),
       handleResetGame: () => {
-        // Limpa todos os dados do localStorage
-        localStorage.clear();
-        // Recarrega a página
-        window.location.reload();
+        localStorage.clear()
+        window.location.reload()
       },
     }),
     {
-      name: "manager-game-store",
+      name: 'manager-game-store',
     }
   )
-);
+)

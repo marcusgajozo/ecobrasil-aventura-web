@@ -7,11 +7,13 @@ import { ModalEndOfGame } from '@/components/modal-end-of-game'
 import { ModalHelp } from '@/components/modal-help'
 import { ModalMapScreen } from '@/components/modal-map-screen'
 import { ModalQuiz } from '@/components/modal-quiz'
+import { ModalShowControls } from '@/components/modal-show-controls'
 import { ModalTutorial } from '@/components/modal-tutorial'
 import { Stars } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { GameProviders } from './contexts/game-providers'
+import { ModalAboutGame } from '@/components/modal-about-game'
 
 export const Game = () => {
   return (
@@ -23,6 +25,8 @@ export const Game = () => {
       <ModalEndOfGame />
       <ModalHelp />
       <ModalTutorial />
+      <ModalShowControls />
+      <ModalAboutGame />
 
       <Canvas shadows camera={{ position: [10, 10, -10], fov: 30 }}>
         <color attach="background" args={['#000000']} />
