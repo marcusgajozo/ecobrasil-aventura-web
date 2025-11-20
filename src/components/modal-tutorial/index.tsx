@@ -17,11 +17,17 @@ export const ModalTutorial = () => {
   const toGoBack = currentStep > 0
   const toGoForward = currentStep < steps.length - 1
 
-  const handleCloseModal = useModalManagerStore(state => state.handleCloseModal)
+  const handleCloseModalStore = useModalManagerStore(
+    state => state.handleCloseModal
+  )
   const handleOpenModal = useModalManagerStore(state => state.handleOpenModal)
   const setDidTheTutorial = useManagerGameStore(
     state => state.setDidTheTutorial
   )
+  const handleCloseModal = () => {
+    setDidTheTutorial(true)
+    handleCloseModalStore()
+  }
 
   const handleNextStep = () => {
     if (currentStep < steps.length - 2) {

@@ -2,6 +2,7 @@ import { useManagerIslandStore } from '@/lib/stores/use-manager-island-store'
 import { useModalManagerStore } from '@/lib/stores/use-modal-manager-store'
 import { useCallback, useMemo, useState } from 'react'
 import { useModalQuizStore } from '../stores/use-modal-quiz-store'
+import { useManagerGameStore } from '@/lib/stores/use-manager-game-store'
 
 export const useModalQuiz = () => {
   const currentIsland = useManagerIslandStore(state => state.currentIsland)
@@ -18,6 +19,9 @@ export const useModalQuiz = () => {
   )
   const [selectedAnswer, setSelectedAnswer] = useState<number | undefined>(
     undefined
+  )
+  const handleUpdateHitRate = useManagerGameStore(
+    state => state.handleUpdateHitRate
   )
   const [gotRight, setGotRight] = useState<boolean | undefined>(undefined)
 
@@ -69,10 +73,16 @@ export const useModalQuiz = () => {
 
   const handleNextQuestion = useCallback(() => {
     if (gotRight === undefined) return
+    handleUpdateHitRate(gotRight)
     handleUpdateCurrentQuestionIndex(gotRight, currentIsland)
     setGotRight(undefined)
     setSelectedAnswer(undefined)
-  }, [gotRight, handleUpdateCurrentQuestionIndex, currentIsland])
+  }, [
+    gotRight,
+    handleUpdateHitRate,
+    handleUpdateCurrentQuestionIndex,
+    currentIsland,
+  ])
 
   return {
     isQuizCompleted,
