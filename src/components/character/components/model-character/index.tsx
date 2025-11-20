@@ -1,40 +1,38 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { animated } from "@react-spring/three";
-import { useAnimations, useGLTF } from "@react-three/drei";
-import { GroupProps, useGraph } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
-import { SkeletonUtils } from "three-stdlib";
+import { animated } from '@react-spring/three'
+import { useAnimations, useGLTF } from '@react-three/drei'
+import { GroupProps, useGraph } from '@react-three/fiber'
+import { useEffect, useMemo, useRef } from 'react'
+import { SkeletonUtils } from 'three-stdlib'
 
-import { useTeleportCharacter } from "@/lib/hooks/use-teleport-character";
-import robot from "@models/robot.glb";
+import { useTeleportCharacter } from '@/lib/hooks/use-teleport-character'
+import robot from '@models/robot.glb'
 
 type CharacterModelProps = {
-  animation?: string;
-  color?: string;
-} & GroupProps;
+  animation?: string
+  color?: string
+} & GroupProps
 
 const CharacterModel = ({
-  animation = "RobotArmature|Robot_Idle",
+  animation = 'RobotArmature|Robot_Idle',
   ...props
 }: CharacterModelProps) => {
-  const group = useRef(null);
-  const { scene, animations } = useGLTF(robot);
-  const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
-  const { nodes, materials } = useGraph(clone);
-  const { actions } = useAnimations(animations, group);
-  const { animationTeleport } = useTeleportCharacter();
-
-  console.log(animationTeleport.scale.get());
+  const group = useRef(null)
+  const { scene, animations } = useGLTF(robot)
+  const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
+  const { nodes, materials } = useGraph(clone)
+  const { actions } = useAnimations(animations, group)
+  const { animationTeleport } = useTeleportCharacter()
 
   useEffect(() => {
-    if (actions[animation]) actions[animation].reset().fadeIn(0.5).play();
+    if (actions[animation]) actions[animation].reset().fadeIn(0.5).play()
 
     return () => {
-      if (actions[animation]) actions[animation].fadeOut(0.5);
-    };
-  }, [actions, animation]);
+      if (actions[animation]) actions[animation].fadeOut(0.5)
+    }
+  }, [actions, animation])
 
   return (
     <animated.group scale={animationTeleport.scale}>
@@ -91,9 +89,9 @@ const CharacterModel = ({
         </group>
       </group>
     </animated.group>
-  );
-};
+  )
+}
 
-useGLTF.preload(robot);
+useGLTF.preload(robot)
 
-export default CharacterModel;
+export default CharacterModel
