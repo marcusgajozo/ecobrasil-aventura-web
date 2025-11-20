@@ -11,7 +11,7 @@ export const ModalShowControls = () => {
   return (
     <Modal.Root open={modal === 'show-controls'} onClose={handleCloseModal}>
       <Modal.Content>
-        <Modal.Header title="Tutorial do Jogo" />
+        <Modal.Header title="Controles do Jogo" />
         <Modal.Body>
           <div className="flex items-center gap-8">
             <div className="w-60">

@@ -12,7 +12,7 @@ export function ModalAboutGame() {
   return (
     <Modal.Root open={modal === 'about-game'} onClose={handleCloseModal}>
       <Modal.Content>
-        <Modal.Header title="Tutorial do Jogo" />
+        <Modal.Header title="Sobre o Jogo" />
         <Modal.Body>
           <div className="flex items-center gap-8">
             <div className="flex w-60 flex-col gap-4">
