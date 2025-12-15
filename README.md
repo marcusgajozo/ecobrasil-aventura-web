@@ -1,4 +1,4 @@
-# 🌍 EcoBrasil Aventura (Estudo Three.js)
+# 🌍 EcoBrasil Aventura
 
 ![Project Status](https://img.shields.io/badge/status-em_desenvolvimento-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -7,7 +7,7 @@
 ![Vite](https://img.shields.io/badge/vite-5.4-646CFF?logo=vite)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-4.1-38B2AC?logo=tailwindcss)
 
-Um projeto de jogo educativo e estudo de tecnologias 3D para a web, focado na preservação dos biomas brasileiros. Este repositório explora a integração de **React**, **Three.js** e **React Three Fiber (R3F)** para criar experiências imersivas no navegador.
+Um projeto de jogo educativo 3D para a web, focado na preservação dos biomas brasileiros. Este repositório explora a integração de **React**, **Three.js** e **React Three Fiber (R3F)** para criar experiências imersivas no navegador.
 
 ## ✨ Funcionalidades e Tecnologias
 
