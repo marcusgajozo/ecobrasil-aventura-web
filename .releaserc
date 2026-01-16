@@ -8,7 +8,11 @@
       "npmPublish": false
     }],
     ["@semantic-release/github", {
-      "assets": []
+      "assets": [],
+      "successComment": false,
+      "failComment": false,
+      "releasedLabels": false,
+      "addReleases": "bottom"
     }],
     ["@semantic-release/git", {
     "assets": ["package.json", "CHANGELOG.md"],
