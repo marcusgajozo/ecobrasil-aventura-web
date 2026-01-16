@@ -26,7 +26,7 @@ jobs:
           node-version: "lts/*"
 
       - name: Instalar Dependências
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Rodar Semantic Release
         env:
