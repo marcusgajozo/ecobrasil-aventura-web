@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/marcusgajozo/ecobrasil-aventura-web/compare/v1.0.0...v1.0.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* **.releaserc:** ajusta arquivo ([098b39c](https://github.com/marcusgajozo/ecobrasil-aventura-web/commit/098b39c064aec955d5ed3e67cd2a6ed90e924d02))
+
 # 1.0.0 (2026-01-16)
 
 
